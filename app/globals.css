@@ -48,9 +48,9 @@ a {
   background: var(--slate);
 }
 .masthead-inner {
-  max-width: 720px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 18px 20px;
+  padding: 18px 24px;
 }
 .wordmark {
   display: inline-flex;
@@ -64,20 +64,35 @@ a {
 }
 
 .page {
-  max-width: 720px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 20px 80px;
+  padding: 48px 24px 96px;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+@media (max-width: 760px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
 }
 
 .intro h1 {
   font-weight: 700;
   letter-spacing: -0.02em;
-  font-size: clamp(1.7rem, 3.5vw, 2.3rem);
-  margin: 0 0 10px;
+  font-size: clamp(2rem, 4.2vw, 3rem);
+  line-height: 1.05;
+  margin: 0 0 14px;
   text-wrap: balance;
 }
 .intro p {
   color: var(--muted);
+  font-size: 1.05rem;
   margin: 0 0 32px;
   max-width: 60ch;
 }
@@ -291,12 +306,15 @@ a {
 }
 
 .content section {
-  margin-bottom: 36px;
+  margin-bottom: 44px;
 }
 .content h2 {
-  font-size: 1.15rem;
+  font-size: clamp(1.35rem, 1.8vw, 1.875rem);
   font-weight: 700;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
+}
+.card p {
+  max-width: 65ch;
 }
 
 .status-card {
@@ -357,6 +375,11 @@ a {
   font-size: 0.85rem;
   color: var(--muted);
   margin-bottom: 24px;
+}
+
+.trust-row {
+  margin-top: -12px;
+  margin-bottom: 28px;
 }
 .breadcrumbs a {
   color: var(--muted);
