@@ -1,15 +1,17 @@
-export default function RamsDocument({ trade, siteAddress }) {
+export default function RamsDocument({ trade, siteAddress, showHeader = true }) {
   return (
     <div className="content">
-      <section>
-        <h2>{trade.h1_title}</h2>
-        {siteAddress ? (
-          <p style={{ color: "var(--muted)", marginTop: -8 }}>
-            Site: {siteAddress}
-          </p>
-        ) : null}
-        <span className="badge-green">&#10003; CDM 2015 Compliant</span>
-      </section>
+      {showHeader ? (
+        <section>
+          <h2>{trade.h1_title}</h2>
+          {siteAddress ? (
+            <p style={{ color: "var(--muted)", marginTop: -8 }}>
+              Site: {siteAddress}
+            </p>
+          ) : null}
+          <span className="badge-green">&#10003; CDM 2015 Compliant</span>
+        </section>
+      ) : null}
 
       <section>
         <h2>Applicable Regulations</h2>

@@ -1,5 +1,10 @@
+import Link from "next/link";
 import TradeForm from "@/components/TradeForm";
 import { trades } from "@/lib/trades";
+
+export const metadata = {
+  alternates: { canonical: "https://ramsforge.co.uk" },
+};
 
 export default function HomePage() {
   return (
@@ -13,6 +18,9 @@ export default function HomePage() {
         </p>
       </div>
       <TradeForm trades={trades} />
+      <p className="browse-link">
+        Not sure what to search? <Link href="/rams">Browse all jobs</Link>
+      </p>
     </main>
   );
 }
