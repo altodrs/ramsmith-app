@@ -119,6 +119,58 @@ a {
   color: var(--muted);
 }
 
+.job-search {
+  position: relative;
+}
+.job-results {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  z-index: 10;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  max-height: 280px;
+  overflow-y: auto;
+}
+.job-results-empty {
+  padding: 10px 12px;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+.job-result {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  font: inherit;
+  color: var(--ink);
+  padding: 8px 10px;
+  cursor: pointer;
+}
+.job-result:hover,
+.job-result.selected {
+  background: var(--surface-2);
+}
+.job-result-trade {
+  font-size: 0.74rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.job-result-task {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
 .price-row {
   display: flex;
   align-items: baseline;
