@@ -1,4 +1,4 @@
-# RAMSmith — Next.js + Stripe
+# RAMS Forge — Next.js + Stripe
 
 A UK RAMS (Risk Assessment & Method Statement) generator. Users pick a trade
 job, pay a one-time £15 fee via Stripe Checkout, and get a CDM 2015 compliant
@@ -52,7 +52,7 @@ From inside this project folder:
 ```bash
 git init
 git add -A
-git commit -m "Initial commit: RAMSmith Next.js + Stripe"
+git commit -m "Initial commit: RAMS Forge Next.js + Stripe"
 ```
 
 Create the repo on GitHub (pick one):

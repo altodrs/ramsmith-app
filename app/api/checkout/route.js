@@ -35,7 +35,11 @@ export async function POST(request) {
   try {
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
-      payment_method_types: ["card"],
+      // Managed Payments (on by default for new Stripe accounts) requires
+      // every product to carry a Stripe tax code for automatic tax, which
+      // we're not set up for yet. Turning it off for this request keeps our
+      // own flat price in full control instead of guessing at a tax code.
+      managed_payments: { enabled: false },
       line_items: [
         {
           price_data: {

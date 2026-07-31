@@ -12,7 +12,7 @@ const satoshi = localFont({
 });
 
 export const metadata = {
-  title: "RAMSmith — UK RAMS Generator",
+  title: "RAMS Forge — UK RAMS Generator",
   description:
     "Generate a site-specific, CDM 2015 compliant Risk Assessment & Method Statement in minutes.",
 };
@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
         <div className="masthead">
           <div className="masthead-inner">
             <a className="wordmark" href="/">
-              RAMSmith
+              <img src="/logo.svg" alt="RAMS Forge" />
             </a>
           </div>
         </div>

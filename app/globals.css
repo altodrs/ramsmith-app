@@ -7,7 +7,11 @@
   --border: rgba(0, 0, 0, 0.08);
   --border-strong: rgba(0, 0, 0, 0.14);
 
-  --blue: #2954ff;
+  /* RAMS Forge brand marks — fixed, not theme-adaptive. Official hex values. */
+  --slate: #2f3e47;
+  --slate-ink: #ffffff;
+  --brand: #f15a24;
+
   --red: #e5342b;
   --red-bg: #fdecec;
   --green: #16a34a;
@@ -28,7 +32,6 @@
     --border: rgba(255, 255, 255, 0.1);
     --border-strong: rgba(255, 255, 255, 0.16);
 
-    --blue: #7c93ff;
     --red: #ff7a70;
     --red-bg: rgba(229, 52, 43, 0.14);
     --green: #55d889;
@@ -54,16 +57,15 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 a {
-  color: var(--blue);
+  color: var(--brand);
 }
 ::selection {
-  background: var(--blue);
+  background: var(--brand);
   color: #fff;
 }
 
 .masthead {
-  border-bottom: 1px solid var(--border);
-  background: var(--surface);
+  background: var(--slate);
 }
 .masthead-inner {
   max-width: 720px;
@@ -71,11 +73,14 @@ a {
   padding: 18px 20px;
 }
 .wordmark {
-  font-weight: 700;
-  font-size: 1.3rem;
-  letter-spacing: -0.02em;
-  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
   text-decoration: none;
+}
+.wordmark img {
+  height: 26px;
+  width: auto;
+  display: block;
 }
 
 .page {
@@ -126,7 +131,7 @@ a {
 }
 .field select:focus,
 .field input:focus {
-  outline: 2px solid var(--blue);
+  outline: 2px solid var(--brand);
   outline-offset: 1px;
 }
 .field-hint {
@@ -154,7 +159,7 @@ a {
 
 .button {
   width: 100%;
-  background: var(--blue);
+  background: var(--brand);
   color: #fff;
   border: none;
   font: inherit;
