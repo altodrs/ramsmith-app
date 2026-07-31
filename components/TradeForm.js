@@ -1,36 +1,17 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function TradeForm({ trades }) {
+  const router = useRouter();
   const [slug, setSlug] = useState(trades[0]?.slug || "");
   const [siteAddress, setSiteAddress] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
-    setLoading(true);
-    setError("");
-
-    try {
-      const res = await fetch("/api/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ slug, siteAddress }),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok || !data.url) {
-        throw new Error(data.error || "Something went wrong. Please try again.");
-      }
-
-      window.location.href = data.url;
-    } catch (err) {
-      setError(err.message);
-      setLoading(false);
-    }
+    const params = new URLSearchParams({ slug, siteAddress });
+    router.push(`/preview?${params.toString()}`);
   }
 
   return (
@@ -60,8 +41,7 @@ export default function TradeForm({ trades }) {
           onChange={(e) => setSiteAddress(e.target.value)}
         />
         <span className="field-hint">
-          Printed on the RAMS document. You'll enter your email on the payment
-          page next.
+          Printed on the RAMS document. You'll enter your email at payment.
         </span>
       </div>
 
@@ -70,11 +50,9 @@ export default function TradeForm({ trades }) {
         <span className="price-amount">£15.00</span>
       </div>
 
-      <button className="button" type="submit" disabled={loading}>
-        {loading ? "Redirecting to checkout…" : "Pay & generate RAMS"}
+      <button className="button" type="submit">
+        Preview my RAMS
       </button>
-
-      {error ? <p className="error-text">{error}</p> : null}
     </form>
   );
 }

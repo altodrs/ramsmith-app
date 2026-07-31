@@ -7,23 +7,38 @@ RAMS document rendered on the success page.
 ## How it works
 
 - `app/page.js` — the form: pick a job, add a site address.
+- `app/preview/page.js` — shows the real RAMS content with a watermark
+  overlay before payment, so customers see what they're buying instead of
+  paying blind. Unlocking removes the watermark and enables the PDF.
 - `app/api/checkout/route.js` — server-side route that creates a Stripe
   Checkout Session. The price and product name come from `lib/trades.js` on
   the server, never from the client request — so a tampered request can't
   change what gets charged.
 - `app/success/page.js` — after Stripe redirects back, this Server Component
   independently re-verifies the payment with Stripe (`payment_status === "paid"`)
-  before rendering the RAMS document. The URL having a `session_id` in it
-  proves nothing by itself; this is the actual security check.
+  before rendering the clean RAMS document, generating the PDF, and emailing
+  it. The URL having a `session_id` in it proves nothing by itself; this is
+  the actual security check. Note: this re-runs (including re-emailing) if
+  the customer refreshes the success page — fine for now, but worth moving
+  to a Stripe webhook (`checkout.session.completed`) if that becomes annoying.
+- `app/api/download/route.js` — lets the customer re-download the PDF later
+  from the same link; re-verifies payment the same way as the success page.
+- `lib/pdf.js` + `scripts/render-pdf.mjs` — PDF generation. Split into two
+  files because `@react-pdf/renderer` throws a cryptic React error when
+  rendered directly inside a Next.js route/Server Component (confirmed by
+  reproducing it standalone — this isn't a version or JSX-syntax issue, it's
+  specific to Next's bundling of that package). The workaround is to run the
+  actual rendering in a genuinely separate `node` process
+  (`scripts/render-pdf.mjs`), spawned from `lib/pdf.js` via `child_process`.
+  `next.config.js`'s `outputFileTracingIncludes` makes sure Vercel actually
+  bundles that script and its dependencies, since it's invoked at runtime
+  rather than imported.
+- `lib/email.js` — sends the PDF via Resend. Without `RESEND_API_KEY` set,
+  this no-ops safely (the site still works, it just skips emailing and says
+  so honestly rather than claiming to have sent something it didn't).
 - `lib/stripe.js` — the Stripe client and price constant. Only ever imported
   from server-side files (API routes, Server Components) — never from a
   `"use client"` component, since that would leak the secret key to the browser.
-
-**Not included yet:** actual PDF generation and emailing the document. The
-success page renders the RAMS on-screen; wiring up a PDF library (e.g.
-`@react-pdf/renderer`) and an email API (e.g. Resend, SendGrid) — ideally
-triggered from a Stripe webhook rather than only the success-page visit, so a
-closed tab doesn't lose the fulfillment — is the natural next step.
 
 ---
 
@@ -83,7 +98,8 @@ git push -u origin main
    |---|---|
    | `STRIPE_SECRET_KEY` | your Stripe secret key |
    | `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | your Stripe publishable key |
-   | `NEXT_PUBLIC_SITE_URL` | leave blank for now — see step 5 |
+   | `RESEND_API_KEY` | your Resend key (see step 5) — optional, site works without it |
+   | `NEXT_PUBLIC_SITE_URL` | leave blank for now — see step 6 |
 5. Click **Deploy**. Vercel gives you a URL like `https://ramsmith-app.vercel.app`.
 6. Go back to **Project Settings → Environment Variables**, set
    `NEXT_PUBLIC_SITE_URL` to that real URL, and redeploy (**Deployments → ⋯ → Redeploy**)
@@ -106,6 +122,23 @@ Every future `git push` to `main` auto-deploys.
 **Going live:** switch Stripe out of Test mode, grab the `sk_live_...` /
 `pk_live_...` keys, and replace the values in Vercel's environment variables
 (then redeploy). Never put live keys in `.env.local` or commit them to git.
+
+---
+
+## 5. Get your Resend key (optional — emails the PDF to customers)
+
+The site works fully without this — customers still get the PDF via the
+"Download PDF" button. Add this if you want it emailed to them automatically
+too.
+
+1. Sign up free at [resend.com](https://resend.com).
+2. **Developers → API Keys** → create one → copy it into `RESEND_API_KEY`.
+3. Without any extra setup, emails send from `onboarding@resend.dev` and can
+   only reach the address you signed up to Resend with — fine for testing,
+   not for real customers.
+4. Once `ramsforge.co.uk` is bought (see the checklist from earlier), add it
+   under **Domains** in Resend and follow their DNS verification steps, then
+   set `RESEND_FROM` to something like `RAMS Forge <noreply@ramsforge.co.uk>`.
 
 ---
 

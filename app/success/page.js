@@ -1,6 +1,8 @@
 import { stripe } from "@/lib/stripe";
 import { getTradeBySlug } from "@/lib/trades";
 import RamsDocument from "@/components/RamsDocument";
+import { generateRamsPdf } from "@/lib/pdf";
+import { sendRamsEmail } from "@/lib/email";
 
 // Server Component — runs only on the server, so it's safe to call Stripe
 // with the secret key here. Payment is verified independently on every load;
@@ -61,13 +63,46 @@ export default async function SuccessPage({ searchParams }) {
     );
   }
 
+  const siteAddress = session.metadata?.siteAddress;
+  const customerEmail = session.customer_details?.email;
+
+  // Best-effort: a failed email should never stop the customer seeing/
+  // downloading their document, since that's the part that actually matters.
+  // Note this can re-send on a page refresh — fine for now, worth moving to
+  // a webhook-triggered send (see README) if that becomes a real problem.
+  let emailResult = { skipped: true };
+  if (customerEmail) {
+    try {
+      const pdfBuffer = await generateRamsPdf(trade, siteAddress);
+      emailResult = await sendRamsEmail({ to: customerEmail, trade, pdfBuffer });
+    } catch (err) {
+      console.error("Failed to send RAMS email:", err);
+      emailResult = { skipped: true };
+    }
+  }
+
   return (
     <main className="page">
       <div className="intro">
         <h1>Payment confirmed</h1>
-        <p>Your RAMS document is below.</p>
+        <p>
+          {emailResult?.skipped
+            ? "Your RAMS document is below — download the PDF whenever you're ready."
+            : `Your RAMS document is below, and a PDF copy is on its way to ${customerEmail}.`}
+        </p>
       </div>
-      <RamsDocument trade={trade} siteAddress={session.metadata?.siteAddress} />
+
+      <div style={{ marginBottom: 28 }}>
+        <a
+          className="button"
+          style={{ display: "inline-block", width: "auto" }}
+          href={`/api/download?session_id=${session.id}`}
+        >
+          Download PDF
+        </a>
+      </div>
+
+      <RamsDocument trade={trade} siteAddress={siteAddress} />
     </main>
   );
 }
