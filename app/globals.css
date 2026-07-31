@@ -22,26 +22,6 @@
   --shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.05);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #121212;
-    --surface: #1b1b1b;
-    --surface-2: #1f1f1f;
-    --ink: #f4f3f1;
-    --muted: #a3a3a3;
-    --border: rgba(255, 255, 255, 0.1);
-    --border-strong: rgba(255, 255, 255, 0.16);
-
-    --red: #ff7a70;
-    --red-bg: rgba(229, 52, 43, 0.14);
-    --green: #55d889;
-    --green-bg: rgba(22, 163, 74, 0.16);
-    --amber: #ffb63d;
-    --amber-bg: rgba(201, 122, 0, 0.18);
-    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
-  }
-}
-
 * {
   box-sizing: border-box;
 }
@@ -78,7 +58,7 @@ a {
   text-decoration: none;
 }
 .wordmark img {
-  height: 26px;
+  height: 52px;
   width: auto;
   display: block;
 }
@@ -200,7 +180,7 @@ a {
   gap: 16px;
 }
 .hazard-card {
-  background: var(--surface-2);
+  background: var(--brand);
   border: 1px solid var(--border);
   border-radius: 18px;
   padding: 18px 20px;
@@ -213,8 +193,8 @@ a {
   font-weight: 700;
   letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: var(--red);
-  background: var(--red-bg);
+  color: #fff;
+  background: #000;
   display: inline-flex;
   width: fit-content;
   padding: 3px 10px;
@@ -224,10 +204,11 @@ a {
   font-size: 1rem;
   font-weight: 700;
   margin: 0;
+  color: #000;
 }
 .hazard-card p {
   margin: 0;
-  color: var(--muted);
+  color: #1a1a1a;
   font-size: 0.92rem;
 }
 
