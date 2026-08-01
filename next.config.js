@@ -13,6 +13,7 @@
 // internally — and extracting every node_modules package it touched.
 const PDF_DEPENDENCIES = [
   "./scripts/render-pdf.mjs",
+  "./scripts/assets/pdf-logo.png",
   "./node_modules/@babel/runtime/**",
   "./node_modules/@react-pdf/fns/**",
   "./node_modules/@react-pdf/font/**",

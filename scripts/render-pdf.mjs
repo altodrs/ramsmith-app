@@ -3,17 +3,29 @@
 // { trade, siteAddress } from stdin, writes raw PDF bytes to stdout.
 // Nothing else may write to stdout: any diagnostics go to stderr.
 
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { createElement as h } from "react";
-import { Document, Page, Text, View, StyleSheet, renderToBuffer } from "@react-pdf/renderer";
+import { Document, Page, Text, View, Image, StyleSheet, renderToBuffer } from "@react-pdf/renderer";
 
 const SLATE = "#2f3e47";
 const ORANGE = "#f15a24";
 const MUTED = "#5c6b74";
 const BORDER = "#dfe3e6";
 
+// Pre-rendered PNG (logo.svg is white-on-transparent, built for the dark
+// masthead — this bakes it onto a matching dark-slate plate so it's visible
+// on a white PDF page). Resolved relative to this file, not process.cwd(),
+// so it works regardless of where the child process is spawned from.
+const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
+const LOGO_PATH = path.join(SCRIPT_DIR, "assets", "pdf-logo.png");
+const LOGO_ASPECT_RATIO = 780 / 196;
+const LOGO_WIDTH = 170;
+const LOGO_HEIGHT = LOGO_WIDTH / LOGO_ASPECT_RATIO;
+
 const styles = StyleSheet.create({
   page: { padding: 40, fontSize: 10, color: "#151515", fontFamily: "Helvetica" },
-  brand: { fontSize: 10, fontFamily: "Helvetica-Bold", color: SLATE, marginBottom: 4 },
+  logo: { width: LOGO_WIDTH, height: LOGO_HEIGHT, marginBottom: 14 },
   title: { fontSize: 18, fontFamily: "Helvetica-Bold", color: SLATE, marginBottom: 4 },
   meta: { fontSize: 9, color: MUTED, marginBottom: 20 },
   sectionTitle: {
@@ -87,7 +99,7 @@ function buildRamsPdfElement(trade, siteAddress) {
     h(
       Page,
       { size: "A4", style: styles.page },
-      h(Text, { style: styles.brand }, "RAMS FORGE"),
+      h(Image, { style: styles.logo, src: LOGO_PATH }),
       h(Text, { style: styles.title }, trade.h1_title),
       h(
         Text,
