@@ -91,6 +91,11 @@ export default async function SuccessPage({ searchParams }) {
             ? "Your RAMS document is below — download the PDF whenever you're ready."
             : `Your RAMS document is below, and a PDF copy is on its way to ${customerEmail}.`}
         </p>
+        <p style={{ color: "var(--brand)", fontWeight: 700 }}>
+          Tip: most PDF readers (including Adobe Acrobat Reader) have a
+          "Fill &amp; Sign" tool built in — use it to add a signature and
+          date straight onto the sign-off section, no printing required.
+        </p>
       </div>
 
       <div style={{ marginBottom: 28 }}>
