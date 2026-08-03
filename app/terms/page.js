@@ -108,7 +108,7 @@ export default function TermsPage() {
         <section>
           <h2>8. Contact</h2>
           <p>
-            Questions about these terms: <a href="mailto:altodrs@gmail.com">altodrs@gmail.com</a>
+            Questions about these terms: <a href="mailto:ramsforgeuk@gmail.com">ramsforgeuk@gmail.com</a>
           </p>
         </section>
       </div>
