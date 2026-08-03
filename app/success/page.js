@@ -64,6 +64,7 @@ export default async function SuccessPage({ searchParams }) {
   }
 
   const siteAddress = session.metadata?.siteAddress;
+  const assessorName = session.metadata?.assessorName;
   const customerEmail = session.customer_details?.email;
 
   // Best-effort: a failed email should never stop the customer seeing/
@@ -73,7 +74,7 @@ export default async function SuccessPage({ searchParams }) {
   let emailResult = { skipped: true };
   if (customerEmail) {
     try {
-      const pdfBuffer = await generateRamsPdf(trade, siteAddress);
+      const pdfBuffer = await generateRamsPdf(trade, siteAddress, assessorName);
       emailResult = await sendRamsEmail({ to: customerEmail, trade, pdfBuffer });
     } catch (err) {
       console.error("Failed to send RAMS email:", err);
@@ -102,7 +103,7 @@ export default async function SuccessPage({ searchParams }) {
         </a>
       </div>
 
-      <RamsDocument trade={trade} siteAddress={siteAddress} />
+      <RamsDocument trade={trade} siteAddress={siteAddress} assessorName={assessorName} />
     </main>
   );
 }

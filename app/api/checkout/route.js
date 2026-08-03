@@ -20,7 +20,7 @@ export async function POST(request) {
     return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
   }
 
-  const { slug, siteAddress } = body || {};
+  const { slug, siteAddress, assessorName } = body || {};
 
   const trade = getTradeBySlug(slug);
   if (!trade) {
@@ -29,6 +29,18 @@ export async function POST(request) {
 
   const safeSiteAddress =
     typeof siteAddress === "string" ? siteAddress.trim().slice(0, 300) : "";
+
+  // Required for the compliance/acknowledgment framework — the client
+  // disables the pay button without it, but that's UI, not security; this
+  // is the actual enforcement.
+  const safeAssessorName =
+    typeof assessorName === "string" ? assessorName.trim().slice(0, 150) : "";
+  if (!safeAssessorName) {
+    return NextResponse.json(
+      { error: "Assessor / competent person name is required." },
+      { status: 400 }
+    );
+  }
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || new URL(request.url).origin;
 
@@ -56,6 +68,7 @@ export async function POST(request) {
       metadata: {
         slug: trade.slug,
         siteAddress: safeSiteAddress,
+        assessorName: safeAssessorName,
       },
       success_url: `${siteUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${siteUrl}/cancel`,

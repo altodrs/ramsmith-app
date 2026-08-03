@@ -433,3 +433,57 @@ a {
 .trade-list li a:hover {
   color: var(--brand);
 }
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  margin-top: 40px;
+}
+.site-footer-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.site-footer-inner a {
+  color: var(--muted);
+  text-decoration: none;
+}
+.site-footer-inner a:hover {
+  color: var(--brand);
+}
+
+.declaration-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.88rem;
+  color: var(--ink);
+  margin: 4px 0 14px;
+  cursor: pointer;
+}
+.declaration-check input[type="checkbox"] {
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+.declaration-check a {
+  color: var(--brand);
+}
+
+.declaration-box {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--muted);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 20px;
+}
+.declaration-box strong {
+  color: var(--ink);
+}

@@ -1,4 +1,4 @@
-export default function RamsDocument({ trade, siteAddress, showHeader = true }) {
+export default function RamsDocument({ trade, siteAddress, assessorName, showHeader = true }) {
   return (
     <div className="content">
       {showHeader ? (
@@ -7,6 +7,11 @@ export default function RamsDocument({ trade, siteAddress, showHeader = true }) 
           {siteAddress ? (
             <p style={{ color: "var(--muted)", marginTop: -8 }}>
               Site: {siteAddress}
+            </p>
+          ) : null}
+          {assessorName ? (
+            <p style={{ color: "var(--muted)", marginTop: -8 }}>
+              Assessor / Competent Person: {assessorName}
             </p>
           ) : null}
           <span className="badge-green">&#10003; CDM 2015 Compliant</span>

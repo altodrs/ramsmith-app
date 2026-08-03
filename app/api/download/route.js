@@ -28,7 +28,11 @@ export async function GET(request) {
     return NextResponse.json({ error: "Unknown trade" }, { status: 404 });
   }
 
-  const pdfBuffer = await generateRamsPdf(trade, session.metadata?.siteAddress);
+  const pdfBuffer = await generateRamsPdf(
+    trade,
+    session.metadata?.siteAddress,
+    session.metadata?.assessorName
+  );
 
   return new NextResponse(pdfBuffer, {
     headers: {

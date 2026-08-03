@@ -30,6 +30,12 @@ export default function RootLayout({ children }) {
           </div>
         </div>
         {children}
+        <footer className="site-footer">
+          <div className="site-footer-inner">
+            <span>&copy; {new Date().getFullYear()} RAMS Forge</span>
+            <a href="/terms">Terms &amp; Declarations</a>
+          </div>
+        </footer>
       </body>
     </html>
   );
