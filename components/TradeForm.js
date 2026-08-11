@@ -75,7 +75,12 @@ export default function TradeForm({ trades }) {
         {isOpen && (
           <ul className="job-results" id="job-search-results" role="listbox">
             {results.length === 0 ? (
-              <li className="job-results-empty">No jobs match your search.</li>
+              <li className="job-results-empty">
+                No jobs match your search. Can&apos;t find your trade or
+                industry?{" "}
+                <a href="mailto:ramsforgeuk@gmail.com">Email us</a> and
+                we&apos;ll look into adding it.
+              </li>
             ) : (
               results.map((t) => (
                 <li key={t.slug}>
