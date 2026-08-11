@@ -17,10 +17,10 @@ export default function TermsPage() {
           <h2>1. What RAMS Forge is</h2>
           <p>
             RAMS Forge (ramsforge.co.uk) is an automated documentation tool.
-            When you use it, you supply information about a job (the trade,
-            task, and site address), and the tool generates a Risk Assessment
-            &amp; Method Statement (RAMS) document as a starting template
-            based on that input.
+            When you use it, you supply information about a job (the trade or
+            industry, task, and site address), and the tool generates a Risk
+            Assessment &amp; Method Statement (RAMS) document as a starting
+            template based on that input.
           </p>
           <p>
             RAMS Forge does not visit, inspect, or have any knowledge of your

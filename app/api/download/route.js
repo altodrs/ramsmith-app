@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { stripe } from "@/lib/stripe";
-import { getTradeBySlug } from "@/lib/trades";
+import { getListingBySlug } from "@/lib/listings";
 import { generateRamsPdf } from "@/lib/pdf";
 
 // Re-verifies payment independently before generating the PDF — same rule
@@ -23,7 +23,7 @@ export async function GET(request) {
     return NextResponse.json({ error: "Payment not confirmed" }, { status: 402 });
   }
 
-  const trade = getTradeBySlug(session.metadata?.slug);
+  const trade = getListingBySlug(session.metadata?.slug);
   if (!trade) {
     return NextResponse.json({ error: "Unknown trade" }, { status: 404 });
   }

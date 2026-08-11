@@ -1,6 +1,7 @@
 import Link from "next/link";
 import TradeForm from "@/components/TradeForm";
 import { trades } from "@/lib/trades";
+import { industries } from "@/lib/industries";
 
 export const metadata = {
   alternates: { canonical: "https://ramsforge.co.uk" },
@@ -24,9 +25,11 @@ export default function HomePage() {
           </div>
         </div>
         <div>
-          <TradeForm trades={trades} />
+          <TradeForm trades={[...trades, ...industries]} />
           <p className="browse-link">
-            Not sure what to search? <Link href="/rams">Browse all jobs</Link>
+            Not sure what to search?{" "}
+            <Link href="/rams">Browse all trades</Link> or{" "}
+            <Link href="/industries">browse all industries</Link>
           </p>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { stripe, RAMS_PRICE_GBP_PENCE } from "@/lib/stripe";
-import { getTradeBySlug } from "@/lib/trades";
+import { getListingBySlug } from "@/lib/listings";
 
 // Creates a Stripe Checkout Session for a single RAMS document purchase.
 //
@@ -22,7 +22,7 @@ export async function POST(request) {
 
   const { slug, siteAddress, assessorName } = body || {};
 
-  const trade = getTradeBySlug(slug);
+  const trade = getListingBySlug(slug);
   if (!trade) {
     return NextResponse.json({ error: "Unknown trade selected" }, { status: 400 });
   }

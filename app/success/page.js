@@ -1,5 +1,5 @@
 import { stripe } from "@/lib/stripe";
-import { getTradeBySlug } from "@/lib/trades";
+import { getListingBySlug } from "@/lib/listings";
 import RamsDocument from "@/components/RamsDocument";
 import { generateRamsPdf } from "@/lib/pdf";
 import { sendRamsEmail } from "@/lib/email";
@@ -47,7 +47,7 @@ export default async function SuccessPage({ searchParams }) {
     );
   }
 
-  const trade = getTradeBySlug(session.metadata?.slug);
+  const trade = getListingBySlug(session.metadata?.slug);
 
   if (!trade) {
     return (

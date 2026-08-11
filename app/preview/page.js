@@ -1,10 +1,10 @@
-import { getTradeBySlug } from "@/lib/trades";
+import { getListingBySlug } from "@/lib/listings";
 import RamsDocument from "@/components/RamsDocument";
 import PayButton from "@/components/PayButton";
 
 export default async function PreviewPage({ searchParams }) {
   const params = await searchParams;
-  const trade = getTradeBySlug(params?.slug);
+  const trade = getListingBySlug(params?.slug);
   const siteAddress = typeof params?.siteAddress === "string" ? params.siteAddress : "";
 
   if (!trade) {
