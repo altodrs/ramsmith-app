@@ -14,7 +14,9 @@ export default function RamsDocument({ trade, siteAddress, assessorName, showHea
               Assessor / Competent Person: {assessorName}
             </p>
           ) : null}
-          <span className="badge-green">&#10003; CDM 2015 Compliant</span>
+          <span className="badge-green">
+            &#10003; {trade.cdm_applicable === false ? "Site-Specific RAMS" : "CDM 2015 Compliant"}
+          </span>
         </section>
       ) : null}
 

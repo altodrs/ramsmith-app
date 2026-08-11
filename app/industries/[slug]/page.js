@@ -72,7 +72,9 @@ export default async function IndustryPage({ params }) {
       <div className="intro">
         <h1>{industry.h1_title}</h1>
         <p>{industry.meta_description}</p>
-        <span className="badge-green">&#10003; CDM 2015 Compliant</span>
+        <span className="badge-green">
+          &#10003; {industry.cdm_applicable === false ? "Site-Specific RAMS" : "CDM 2015 Compliant"}
+        </span>
       </div>
 
       <RamsDocument trade={industry} showHeader={false} />

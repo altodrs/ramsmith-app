@@ -15,7 +15,7 @@ export const metadata = {
   metadataBase: new URL("https://ramsforge.co.uk"),
   title: "RAMS Forge — UK RAMS Generator",
   description:
-    "Generate a site-specific, CDM 2015 compliant Risk Assessment & Method Statement in minutes.",
+    "Generate a site-specific Risk Assessment & Method Statement in minutes.",
 };
 
 export default function RootLayout({ children }) {
