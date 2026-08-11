@@ -4,7 +4,7 @@ import { industries } from "@/lib/industries";
 export const metadata = {
   title: "Browse All Industries — RAMS Forge",
   description:
-    "Browse every industry we currently generate a site-specific, CDM 2015 compliant RAMS for — starting with events and entertainment.",
+    "Browse every industry we currently generate a site-specific RAMS for — starting with events and entertainment.",
   alternates: { canonical: "https://ramsforge.co.uk/industries" },
 };
 
@@ -20,8 +20,8 @@ export default function IndustriesIndexPage() {
         <h1>Browse all industries</h1>
         <p>
           RAMS Forge isn't just for tradespeople — every industry below gets
-          the same site-specific, CDM 2015 compliant RAMS. Pick yours below,
-          or search from the homepage.
+          the same site-specific RAMS. Pick yours below, or search from the
+          homepage.
         </p>
       </div>
 
