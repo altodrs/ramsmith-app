@@ -72,6 +72,11 @@ a {
 .page-home {
   background: var(--bg) url("/homepage-texture.webp") center top / cover no-repeat;
 }
+.home-hero-logo-wrap {
+  /* Real masthead (with real logo) is used as-is on mobile — this overlay
+     logo is desktop-only, see the min-width:761px block below. */
+  display: none;
+}
 .page-home-inner {
   max-width: 1200px;
   margin: 0 auto;
@@ -91,16 +96,33 @@ a {
     position: relative;
     z-index: 1;
   }
+  /* The hero image's dark band is logo-free now (142px of its 1920px-wide
+     source, 7.4%) — the real logo is overlaid on top of it here instead,
+     so it stays crisp, accessible and clickable. Sized to leave breathing
+     room above/below within the band, left-aligned with the copy below. */
+  .home-hero-logo-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    height: 7.4vw;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 10.52%;
+  }
+  .home-hero-logo {
+    height: clamp(32px, 3.6vw, 52px);
+    width: auto;
+    display: block;
+  }
   .page-home-inner {
-    /* The hero image's dark band is 262px of its 1920px-wide source (13.65%)
-       — expressed as a percentage (of viewport width, its containing
-       block) rather than a fixed px value so it still clears the band
-       correctly as background-size scales the image at narrower widths. */
-    padding-top: calc(13.65% + 4px);
-    /* The real masthead (with the real logo) is hidden behind the image, so
-       the logo the user actually sees is the one baked into the design,
-       sitting at ~202px of the 1920px source (10.52%) — not centered in a
-       1200px column. Match that instead so the copy lines up with it. */
+    /* Clears the dark band (7.4%, see above), expressed as a percentage of
+       viewport width (its containing block) so it still clears correctly
+       as background-size scales the image at narrower widths. */
+    padding-top: calc(7.4% + 16px);
+    /* Matches the logo's left position (10.52%) rather than the usual
+       centered 1200px column. */
     max-width: none;
     margin: 0;
     padding-left: 10.52%;

@@ -10,6 +10,9 @@ export const metadata = {
 export default function HomePage() {
   return (
     <main className="page-home">
+      <div className="home-hero-logo-wrap">
+        <img src="/logo.svg" alt="RAMS Forge" className="home-hero-logo" />
+      </div>
       <div className="page-home-inner">
         <div className="hero-grid">
           <div className="intro">
