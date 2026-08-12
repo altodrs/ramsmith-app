@@ -104,11 +104,18 @@ a {
   }
 }
 .hero-photo-img {
-  width: 100%;
-  max-width: 420px;
-  height: auto;
+  height: min(760px, calc(100vh - 60px));
+  width: auto;
+  max-width: 100%;
   display: block;
   filter: drop-shadow(0 20px 30px rgba(20, 24, 26, 0.18));
+}
+@media (max-width: 760px) {
+  .hero-photo-img {
+    height: auto;
+    width: 100%;
+    max-width: 420px;
+  }
 }
 .hero-price-badge {
   position: absolute;
