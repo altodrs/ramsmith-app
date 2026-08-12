@@ -69,6 +69,11 @@ a {
   padding: 48px 24px 96px;
 }
 
+.page-home {
+  background: var(--bg) url("/homepage-texture.webp") center top / cover no-repeat;
+  border-radius: 20px;
+}
+
 .hero-grid {
   display: grid;
   grid-template-columns: 1.15fr 1fr;
@@ -80,6 +85,52 @@ a {
     grid-template-columns: 1fr;
     gap: 32px;
   }
+}
+
+.hero-photo {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding-top: 12px;
+}
+.hero-photo-img {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 20px 30px rgba(20, 24, 26, 0.18));
+}
+.hero-price-badge {
+  position: absolute;
+  top: 0;
+  right: 6%;
+  width: clamp(120px, 30%, 160px);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: var(--brand);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 2px;
+  box-shadow: 0 16px 28px -10px rgba(20, 24, 26, 0.4);
+}
+.hero-price-badge-only {
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+.hero-price-badge-amount {
+  font-size: clamp(1.5rem, 4vw, 1.9rem);
+  font-weight: 700;
+  line-height: 1.1;
+}
+.hero-price-badge-unit {
+  font-size: 0.68rem;
+  font-weight: 500;
+  max-width: 78%;
+  line-height: 1.25;
 }
 
 .intro h1 {
