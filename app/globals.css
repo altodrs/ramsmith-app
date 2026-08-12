@@ -77,6 +77,28 @@ a {
   margin: 0 auto;
   padding: 48px 24px 96px;
 }
+/* Desktop: use the designed hero banner (masthead look + texture + photo +
+   badge all baked in) instead of the recreated version. Pulled up by the
+   real masthead's height so the image's own top edge lines up with the
+   real masthead instead of starting below it. */
+@media (min-width: 761px) {
+  .page-home {
+    background-image: url("/homepage-hero.webp");
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: no-repeat;
+    margin-top: -95px;
+    position: relative;
+    z-index: 1;
+  }
+  .page-home-inner {
+    /* The hero image's dark band is 262px of its 1920px-wide source (13.65%)
+       — expressed as a percentage (of viewport width, its containing
+       block) rather than a fixed px value so it still clears the band
+       correctly as background-size scales the image at narrower widths. */
+    padding-top: calc(13.65% + 40px);
+  }
+}
 
 .hero-grid {
   display: grid;
@@ -97,6 +119,12 @@ a {
   justify-content: center;
   padding-top: 12px;
   margin-top: -144px;
+}
+@media (min-width: 761px) {
+  .hero-photo {
+    /* Baked into the .page-home background image on desktop instead. */
+    display: none;
+  }
 }
 @media (max-width: 760px) {
   .hero-photo {
