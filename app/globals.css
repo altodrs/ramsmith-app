@@ -71,7 +71,11 @@ a {
 
 .page-home {
   background: var(--bg) url("/homepage-texture.webp") center top / cover no-repeat;
-  border-radius: 20px;
+}
+.page-home-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 24px 96px;
 }
 
 .hero-grid {
@@ -92,6 +96,12 @@ a {
   display: flex;
   justify-content: center;
   padding-top: 12px;
+  margin-top: -144px;
+}
+@media (max-width: 760px) {
+  .hero-photo {
+    margin-top: 0;
+  }
 }
 .hero-photo-img {
   width: 100%;
@@ -102,7 +112,7 @@ a {
 }
 .hero-price-badge {
   position: absolute;
-  top: 0;
+  top: 12px;
   right: 6%;
   width: clamp(120px, 30%, 160px);
   aspect-ratio: 1 / 1;
@@ -116,6 +126,7 @@ a {
   text-align: center;
   gap: 2px;
   box-shadow: 0 16px 28px -10px rgba(20, 24, 26, 0.4);
+  z-index: 2;
 }
 .hero-price-badge-only {
   font-size: 0.8rem;
