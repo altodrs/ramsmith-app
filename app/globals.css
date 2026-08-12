@@ -96,7 +96,41 @@ a {
        — expressed as a percentage (of viewport width, its containing
        block) rather than a fixed px value so it still clears the band
        correctly as background-size scales the image at narrower widths. */
-    padding-top: calc(13.65% + 40px);
+    padding-top: calc(13.65% + 4px);
+    /* The real masthead (with the real logo) is hidden behind the image, so
+       the logo the user actually sees is the one baked into the design,
+       sitting at ~202px of the 1920px source (10.52%) — not centered in a
+       1200px column. Match that instead so the copy lines up with it. */
+    max-width: none;
+    margin: 0;
+    padding-left: 10.52%;
+    padding-right: 24px;
+  }
+  /* Tightened spacing so the form still clears the fold on shorter browser
+     windows (e.g. a laptop with toolbars eating into the usable height).
+     Scoped to the homepage only — other pages keep the normal spacing. */
+  .page-home .intro h1 {
+    margin-bottom: 8px;
+  }
+  .page-home .intro p {
+    margin-bottom: 14px;
+  }
+  .page-home .trust-row {
+    margin-top: -8px;
+    margin-bottom: 14px;
+  }
+  .page-home .card {
+    padding: 18px clamp(20px, 4vw, 32px);
+  }
+  .page-home .field {
+    margin-bottom: 12px;
+  }
+  .page-home .price-row {
+    padding-top: 12px;
+    margin-bottom: 12px;
+  }
+  .page-home .browse-link {
+    margin-top: 10px;
   }
 }
 
