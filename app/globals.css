@@ -112,15 +112,17 @@ a {
     padding-left: 10.52%;
   }
   .home-hero-logo {
-    height: clamp(32px, 3.6vw, 52px);
+    height: clamp(38px, 4.4vw, 64px);
     width: auto;
     display: block;
   }
   .page-home-inner {
     /* Clears the dark band (7.4%, see above), expressed as a percentage of
        viewport width (its containing block) so it still clears correctly
-       as background-size scales the image at narrower widths. */
-    padding-top: calc(7.4% + 16px);
+       as background-size scales the image at narrower widths. Matched to
+       the existing 96px bottom padding so the content block sits with the
+       same breathing room above (top gap) and below (bottom gap). */
+    padding-top: calc(7.4% + 96px);
     /* Matches the logo's left position (10.52%) rather than the usual
        centered 1200px column. */
     max-width: none;
