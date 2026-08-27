@@ -1,5 +1,5 @@
 import { getListingBySlug } from "@/lib/listings";
-import RamsDocument from "@/components/RamsDocument";
+import RamsPreviewTeaser from "@/components/RamsPreviewTeaser";
 import PayButton from "@/components/PayButton";
 
 export default async function PreviewPage({ searchParams }) {
@@ -25,21 +25,22 @@ export default async function PreviewPage({ searchParams }) {
       <div className="intro">
         <h1>Preview your RAMS</h1>
         <p>
-          Here's exactly what you'll get. Unlock it to remove the watermark
-          and download the PDF.
+          Here's what this document covers. Unlock it to see the full
+          control measures, PPE, method statement and more.
         </p>
       </div>
 
       <div className="preview-banner">
-        <p>This is a preview — pay once to unlock the full, clean document.</p>
+        <p>This is a preview — pay once to unlock the full document.</p>
       </div>
 
-      <div className="watermark-wrap">
-        <div className="watermark-overlay" aria-hidden="true">
-          <span>Preview — Not For Site Use</span>
-        </div>
-        <RamsDocument trade={trade} siteAddress={siteAddress} />
-      </div>
+      <RamsPreviewTeaser
+        h1Title={trade.h1_title}
+        cdmApplicable={trade.cdm_applicable}
+        siteAddress={siteAddress}
+        applicableRegs={trade.applicable_regs}
+        hazardNames={trade.hazards.map((h) => h.name)}
+      />
 
       <PayButton slug={trade.slug} siteAddress={siteAddress} />
     </main>

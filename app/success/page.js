@@ -1,6 +1,5 @@
 import { stripe } from "@/lib/stripe";
 import { getListingBySlug } from "@/lib/listings";
-import RamsDocument from "@/components/RamsDocument";
 import { generateRamsPdf } from "@/lib/pdf";
 import { sendRamsEmail } from "@/lib/email";
 
@@ -88,8 +87,8 @@ export default async function SuccessPage({ searchParams }) {
         <h1>Payment confirmed</h1>
         <p>
           {emailResult?.skipped
-            ? "Your RAMS document is below — download the PDF whenever you're ready."
-            : `Your RAMS document is below, and a PDF copy is on its way to ${customerEmail}.`}
+            ? "Your RAMS document is ready — download the PDF whenever you're ready."
+            : `Your RAMS document is ready, and a PDF copy is on its way to ${customerEmail}.`}
         </p>
         <p style={{ color: "var(--brand)", fontWeight: 700 }}>
           Tip: most PDF readers (including Adobe Acrobat Reader) have a
@@ -98,7 +97,7 @@ export default async function SuccessPage({ searchParams }) {
         </p>
       </div>
 
-      <div style={{ marginBottom: 28 }}>
+      <div>
         <a
           className="button"
           style={{ display: "inline-block", width: "auto" }}
@@ -107,8 +106,6 @@ export default async function SuccessPage({ searchParams }) {
           Download PDF
         </a>
       </div>
-
-      <RamsDocument trade={trade} siteAddress={siteAddress} assessorName={assessorName} />
     </main>
   );
 }
