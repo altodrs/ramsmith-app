@@ -12,6 +12,40 @@ const SLATE = "#2f3e47";
 const ORANGE = "#f15a24";
 const MUTED = "#5c6b74";
 const BORDER = "#dfe3e6";
+const RED = "#e5342b";
+const RED_BG = "#fdecec";
+const GREEN = "#16a34a";
+const GREEN_BG = "#e8f7ed";
+
+const METHOD_STATEMENT_STEPS = [
+  "Review this RAMS and confirm site conditions match those described before work begins.",
+  "Brief all operatives on the hazards, controls and PPE requirements below (toolbox talk).",
+  "Check and don all required PPE, and inspect tools and equipment before use.",
+  "Carry out the task in line with the control measures set out in the Hazard & Risk Assessment section below.",
+  "Maintain good housekeeping throughout — keep the work area tidy and manage waste and materials safely.",
+  "On completion, remove tools and equipment, restore the work area, and report any incidents, near misses or changes in site conditions to the site supervisor.",
+  "Complete the sign-off section at the end of this document before leaving site.",
+];
+
+const EMERGENCY_PROCEDURES = [
+  {
+    title: "Fire",
+    body: "Stop work immediately, raise the alarm and evacuate to the designated assembly point. Do not attempt to fight a fire beyond your training. Call 999 once safely evacuated if the fire brigade has not already been alerted.",
+  },
+  {
+    title: "First Aid / Injury",
+    body: "Stop work and alert the nearest first aider or site supervisor. For a serious injury, call 999 immediately and do not move a casualty unless there is immediate danger.",
+  },
+  {
+    title: "Spillage / Environmental Incident",
+    body: "Stop work, contain the spill using the site's spill kit if safe to do so, and report it to the site supervisor immediately. Do not allow any spillage to enter a drain or watercourse.",
+  },
+];
+
+const SECOND_FAQ = {
+  q: "Do I need to keep a copy of this RAMS on site?",
+  a: "Yes. HSE guidance expects a copy of the RAMS — along with the completed sign-off section — to be available on site for the duration of the work, and reviewed if site conditions change.",
+};
 
 // Pre-rendered PNG (logo.svg is white-on-transparent, built for the dark
 // masthead — this bakes it onto a matching dark-slate plate so it's visible
@@ -41,10 +75,33 @@ const styles = StyleSheet.create({
   regRow: { flexDirection: "row", marginBottom: 3 },
   regBullet: { width: 10, color: ORANGE, fontFamily: "Helvetica-Bold" },
   regText: { flex: 1 },
+  methodStepRow: { flexDirection: "row", marginBottom: 6 },
+  methodStepNum: { width: 16, fontSize: 9.5, fontFamily: "Helvetica-Bold", color: ORANGE },
+  methodStepText: { flex: 1, fontSize: 9.5, color: "#333" },
+  sectionNote: { fontSize: 9, color: MUTED, marginBottom: 8 },
   hazardBlock: { marginBottom: 10, paddingLeft: 10, borderLeft: `2pt solid ${ORANGE}` },
   hazardName: { fontSize: 10.5, fontFamily: "Helvetica-Bold", color: SLATE, marginBottom: 2 },
   hazardControl: { fontSize: 9.5, color: "#333" },
+  riskTagRow: { flexDirection: "row", marginTop: 5 },
+  riskTag: {
+    fontSize: 7.5,
+    fontFamily: "Helvetica-Bold",
+    borderRadius: 3,
+    paddingVertical: 2,
+    paddingHorizontal: 6,
+    marginRight: 6,
+  },
+  riskTagInitial: { backgroundColor: RED_BG, color: RED },
+  riskTagResidual: { backgroundColor: GREEN_BG, color: GREEN },
   ppeRow: { flexDirection: "row", flexWrap: "wrap" },
+  emergencyBlock: { marginBottom: 8 },
+  emergencyTitle: { fontSize: 10, fontFamily: "Helvetica-Bold", color: SLATE, marginBottom: 2 },
+  emergencyBody: { fontSize: 9.5, color: "#333" },
+  emergencyContactRow: { flexDirection: "row", alignItems: "flex-end", marginTop: 6 },
+  emergencyContactLabel: { fontSize: 9.5, color: "#333", width: 150 },
+  emergencyContactValue: { fontSize: 9.5, fontFamily: "Helvetica-Bold", color: "#333" },
+  emergencyContactLine: { flexGrow: 1, borderBottom: "1pt solid #333", minHeight: 12 },
+  faqBlock: { marginBottom: 10 },
   ppeBadge: {
     fontSize: 9,
     color: SLATE,
@@ -88,15 +145,41 @@ function buildRamsPdfElement(trade, siteAddress, assessorName) {
     ])
   );
 
+  const methodStepRows = METHOD_STATEMENT_STEPS.map((step, i) =>
+    h(View, { style: styles.methodStepRow, key: step }, [
+      h(Text, { style: styles.methodStepNum, key: "n" }, `${i + 1}.`),
+      h(Text, { style: styles.methodStepText, key: "t" }, step),
+    ])
+  );
+
   const hazardBlocks = trade.hazards.map((hazard) =>
     h(View, { style: styles.hazardBlock, key: hazard.name }, [
       h(Text, { style: styles.hazardName, key: "n" }, hazard.name),
       h(Text, { style: styles.hazardControl, key: "c" }, `Control: ${hazard.control}`),
+      h(View, { style: styles.riskTagRow, key: "r" }, [
+        h(
+          Text,
+          { style: [styles.riskTag, styles.riskTagInitial], key: "ri" },
+          "Initial Risk: High"
+        ),
+        h(
+          Text,
+          { style: [styles.riskTag, styles.riskTagResidual], key: "rr" },
+          "Residual Risk: Low"
+        ),
+      ]),
     ])
   );
 
   const ppeBadges = trade.required_ppe.map((ppe) =>
     h(Text, { style: styles.ppeBadge, key: ppe }, ppe)
+  );
+
+  const emergencyBlocks = EMERGENCY_PROCEDURES.map((item) =>
+    h(View, { style: styles.emergencyBlock, key: item.title }, [
+      h(Text, { style: styles.emergencyTitle, key: "t" }, item.title),
+      h(Text, { style: styles.emergencyBody, key: "b" }, item.body),
+    ])
   );
 
   return h(
@@ -121,15 +204,44 @@ function buildRamsPdfElement(trade, siteAddress, assessorName) {
       h(Text, { style: styles.sectionTitle }, "Applicable Regulations"),
       ...regItems,
 
+      h(Text, { style: styles.sectionTitle }, "Method Statement — Sequence of Work"),
+      ...methodStepRows,
+
       h(Text, { style: styles.sectionTitle }, "Hazard & Risk Assessment"),
+      h(
+        Text,
+        { style: styles.sectionNote },
+        "Each hazard is assessed against a standard Likelihood x Severity matrix. “Initial Risk” reflects the risk before any control measures are applied; “Residual Risk” reflects the risk once the stated controls are correctly implemented on site."
+      ),
       ...hazardBlocks,
 
       h(Text, { style: styles.sectionTitle }, "Required PPE"),
       h(View, { style: styles.ppeRow }, ppeBadges),
 
+      h(Text, { style: styles.sectionTitle }, "Emergency Procedures"),
+      ...emergencyBlocks,
+      h(View, { style: styles.emergencyContactRow }, [
+        h(Text, { style: styles.emergencyContactLabel, key: "l1" }, "Emergency Services:"),
+        h(Text, { style: styles.emergencyContactValue, key: "v1" }, "999"),
+      ]),
+      h(View, { style: styles.emergencyContactRow }, [
+        h(Text, { style: styles.emergencyContactLabel, key: "l2" }, "Site Supervisor / Contact:"),
+        h(View, { style: styles.emergencyContactLine, key: "line2" }),
+      ]),
+      h(View, { style: styles.emergencyContactRow }, [
+        h(Text, { style: styles.emergencyContactLabel, key: "l3" }, "Nearest A&E:"),
+        h(View, { style: styles.emergencyContactLine, key: "line3" }),
+      ]),
+
       h(Text, { style: styles.sectionTitle }, "Frequently Asked Questions"),
-      h(Text, { style: styles.faqQ }, trade.faq_q1),
-      h(Text, { style: styles.faqA }, trade.faq_a1),
+      h(View, { style: styles.faqBlock }, [
+        h(Text, { style: styles.faqQ, key: "q1" }, trade.faq_q1),
+        h(Text, { style: styles.faqA, key: "a1" }, trade.faq_a1),
+      ]),
+      h(View, { style: styles.faqBlock }, [
+        h(Text, { style: styles.faqQ, key: "q2" }, SECOND_FAQ.q),
+        h(Text, { style: styles.faqA, key: "a2" }, SECOND_FAQ.a),
+      ]),
 
       h(Text, { style: styles.sectionTitle }, "Sign-Off"),
       h(View, { style: styles.signoffRow }, [

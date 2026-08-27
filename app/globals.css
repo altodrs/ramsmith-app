@@ -460,6 +460,104 @@ a {
   border-radius: 999px;
 }
 
+.section-note {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin: -8px 0 16px;
+  max-width: 70ch;
+}
+
+.method-steps {
+  margin: 0;
+  padding-left: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.method-steps li {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  padding-left: 4px;
+}
+
+.risk-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 2px;
+}
+.risk-tag {
+  font-size: 0.76rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+.risk-tag-initial {
+  background: var(--red-bg);
+  color: var(--red);
+}
+.risk-tag-residual {
+  background: var(--green-bg);
+  color: var(--green);
+}
+
+.emergency-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.emergency-card {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px 18px;
+}
+.emergency-card h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+.emergency-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.emergency-contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.emergency-contact-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 0.92rem;
+}
+.emergency-contact-row span:first-child {
+  color: var(--muted);
+  min-width: 170px;
+}
+.fill-line {
+  display: inline-block;
+  flex: 1;
+  min-width: 120px;
+  border-bottom: 1px solid var(--border-strong);
+  min-height: 1.2em;
+}
+
+.faq-card + .faq-card {
+  margin-top: 16px;
+}
+.faq-card h3 {
+  margin-top: 0;
+}
+.faq-card p {
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
 .content section {
   margin-bottom: 44px;
 }
