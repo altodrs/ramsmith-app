@@ -88,16 +88,21 @@ a {
 }
 .page-home .intro p {
   color: rgba(255, 255, 255, 0.9);
+  font-size: 1.3rem;
+}
+.page-home .trust-row .badge-green {
+  font-size: 0.95rem;
+  padding: 10px 20px;
 }
 @media (min-width: 761px) {
-  /* The forced 2-line break (see .hero-h1-break below) only stays 2 lines
-     if each half individually fits on one line at the narrowest desktop
-     width — tested empirically at 761px, where "Generate a site-specific"
-     (the longer half) needs the font-size at or below ~27px/1.7rem to
-     avoid wrapping again. Ramps up to the same 3.75rem cap as before,
-     just reaching it at a wider viewport (~1714px vs ~1153px). */
+  /* Sized to the widest the headline can go without reaching the worker
+     figure in the hero image (measured: the zone's own max-width already
+     stops at the safe 53.5vw boundary, so this just needs to fill it —
+     4.7vw keeps ~50px of clearance from that edge at 1440px, and still
+     fits "Generate a site-specific" (the longer half of the forced 2-line
+     break below) on one line at the narrowest desktop width, 761px). */
   .page-home .intro h1 {
-    font-size: clamp(1.7rem, 3.5vw, 3.75rem);
+    font-size: clamp(1.7rem, 4.7vw, 5rem);
   }
 }
 /* Forces the 2-line "Generate a site-specific / UK RAMS in minutes" break
@@ -146,6 +151,7 @@ a {
 .hero-below-orange-inner .browse-link a {
   color: #fff;
   text-decoration: underline;
+  text-transform: uppercase;
 }
 
 /* Desktop: use the designed hero banner (masthead look + texture + photo +
@@ -162,8 +168,8 @@ a {
     position: relative;
     z-index: 1;
   }
-  /* The hero image's dark band is logo-free (170px of its 2304px-wide
-     source, 7.38%) — the real logo is overlaid on top of it here instead,
+  /* The hero image's dark band is logo-free (143px of its 1920px-wide
+     source, 7.45%) — the real logo is overlaid on top of it here instead,
      so it stays crisp, accessible and clickable. Sized to leave breathing
      room above/below within the band, left-aligned with the copy below. */
   .home-hero-logo-wrap {
@@ -171,7 +177,7 @@ a {
     top: 0;
     left: 0;
     z-index: 2;
-    height: 7.38vw;
+    height: 7.45vw;
     width: 100%;
     display: flex;
     align-items: center;
@@ -183,10 +189,10 @@ a {
     display: block;
   }
   .page-home-inner {
-    /* Clears the dark band only (7.38%, see above) — the gap before the
+    /* Clears the dark band only (7.45%, see above) — the gap before the
        headline is now controlled by .hero-orange-zone's own padding
        instead, independently of the dark-band clearance. */
-    padding-top: 7.38%;
+    padding-top: 7.45%;
     padding-bottom: 0;
     /* Matches the logo's left position (10.52%) rather than the usual
        centered 1200px column. */
@@ -205,29 +211,34 @@ a {
     margin-bottom: 0;
   }
   /* Orange band height is fixed to match the image's own orange section
-     exactly (719 / 2304 = 31.21% of the image's width — vw, not %, since
+     exactly (598 / 1920 = 31.15% of the image's width — vw, not %, since
      percentage heights don't resolve without an explicit parent height).
      The headline group and the trust badges are the only two flex
-     children, pinned to the top and bottom edges via space-between, so
-     both sit the same distance (28px) from the orange background's own
-     edges regardless of viewport width. */
+     children, pinned near the top and bottom edges via space-between —
+     padding-top is deliberately larger than padding-bottom so the
+     headline sits a bit further down from the masthead than the badges
+     sit up from the bottom of the orange background. */
   .page-home .hero-orange-zone {
     background: none;
     margin: 0;
-    padding: 28px 0;
+    padding: 48px 0 28px;
     /* min-height (not height): matches the image's orange band exactly
        whenever the content fits inside it (the common case), but grows
        instead of overflowing/overlapping the section below if the copy
        ever needs more room than that (e.g. very narrow desktop widths,
        where the column is too narrow for the badges to fit on one row). */
-    min-height: 31.21vw;
+    min-height: 31.15vw;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
   .page-home .hero-orange-top {
-    margin-bottom: 0;
+    /* space-between distributes any leftover space between this and the
+       trust badges, but guarantees nothing when content fills (or grows
+       past) the zone's min-height — this margin is the floor so they're
+       never flush/overlapping-looking at narrow desktop widths. */
+    margin-bottom: 20px;
   }
   .page-home .trust-row {
     margin: 0;
@@ -235,34 +246,51 @@ a {
   /* hero-photo is always display:none on desktop (the worker is baked into
      the background image instead), so the grid's second column exists only
      to reserve space for it — needlessly narrowing the text column. The
-     worker never sits left of 64% of the image's width (checked across the
-     full orange band), so the text can safely use up to ~52% before it. */
+     worker never sits left of 64.7% of the image's width (checked across
+     the full orange band), so the text can safely use up to ~53.5% before it. */
   .page-home .hero-grid {
     display: block;
   }
   .page-home .hero-orange-zone {
-    /* 53vw, not 53% — the parent (.page-home-inner) is already inset by
+    /* 53.5vw, not 53.5% — the parent (.page-home-inner) is already inset by
        10.52% padding-left, so a percentage here would be relative to that
-       already-narrowed box, not the viewport the 64%/10.52% figures above
+       already-narrowed box, not the viewport the 64.7%/10.52% figures above
        were measured against. */
-    max-width: 53vw;
+    max-width: 53.5vw;
   }
   .hero-below-orange {
-    padding: 40px 24px;
+    /* Horizontal padding moves to .hero-below-orange-inner below (matching
+       page-home-inner's own padding-left:10.52%/padding-right:24px scheme
+       exactly) — left/right padding here would otherwise compound with it,
+       throwing the card's left edge out of alignment with the logo. */
+    padding: 40px 0;
   }
   .hero-below-orange-inner {
-    display: grid;
-    grid-template-columns: 1fr minmax(320px, 480px) 1fr;
+    /* Left-aligned to the same 10.52% inset as the logo/headline above,
+       rather than centred — the pill is pushed to the far right of this
+       same full-bleed row instead, landing roughly under the worker
+       figure in the image. */
+    max-width: none;
+    margin: 0;
+    padding-left: 10.52%;
+    padding-right: 24px;
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 24px;
+    row-gap: 16px;
+    column-gap: 24px;
   }
   .hero-below-orange-inner .card {
-    grid-column: 2;
+    width: 100%;
+    max-width: 480px;
+    flex-shrink: 0;
   }
   .hero-below-orange-inner .browse-link {
-    grid-column: 3;
-    justify-self: end;
-    margin: 0;
+    /* margin-left:auto (not justify-content:space-between on the parent)
+       so it still pushes to the right when it wraps onto its own row at
+       narrower desktop widths, rather than falling back to the start. */
+    margin: 0 0 0 auto;
+    white-space: nowrap;
   }
 }
 
