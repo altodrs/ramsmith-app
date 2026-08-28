@@ -15,24 +15,23 @@ export default function HomePage() {
       </div>
       <div className="page-home-inner">
         <div className="hero-grid">
-          <div className="intro">
-            <h1>Generate a site-specific UK RAMS in minutes</h1>
-            <p>
-              Pick the job, add the site address, and pay once to unlock a
-              site-specific Risk Assessment &amp; Method Statement — hazards,
-              controls, PPE and regulations included.
-            </p>
+          <div className="intro hero-orange-zone">
+            <div className="hero-orange-top">
+              <h1>
+                Generate a site-specific
+                <br className="hero-h1-break" /> UK RAMS in minutes
+              </h1>
+              <p>
+                Pick the job, add the site address, and pay once to unlock a
+                site-specific Risk Assessment &amp; Method Statement — hazards,
+                controls, PPE and regulations included.
+              </p>
+            </div>
             <div className="chip-row trust-row">
               <span className="badge-green">&#10003; No account needed</span>
               <span className="badge-green">&#10003; No subscription</span>
               <span className="badge-green">&#10003; Preview before you pay</span>
             </div>
-            <TradeForm trades={[...trades, ...industries]} />
-            <p className="browse-link">
-              Not sure what to search?{" "}
-              <Link href="/rams">Browse all trades</Link> or{" "}
-              <Link href="/industries">browse all industries</Link>
-            </p>
           </div>
           <div className="hero-photo">
             <img
@@ -46,6 +45,17 @@ export default function HomePage() {
               <span className="hero-price-badge-unit">per document</span>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div className="hero-below-orange">
+        <div className="hero-below-orange-inner">
+          <TradeForm trades={[...trades, ...industries]} />
+          <p className="browse-link">
+            Not sure what to search?{" "}
+            <Link href="/rams">Browse all trades</Link> or{" "}
+            <Link href="/industries">browse all industries</Link>
+          </p>
         </div>
       </div>
     </main>
