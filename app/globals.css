@@ -135,9 +135,11 @@ a {
      Scoped to the homepage only — other pages keep the normal spacing. */
   .page-home .intro h1 {
     margin-bottom: 8px;
+    color: #fff;
   }
   .page-home .intro p {
     margin-bottom: 14px;
+    color: rgba(255, 255, 255, 0.9);
   }
   .page-home .trust-row {
     margin-top: -8px;
@@ -154,7 +156,17 @@ a {
     margin-bottom: 12px;
   }
   .page-home .browse-link {
+    /* This can land on either the orange or the light textured part of the
+       hero image depending on viewport width (the content flow is fixed,
+       but the image's colour bands scale with it) — a self-contained pill
+       background keeps it legible either way, rather than picking a text
+       colour that only works on one of the two. */
     margin-top: 10px;
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.92);
+    padding: 8px 16px;
+    border-radius: 999px;
+    color: var(--ink);
   }
 }
 
