@@ -14,6 +14,13 @@ export default function RamsIndexPage() {
     return acc;
   }, {});
 
+  const sortedGroups = Object.entries(byTrade)
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([tradeName, items]) => [
+      tradeName,
+      [...items].sort((a, b) => a.task_name.localeCompare(b.task_name)),
+    ]);
+
   return (
     <main className="page">
       <div className="intro">
@@ -24,7 +31,7 @@ export default function RamsIndexPage() {
         </p>
       </div>
 
-      {Object.entries(byTrade).map(([tradeName, items]) => (
+      {sortedGroups.map(([tradeName, items]) => (
         <section key={tradeName} className="trade-group">
           <h2>{tradeName}</h2>
           <ul className="trade-list">

@@ -14,6 +14,13 @@ export default function IndustriesIndexPage() {
     return acc;
   }, {});
 
+  const sortedGroups = Object.entries(byIndustry)
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([industryName, items]) => [
+      industryName,
+      [...items].sort((a, b) => a.task_name.localeCompare(b.task_name)),
+    ]);
+
   return (
     <main className="page">
       <div className="intro">
@@ -25,7 +32,7 @@ export default function IndustriesIndexPage() {
         </p>
       </div>
 
-      {Object.entries(byIndustry).map(([industryName, items]) => (
+      {sortedGroups.map(([industryName, items]) => (
         <section key={industryName} className="trade-group">
           <h2>{industryName}</h2>
           <ul className="trade-list">

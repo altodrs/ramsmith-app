@@ -2,10 +2,16 @@
 
 import { useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import Fuse from "fuse.js";
 
 function tradeLabel(t) {
   return `${t.trade} — ${t.task_name}`;
 }
+
+const sortedAlphabetically = (list) =>
+  [...list].sort(
+    (a, b) => a.trade.localeCompare(b.trade) || a.task_name.localeCompare(b.task_name)
+  );
 
 export default function TradeForm({ trades }) {
   const router = useRouter();
@@ -16,11 +22,27 @@ export default function TradeForm({ trades }) {
   const [error, setError] = useState("");
   const blurTimeout = useRef(null);
 
+  // Threshold 0.35 is deliberately lenient — tuned so a couple of typos
+  // ("elecktrician", "roofing" -> "rooffing") still surface the right
+  // trade, without matching so loosely that unrelated jobs show up.
+  const fuse = useMemo(
+    () =>
+      new Fuse(trades, {
+        keys: [
+          { name: "trade", weight: 0.6 },
+          { name: "task_name", weight: 0.4 },
+        ],
+        threshold: 0.35,
+        ignoreLocation: true,
+      }),
+    [trades]
+  );
+
   const results = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    if (!q) return trades;
-    return trades.filter((t) => tradeLabel(t).toLowerCase().includes(q));
-  }, [trades, query]);
+    const q = query.trim();
+    if (!q) return sortedAlphabetically(trades);
+    return fuse.search(q).map((r) => r.item);
+  }, [trades, query, fuse]);
 
   function handleQueryChange(e) {
     setQuery(e.target.value);
