@@ -1,18 +1,17 @@
 :root {
-  --bg: #fbfaf9;
+  --bg: #f5f1e9;
   --surface: #ffffff;
-  --surface-2: #fafaf8;
-  --ink: #151515;
+  --surface-2: #faf7f1;
+  --ink: #262626;
   --muted: #6b6b6b;
   --border: rgba(0, 0, 0, 0.08);
   --border-strong: rgba(0, 0, 0, 0.14);
 
-  /* RAMS Forge brand marks — fixed, not theme-adaptive. Official hex values
-     from the brand swatch sheet (RichlyBlack_RF, DeepRed_RF, DeepGold_RF). */
+  /* Brand marks — matched to the reference site's palette (cream/charcoal/
+     orange), not the earlier gold/red swatch sheet. */
   --slate: #1a1a1a;
   --slate-ink: #ffffff;
-  --brand: #c1272d;
-  --gold: #ffba05;
+  --brand: #de5b27;
 
   --red: #e5342b;
   --red-bg: #fdecec;
@@ -59,7 +58,8 @@ a {
 }
 
 .masthead {
-  background: var(--slate);
+  background: var(--bg);
+  border-bottom: 1px solid var(--border-strong);
   position: relative;
   z-index: 10;
 }
@@ -91,8 +91,8 @@ a {
   display: none;
 }
 .masthead-signin {
-  color: #fff;
-  opacity: 0.85;
+  color: var(--ink);
+  opacity: 0.7;
   text-decoration: none;
   font-size: 0.92rem;
   white-space: nowrap;
@@ -125,7 +125,7 @@ a {
 .masthead-toggle-bar {
   display: block;
   height: 2px;
-  background: #fff;
+  background: var(--ink);
   border-radius: 1px;
 }
 .masthead-mobile-menu {
@@ -133,14 +133,14 @@ a {
   flex-direction: column;
   gap: 2px;
   padding: 8px 24px 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid var(--border);
 }
 .masthead-mobile-menu a {
-  color: #fff;
+  color: var(--ink);
   text-decoration: none;
   padding: 12px 0;
   font-size: 0.98rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid var(--border);
 }
 .masthead-mobile-menu a.button {
   border-bottom: none;
@@ -158,14 +158,20 @@ a {
     justify-content: center;
   }
   .site-nav a {
-    color: #fff;
-    opacity: 0.85;
+    color: var(--ink);
+    opacity: 0.65;
     text-decoration: none;
-    font-size: 0.94rem;
-    font-weight: 500;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
     white-space: nowrap;
   }
   .site-nav a:hover {
+    opacity: 1;
+  }
+  .site-nav a.active {
+    color: var(--brand);
     opacity: 1;
   }
   .masthead-actions {
@@ -186,9 +192,6 @@ a {
   padding: 48px 24px 96px;
 }
 
-.page-home {
-  background: var(--gold);
-}
 .page-home-inner {
   max-width: 1200px;
   margin: 0 auto;
@@ -196,11 +199,16 @@ a {
 }
 .page-home .intro h1 {
   font-size: clamp(2.3rem, 5.2vw, 3.75rem);
-  color: var(--brand);
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 1;
 }
 .page-home .intro p {
-  color: #333;
+  color: var(--muted);
   font-size: 1.3rem;
+  border-left: 3px solid var(--brand);
+  padding-left: 16px;
 }
 .page-home .trust-row .badge-green {
   font-size: 0.95rem;
@@ -214,12 +222,9 @@ a {
   }
 }
 
-/* The gold hero band: flat brand-colour background, no photo — headline and
-   copy on top, trust badges below. Same treatment at every width. */
 .page-home .hero-orange-zone {
-  background: var(--gold);
-  margin: 0 -24px 32px;
-  padding: 28px 24px;
+  margin: 0 0 32px;
+  padding: 28px 0;
 }
 .page-home .hero-orange-top {
   margin-bottom: 24px;
@@ -259,8 +264,7 @@ a {
   }
   .page-home .hero-orange-zone {
     margin: 0 0 40px;
-    padding: 56px 40px;
-    border-radius: 24px;
+    padding: 56px 0;
   }
   .hero-below-orange {
     padding: 8px 0 40px;
@@ -285,9 +289,10 @@ a {
 
 .intro h1 {
   font-weight: 700;
-  letter-spacing: -0.02em;
-  font-size: clamp(2rem, 4.2vw, 3rem);
-  line-height: 1.05;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  font-size: clamp(2.1rem, 4.4vw, 3.2rem);
+  line-height: 1.02;
   margin: 0 0 14px;
   text-wrap: balance;
 }
@@ -589,8 +594,9 @@ a {
   gap: 16px;
 }
 .hazard-card {
-  background: var(--gold);
+  background: var(--surface);
   border: 1px solid var(--border);
+  border-left: 4px solid var(--brand);
   border-radius: 18px;
   padding: 18px 20px;
   display: flex;
@@ -917,7 +923,7 @@ a {
   text-decoration: none;
 }
 .site-footer-inner a:hover {
-  color: var(--gold);
+  color: var(--brand);
 }
 
 .declaration-check {

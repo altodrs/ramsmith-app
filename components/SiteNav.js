@@ -2,12 +2,15 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 // Mobile menu state needs a Client Component; the masthead itself still
 // renders on every page via app/layout.js (a Server Component) same as
 // before, homepage included.
 export default function SiteNav() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const isActive = (href) => pathname === href || pathname.startsWith(`${href}/`);
 
   return (
     <div className="masthead">
@@ -17,10 +20,18 @@ export default function SiteNav() {
         </a>
 
         <nav className="site-nav" aria-label="Main">
-          <Link href="/rams">Trades</Link>
-          <Link href="/industries">Industries</Link>
-          <Link href="/about-rams">About RAMS</Link>
-          <Link href="/pricing">Pricing</Link>
+          <Link href="/rams" className={isActive("/rams") ? "active" : undefined}>
+            Trades
+          </Link>
+          <Link href="/industries" className={isActive("/industries") ? "active" : undefined}>
+            Industries
+          </Link>
+          <Link href="/about-rams" className={isActive("/about-rams") ? "active" : undefined}>
+            About RAMS
+          </Link>
+          <Link href="/pricing" className={isActive("/pricing") ? "active" : undefined}>
+            Pricing
+          </Link>
         </nav>
 
         <div className="masthead-actions">
