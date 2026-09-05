@@ -201,7 +201,7 @@ a {
   font-size: clamp(2.3rem, 5.2vw, 3.75rem);
   color: var(--ink);
   text-transform: uppercase;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   line-height: 1;
 }
 .page-home .intro p {
@@ -213,7 +213,7 @@ a {
 .page-home .trust-row .badge-green {
   font-size: 0.95rem;
   padding: 10px 20px;
-  background: var(--slate);
+  background: var(--brand);
   color: #fff;
 }
 @media (min-width: 761px) {
@@ -249,7 +249,7 @@ a {
   background: var(--slate);
   color: #fff;
   padding: 12px 20px;
-  border-radius: 999px;
+  border-radius: 8px;
   text-align: center;
 }
 .hero-below-orange-inner .browse-link a {
@@ -263,6 +263,10 @@ a {
     padding-top: 40px;
   }
   .page-home .hero-orange-zone {
+    /* Narrower than the full container, deliberately — wraps the copy
+       across more lines and leaves clear space to the right for a future
+       hero image/graphic. */
+    max-width: 620px;
     margin: 0 0 40px;
     padding: 56px 0;
   }
@@ -288,8 +292,9 @@ a {
 }
 
 .intro h1 {
-  font-weight: 700;
-  letter-spacing: -0.01em;
+  font-family: var(--font-headline), sans-serif;
+  font-weight: 400;
+  letter-spacing: 0;
   text-transform: uppercase;
   font-size: clamp(2.1rem, 4.4vw, 3.2rem);
   line-height: 1.02;
@@ -581,7 +586,7 @@ a {
 }
 .pill {
   border: 1px solid var(--border-strong);
-  border-radius: 999px;
+  border-radius: 8px;
   background: var(--surface-2);
   color: var(--ink);
   font-size: 0.85rem;
@@ -613,7 +618,7 @@ a {
   display: inline-flex;
   width: fit-content;
   padding: 3px 10px;
-  border-radius: 999px;
+  border-radius: 6px;
 }
 .hazard-card h3 {
   font-size: 1rem;
@@ -638,7 +643,7 @@ a {
   font-size: 0.85rem;
   font-weight: 500;
   padding: 7px 15px;
-  border-radius: 999px;
+  border-radius: 8px;
 }
 
 .badge-green {
@@ -650,7 +655,7 @@ a {
   font-size: 0.82rem;
   font-weight: 500;
   padding: 8px 16px;
-  border-radius: 999px;
+  border-radius: 8px;
 }
 
 .section-note {
@@ -683,7 +688,7 @@ a {
   font-size: 0.76rem;
   font-weight: 600;
   padding: 4px 10px;
-  border-radius: 999px;
+  border-radius: 6px;
 }
 .risk-tag-initial {
   background: var(--red-bg);
