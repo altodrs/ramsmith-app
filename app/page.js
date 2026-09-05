@@ -10,40 +10,20 @@ export const metadata = {
 export default function HomePage() {
   return (
     <main className="page-home">
-      <div className="home-hero-logo-wrap">
-        <img src="/logo.svg" alt="RAMS Forge" className="home-hero-logo" />
-      </div>
       <div className="page-home-inner">
-        <div className="hero-grid">
-          <div className="intro hero-orange-zone">
-            <div className="hero-orange-top">
-              <h1>
-                Generate a site-specific
-                <br className="hero-h1-break" /> UK RAMS in minutes
-              </h1>
-              <p>
-                Pick the job, add the site address, and pay once to unlock a
-                site-specific Risk Assessment &amp; Method Statement — hazards,
-                controls, PPE and regulations included.
-              </p>
-            </div>
-            <div className="chip-row trust-row">
-              <span className="badge-green">&#10003; No account needed</span>
-              <span className="badge-green">&#10003; No subscription</span>
-              <span className="badge-green">&#10003; Preview before you pay</span>
-            </div>
+        <div className="intro hero-orange-zone">
+          <div className="hero-orange-top">
+            <h1>Generate a site-specific UK RAMS in minutes</h1>
+            <p>
+              Pick the job, add the site address, and pay once to unlock a
+              site-specific Risk Assessment &amp; Method Statement — hazards,
+              controls, PPE and regulations included.
+            </p>
           </div>
-          <div className="hero-photo">
-            <img
-              src="/homepage-worker.webp"
-              alt="Tradesperson in hi-vis and hard hat, ready for the job"
-              className="hero-photo-img"
-            />
-            <div className="hero-price-badge">
-              <span className="hero-price-badge-only">Only</span>
-              <span className="hero-price-badge-amount">£15</span>
-              <span className="hero-price-badge-unit">per document</span>
-            </div>
+          <div className="chip-row trust-row">
+            <span className="badge-green">&#10003; No account needed</span>
+            <span className="badge-green">&#10003; No subscription</span>
+            <span className="badge-green">&#10003; Preview before you pay</span>
           </div>
         </div>
       </div>

@@ -5,10 +5,7 @@ import Link from "next/link";
 
 // Mobile menu state needs a Client Component; the masthead itself still
 // renders on every page via app/layout.js (a Server Component) same as
-// before. Note: the homepage's own hero overlays just the logo on top of
-// its background image (see .home-hero-logo-wrap in globals.css) rather
-// than this full nav — that overlay is a separate, deliberately minimal
-// piece tied to the hero image's fixed dark-band size, left as-is here.
+// before, homepage included.
 export default function SiteNav() {
   const [open, setOpen] = useState(false);
 
