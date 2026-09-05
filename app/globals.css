@@ -7,10 +7,12 @@
   --border: rgba(0, 0, 0, 0.08);
   --border-strong: rgba(0, 0, 0, 0.14);
 
-  /* RAMS Forge brand marks — fixed, not theme-adaptive. Official hex values. */
-  --slate: #2f3e47;
+  /* RAMS Forge brand marks — fixed, not theme-adaptive. Official hex values
+     from the brand swatch sheet (RichlyBlack_RF, DeepRed_RF, DeepGold_RF). */
+  --slate: #1a1a1a;
   --slate-ink: #ffffff;
-  --brand: #f15a24;
+  --brand: #c1272d;
+  --gold: #ffba05;
 
   --red: #e5342b;
   --red-bg: #fdecec;
@@ -199,10 +201,10 @@ a {
 }
 .page-home .intro h1 {
   font-size: clamp(2.3rem, 5.2vw, 3.75rem);
-  color: #fff;
+  color: var(--brand);
 }
 .page-home .intro p {
-  color: rgba(255, 255, 255, 0.9);
+  color: #333;
   font-size: 1.3rem;
 }
 .page-home .trust-row .badge-green {
@@ -233,7 +235,7 @@ a {
    padding top and bottom. Desktop overrides this into the fixed-height,
    flexbox version that matches the baked-in image band — see below. */
 .page-home .hero-orange-zone {
-  background: var(--brand);
+  background: var(--gold);
   margin: 0 -24px 32px;
   padding: 28px 24px;
 }
@@ -320,9 +322,14 @@ a {
     display: block;
   }
   .page-home .intro h1 {
+    /* Stays white here (unlike the mobile override above) because desktop
+       still sits on the old baked-orange hero photo, not the new gold —
+       revisit once that photo is replaced. */
+    color: #fff;
     margin-bottom: 8px;
   }
   .page-home .intro p {
+    color: rgba(255, 255, 255, 0.9);
     margin-bottom: 0;
   }
   /* Orange band height is fixed to match the image's own orange section
@@ -794,7 +801,7 @@ a {
   gap: 16px;
 }
 .hazard-card {
-  background: var(--brand);
+  background: var(--gold);
   border: 1px solid var(--border);
   border-radius: 18px;
   padding: 18px 20px;
@@ -1103,7 +1110,7 @@ a {
 }
 
 .site-footer {
-  border-top: 1px solid var(--border);
+  background: var(--slate);
   margin-top: 40px;
 }
 .site-footer-inner {
@@ -1115,14 +1122,14 @@ a {
   flex-wrap: wrap;
   gap: 8px;
   font-size: 0.82rem;
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.7);
 }
 .site-footer-inner a {
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
 }
 .site-footer-inner a:hover {
-  color: var(--brand);
+  color: var(--gold);
 }
 
 .declaration-check {
