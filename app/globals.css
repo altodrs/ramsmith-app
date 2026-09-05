@@ -212,7 +212,7 @@ a {
 }
 .page-home .trust-row .badge-green {
   font-size: 0.95rem;
-  padding: 10px 20px;
+  padding: 14px 20px;
   background: var(--brand);
   color: #fff;
 }
@@ -248,7 +248,8 @@ a {
   width: fit-content;
   background: var(--slate);
   color: #fff;
-  padding: 12px 20px;
+  font-size: 0.95rem;
+  padding: 14px 20px;
   border-radius: 8px;
   text-align: center;
 }
@@ -274,6 +275,11 @@ a {
     padding: 8px 0 40px;
   }
   .hero-below-orange-inner {
+    /* Padding lives here (not on .hero-below-orange) so this container
+       centers against the full viewport the same way .page-home-inner
+       does — padding on both ancestor and this max-width:1200/margin:auto
+       box would double-inset it and misalign the two columns. */
+    padding: 0 24px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -424,7 +430,7 @@ a {
   font-weight: 500;
   font-size: 0.95rem;
   padding: 14px 22px;
-  border-radius: 999px;
+  border-radius: 8px;
   cursor: pointer;
 }
 .button:disabled {
