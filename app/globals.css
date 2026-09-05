@@ -187,7 +187,7 @@ a {
 }
 
 .page-home {
-  background: var(--bg);
+  background: var(--gold);
 }
 .page-home-inner {
   max-width: 1200px;
@@ -205,6 +205,8 @@ a {
 .page-home .trust-row .badge-green {
   font-size: 0.95rem;
   padding: 10px 20px;
+  background: var(--slate);
+  color: #fff;
 }
 @media (min-width: 761px) {
   .page-home .intro h1 {
