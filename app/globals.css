@@ -187,12 +187,7 @@ a {
 }
 
 .page-home {
-  background: var(--bg) url("/homepage-texture.webp") center top / cover no-repeat;
-}
-.home-hero-logo-wrap {
-  /* Real masthead (with real logo) is used as-is on mobile — this overlay
-     logo is desktop-only, see the min-width:761px block below. */
-  display: none;
+  background: var(--bg);
 }
 .page-home-inner {
   max-width: 1200px;
@@ -212,28 +207,13 @@ a {
   padding: 10px 20px;
 }
 @media (min-width: 761px) {
-  /* Sized to the widest the headline can go without reaching the worker
-     figure in the hero image (measured: the zone's own max-width already
-     stops at the safe 53.5vw boundary, so this just needs to fill it —
-     4.7vw keeps ~50px of clearance from that edge at 1440px, and still
-     fits "Generate a site-specific" (the longer half of the forced 2-line
-     break below) on one line at the narrowest desktop width, 761px). */
   .page-home .intro h1 {
     font-size: clamp(1.7rem, 4.7vw, 5rem);
   }
 }
-/* Forces the 2-line "Generate a site-specific / UK RAMS in minutes" break
-   on desktop only (see the min-width:761px block below) — mobile hides it
-   and keeps wrapping naturally across its normal 3 lines. */
-.hero-h1-break {
-  display: none;
-}
 
-/* The orange "hero" band: headline+copy pinned to its top, trust badges
-   pinned to its bottom. On mobile there's no hero photo/image to match, so
-   it's just a brand-colour block sized to fit its own content with equal
-   padding top and bottom. Desktop overrides this into the fixed-height,
-   flexbox version that matches the baked-in image band — see below. */
+/* The gold hero band: flat brand-colour background, no photo — headline and
+   copy on top, trust badges below. Same treatment at every width. */
 .page-home .hero-orange-zone {
   background: var(--gold);
   margin: 0 -24px 32px;
@@ -271,131 +251,19 @@ a {
   text-transform: uppercase;
 }
 
-/* Desktop: use the designed hero banner (masthead look + texture + photo +
-   badge all baked in) instead of the recreated version. Pulled up by the
-   real masthead's height so the image's own top edge lines up with the
-   real masthead instead of starting below it. */
 @media (min-width: 761px) {
-  .page-home {
-    background-image: url("/homepage-hero.webp");
-    background-size: 100% auto;
-    background-position: top center;
-    background-repeat: no-repeat;
-    margin-top: -95px;
-    position: relative;
-    z-index: 1;
-  }
-  /* The hero image's dark band is logo-free (143px of its 1920px-wide
-     source, 7.45%) — the real logo is overlaid on top of it here instead,
-     so it stays crisp, accessible and clickable. Sized to leave breathing
-     room above/below within the band, left-aligned with the copy below. */
-  .home-hero-logo-wrap {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
-    height: 7.45vw;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    padding-left: 10.52%;
-  }
-  .home-hero-logo {
-    height: clamp(38px, 4.4vw, 64px);
-    width: auto;
-    display: block;
-  }
   .page-home-inner {
-    /* Clears the dark band only (7.45%, see above) — the gap before the
-       headline is now controlled by .hero-orange-zone's own padding
-       instead, independently of the dark-band clearance. */
-    padding-top: 7.45%;
-    padding-bottom: 0;
-    /* Matches the logo's left position (10.52%) rather than the usual
-       centered 1200px column. */
-    max-width: none;
-    margin: 0;
-    padding-left: 10.52%;
-    padding-right: 24px;
-  }
-  .page-home .hero-h1-break {
-    display: block;
-  }
-  .page-home .intro h1 {
-    /* Stays white here (unlike the mobile override above) because desktop
-       still sits on the old baked-orange hero photo, not the new gold —
-       revisit once that photo is replaced. */
-    color: #fff;
-    margin-bottom: 8px;
-  }
-  .page-home .intro p {
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 0;
-  }
-  /* Orange band height is fixed to match the image's own orange section
-     exactly (598 / 1920 = 31.15% of the image's width — vw, not %, since
-     percentage heights don't resolve without an explicit parent height).
-     The headline group and the trust badges are the only two flex
-     children, pinned near the top and bottom edges via space-between —
-     padding-top is deliberately larger than padding-bottom so the
-     headline sits a bit further down from the masthead than the badges
-     sit up from the bottom of the orange background. */
-  .page-home .hero-orange-zone {
-    background: none;
-    margin: 0;
-    padding: 48px 0 28px;
-    /* min-height (not height): matches the image's orange band exactly
-       whenever the content fits inside it (the common case), but grows
-       instead of overflowing/overlapping the section below if the copy
-       ever needs more room than that (e.g. very narrow desktop widths,
-       where the column is too narrow for the badges to fit on one row). */
-    min-height: 31.15vw;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  .page-home .hero-orange-top {
-    /* space-between distributes any leftover space between this and the
-       trust badges, but guarantees nothing when content fills (or grows
-       past) the zone's min-height — this margin is the floor so they're
-       never flush/overlapping-looking at narrow desktop widths. */
-    margin-bottom: 20px;
-  }
-  .page-home .trust-row {
-    margin: 0;
-  }
-  /* hero-photo is always display:none on desktop (the worker is baked into
-     the background image instead), so the grid's second column exists only
-     to reserve space for it — needlessly narrowing the text column. The
-     worker never sits left of 64.7% of the image's width (checked across
-     the full orange band), so the text can safely use up to ~53.5% before it. */
-  .page-home .hero-grid {
-    display: block;
+    padding-top: 40px;
   }
   .page-home .hero-orange-zone {
-    /* 53.5vw, not 53.5% — the parent (.page-home-inner) is already inset by
-       10.52% padding-left, so a percentage here would be relative to that
-       already-narrowed box, not the viewport the 64.7%/10.52% figures above
-       were measured against. */
-    max-width: 53.5vw;
+    margin: 0 0 40px;
+    padding: 56px 40px;
+    border-radius: 24px;
   }
   .hero-below-orange {
-    /* Horizontal padding moves to .hero-below-orange-inner below (matching
-       page-home-inner's own padding-left:10.52%/padding-right:24px scheme
-       exactly) — left/right padding here would otherwise compound with it,
-       throwing the card's left edge out of alignment with the logo. */
-    padding: 40px 0;
+    padding: 8px 0 40px;
   }
   .hero-below-orange-inner {
-    /* Left-aligned to the same 10.52% inset as the logo/headline above,
-       rather than centred — the pill is pushed to the far right of this
-       same full-bleed row instead, landing roughly under the worker
-       figure in the image. */
-    max-width: none;
-    margin: 0;
-    padding-left: 10.52%;
-    padding-right: 24px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -408,91 +276,9 @@ a {
     flex-shrink: 0;
   }
   .hero-below-orange-inner .browse-link {
-    /* margin-left:auto (not justify-content:space-between on the parent)
-       so it still pushes to the right when it wraps onto its own row at
-       narrower desktop widths, rather than falling back to the start. */
     margin: 0 0 0 auto;
     white-space: nowrap;
   }
-}
-
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  gap: 56px;
-  align-items: start;
-}
-@media (max-width: 760px) {
-  .hero-grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-}
-
-.hero-photo {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  padding-top: 12px;
-  margin-top: -144px;
-}
-@media (min-width: 761px) {
-  .hero-photo {
-    /* Baked into the .page-home background image on desktop instead. */
-    display: none;
-  }
-}
-@media (max-width: 760px) {
-  .hero-photo {
-    margin-top: 0;
-  }
-}
-.hero-photo-img {
-  height: min(760px, calc(100vh - 60px));
-  width: auto;
-  max-width: 100%;
-  display: block;
-  filter: drop-shadow(0 20px 30px rgba(20, 24, 26, 0.18));
-}
-@media (max-width: 760px) {
-  .hero-photo-img {
-    height: auto;
-    width: 100%;
-    max-width: 420px;
-  }
-}
-.hero-price-badge {
-  position: absolute;
-  top: 12px;
-  right: 6%;
-  width: clamp(120px, 30%, 160px);
-  aspect-ratio: 1 / 1;
-  border-radius: 50%;
-  background: var(--brand);
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: 2px;
-  box-shadow: 0 16px 28px -10px rgba(20, 24, 26, 0.4);
-  z-index: 2;
-}
-.hero-price-badge-only {
-  font-size: 0.8rem;
-  font-weight: 500;
-}
-.hero-price-badge-amount {
-  font-size: clamp(1.5rem, 4vw, 1.9rem);
-  font-weight: 700;
-  line-height: 1.1;
-}
-.hero-price-badge-unit {
-  font-size: 0.68rem;
-  font-weight: 500;
-  max-width: 78%;
-  line-height: 1.25;
 }
 
 .intro h1 {
