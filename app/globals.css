@@ -212,7 +212,7 @@ a {
 }
 .page-home .trust-row .badge-green {
   font-size: 0.95rem;
-  padding: 14px 20px;
+  padding: 10px 20px;
   background: var(--brand);
   color: #fff;
 }
@@ -249,7 +249,7 @@ a {
   background: var(--slate);
   color: #fff;
   font-size: 0.95rem;
-  padding: 14px 20px;
+  padding: 10px 20px;
   border-radius: 8px;
   text-align: center;
 }
@@ -429,7 +429,7 @@ a {
   font: inherit;
   font-weight: 500;
   font-size: 0.95rem;
-  padding: 14px 22px;
+  padding: 10px 20px;
   border-radius: 8px;
   cursor: pointer;
 }
