@@ -66,7 +66,7 @@ a {
 .masthead-inner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 6px 24px;
+  padding: 2px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -79,7 +79,10 @@ a {
   flex-shrink: 0;
 }
 .wordmark img {
-  height: 48px;
+  /* This logo's lockup is very wide relative to its height (unlike the
+     old mark), so a desktop-sized height would overflow a mobile
+     viewport — kept small here, sized back up for desktop below. */
+  height: 28px;
   width: auto;
   display: block;
 }
@@ -150,6 +153,9 @@ a {
 }
 
 @media (min-width: 900px) {
+  .wordmark img {
+    height: 56px;
+  }
   .site-nav {
     display: flex;
     align-items: center;
