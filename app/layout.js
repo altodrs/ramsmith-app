@@ -24,7 +24,7 @@ const anton = Anton({
 
 export const metadata = {
   metadataBase: new URL("https://ramsforge.co.uk"),
-  title: "RAMS Forge — UK RAMS Generator",
+  title: "Ramsforge — UK RAMS Generator",
   description:
     "Generate a site-specific Risk Assessment & Method Statement in minutes.",
 };
@@ -37,7 +37,7 @@ export default function RootLayout({ children }) {
         {children}
         <footer className="site-footer">
           <div className="site-footer-inner">
-            <span>&copy; {new Date().getFullYear()} RAMS Forge</span>
+            <span>&copy; {new Date().getFullYear()} Ramsforge</span>
             <a href="/terms">Terms &amp; Declarations</a>
           </div>
         </footer>

@@ -66,7 +66,7 @@ a {
 .masthead-inner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 18px 24px;
+  padding: 8px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -79,7 +79,7 @@ a {
   flex-shrink: 0;
 }
 .wordmark img {
-  height: 52px;
+  height: 104px;
   width: auto;
   display: block;
 }
@@ -209,10 +209,11 @@ a {
   font-size: 1.3rem;
   border-left: 3px solid var(--brand);
   padding-left: 16px;
+  margin-bottom: 16px;
 }
 .page-home .trust-row .badge-green {
   font-size: 0.95rem;
-  padding: 10px 20px;
+  padding: 8px 18px;
   background: var(--brand);
   color: #fff;
 }
@@ -223,11 +224,11 @@ a {
 }
 
 .page-home .hero-orange-zone {
-  margin: 0 0 32px;
-  padding: 28px 0;
+  margin: 0 0 20px;
+  padding: 20px 0;
 }
 .page-home .hero-orange-top {
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 .page-home .hero-orange-zone .trust-row {
   margin: 0;
@@ -249,7 +250,7 @@ a {
   background: var(--slate);
   color: #fff;
   font-size: 0.95rem;
-  padding: 10px 20px;
+  padding: 8px 18px;
   border-radius: 8px;
   text-align: center;
 }
@@ -261,15 +262,15 @@ a {
 
 @media (min-width: 761px) {
   .page-home-inner {
-    padding-top: 40px;
+    padding-top: 24px;
   }
   .page-home .hero-orange-zone {
     /* Narrower than the full container, deliberately — wraps the copy
        across more lines and leaves clear space to the right for a future
        hero image/graphic. */
     max-width: 620px;
-    margin: 0 0 40px;
-    padding: 56px 0;
+    margin: 0 0 24px;
+    padding: 28px 0;
   }
   .hero-below-orange {
     padding: 8px 0 40px;
@@ -429,7 +430,7 @@ a {
   font: inherit;
   font-weight: 500;
   font-size: 0.95rem;
-  padding: 10px 20px;
+  padding: 8px 18px;
   border-radius: 8px;
   cursor: pointer;
 }

@@ -3,9 +3,9 @@ import { trades } from "@/lib/trades";
 import { industries } from "@/lib/industries";
 
 export const metadata = {
-  title: "What is a RAMS? — RAMS Forge",
+  title: "What is a RAMS? — Ramsforge",
   description:
-    "What a RAMS document is, why CDM 2015 requires one, and exactly what's included in every RAMS Forge document — with the real UK regulations we reference.",
+    "What a RAMS document is, why CDM 2015 requires one, and exactly what's included in every Ramsforge document — with the real UK regulations we reference.",
   alternates: { canonical: "https://ramsforge.co.uk/about-rams" },
 };
 
@@ -51,7 +51,7 @@ export default function AboutRamsPage() {
       </section>
 
       <section className="about-rams-section">
-        <h2>What&apos;s in every RAMS Forge document</h2>
+        <h2>What&apos;s in every Ramsforge document</h2>
         <p>
           Every document we generate — for any of the {trades.length} trades
           or {industries.length} industries we cover — includes the same
@@ -89,7 +89,7 @@ export default function AboutRamsPage() {
       <section className="about-rams-section">
         <h2>Built on real UK regulations</h2>
         <p>
-          Across every trade and industry we cover, RAMS Forge references{" "}
+          Across every trade and industry we cover, Ramsforge references{" "}
           {regulations.length} distinct pieces of UK legislation and
           guidance — not a generic template with the legal detail left for
           you to research separately. This list is generated directly from

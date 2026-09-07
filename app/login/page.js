@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Sign in — RAMS Forge",
-  description: "Account sign-in for RAMS Forge — coming soon.",
+  title: "Sign in — Ramsforge",
+  description: "Account sign-in for Ramsforge — coming soon.",
 };
 
 // Placeholder until the account system (email magic-link sign-in) ships —

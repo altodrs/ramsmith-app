@@ -16,7 +16,7 @@ export default function SiteNav() {
     <div className="masthead">
       <div className="masthead-inner">
         <a className="wordmark" href="/">
-          <img src="/logo.svg" alt="RAMS Forge" />
+          <img src="/logo.svg" alt="Ramsforge" />
         </a>
 
         <nav className="site-nav" aria-label="Main">

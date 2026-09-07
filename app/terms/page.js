@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Terms & Declarations — RAMS Forge",
-  description: "Terms of service and user declarations for RAMS Forge.",
+  title: "Terms & Declarations — Ramsforge",
+  description: "Terms of service and user declarations for Ramsforge.",
   alternates: { canonical: "https://ramsforge.co.uk/terms" },
 };
 
@@ -14,16 +14,16 @@ export default function TermsPage() {
 
       <div className="content">
         <section>
-          <h2>1. What RAMS Forge is</h2>
+          <h2>1. What Ramsforge is</h2>
           <p>
-            RAMS Forge (ramsforge.co.uk) is an automated documentation tool.
+            Ramsforge (ramsforge.co.uk) is an automated documentation tool.
             When you use it, you supply information about a job (the trade or
             industry, task, and site address), and the tool generates a Risk
             Assessment &amp; Method Statement (RAMS) document as a starting
             template based on that input.
           </p>
           <p>
-            RAMS Forge does not visit, inspect, or have any knowledge of your
+            Ramsforge does not visit, inspect, or have any knowledge of your
             actual site or working conditions. It is not a health &amp;
             safety consultancy, and using it does not create a consultancy,
             advisory, or professional relationship between you and RAMS
@@ -52,7 +52,7 @@ export default function TermsPage() {
             The service and generated documents are provided "as is" and "as
             available," without warranty of any kind, express or implied,
             including but not limited to fitness for a particular purpose.
-            RAMS Forge does not warrant that the generated document is
+            Ramsforge does not warrant that the generated document is
             complete, accurate, or sufficient for your specific job or site.
           </p>
         </section>
@@ -60,7 +60,7 @@ export default function TermsPage() {
         <section>
           <h2>4. Liability</h2>
           <p>
-            To the fullest extent permitted by law, RAMS Forge's total
+            To the fullest extent permitted by law, Ramsforge's total
             liability arising from or relating to your use of the service or
             a generated document — including any claim that a document was
             incomplete, inaccurate, or unsuitable — is limited to the amount
@@ -89,8 +89,8 @@ export default function TermsPage() {
         <section>
           <h2>6. Intellectual property</h2>
           <p>
-            The RAMS Forge name, branding, and template designs remain the
-            property of RAMS Forge. Once purchased, you're free to use, edit,
+            The Ramsforge name, branding, and template designs remain the
+            property of Ramsforge. Once purchased, you're free to use, edit,
             brand, and distribute your generated document for your own
             business purposes.
           </p>

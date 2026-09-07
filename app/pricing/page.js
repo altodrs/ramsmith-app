@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Pricing — RAMS Forge",
+  title: "Pricing — Ramsforge",
   description:
     "One-time payment, no account and no subscription — £15 per site-specific RAMS document.",
   alternates: { canonical: "https://ramsforge.co.uk/pricing" },

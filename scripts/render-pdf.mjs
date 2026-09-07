@@ -264,7 +264,7 @@ function buildRamsPdfElement(trade, siteAddress, assessorName) {
       h(
         Text,
         { style: styles.footer, fixed: true },
-        "Document Disclaimer: This document has been generated via RAMS Forge (ramsforge.co.uk) using user-supplied parameters as a baseline site-specific Risk Assessment & Method Statement (RAMS). It is provided for guidance drafting purposes. The duty holder/contractor remains the sole responsible party for inspecting the live working environment, verifying site-specific hazards and control measures, and ensuring compliance with HSE regulations."
+        "Document Disclaimer: This document has been generated via Ramsforge (ramsforge.co.uk) using user-supplied parameters as a baseline site-specific Risk Assessment & Method Statement (RAMS). It is provided for guidance drafting purposes. The duty holder/contractor remains the sole responsible party for inspecting the live working environment, verifying site-specific hazards and control measures, and ensuring compliance with HSE regulations."
       )
     )
   );

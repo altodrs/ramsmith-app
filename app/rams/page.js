@@ -2,7 +2,7 @@ import Link from "next/link";
 import { trades } from "@/lib/trades";
 
 export const metadata = {
-  title: "Browse All Jobs — RAMS Forge",
+  title: "Browse All Jobs — Ramsforge",
   description:
     "Browse every trade and job we generate a CDM 2015 compliant RAMS for — electricians, plumbers, roofers, scaffolders and more.",
   alternates: { canonical: "https://ramsforge.co.uk/rams" },

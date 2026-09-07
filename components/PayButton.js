@@ -74,7 +74,7 @@ export default function PayButton({ slug, siteAddress }) {
 
       <div className="declaration-box">
         <strong>Declarations &amp; User Acknowledgment:</strong> By generating
-        this document, you acknowledge that RAMS Forge (ramsforge.co.uk)
+        this document, you acknowledge that Ramsforge (ramsforge.co.uk)
         provides automated documentation templates based strictly on user
         input. This tool does not conduct on-site inspections or act as a
         Health &amp; Safety consultancy. The competent contractor/user
