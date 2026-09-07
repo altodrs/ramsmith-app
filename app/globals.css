@@ -198,10 +198,32 @@ a {
   padding: 48px 24px 96px;
 }
 
+.page-home {
+  position: relative;
+}
+/* Large decorative icon, bleeding up behind the masthead — the masthead's
+   own opaque background (z-index:10) naturally crops the portion that
+   overlaps it, so only the part below the nav is actually visible. */
+.hero-watermark {
+  position: absolute;
+  top: -30px;
+  left: -30px;
+  width: 260px;
+  height: auto;
+  opacity: 0.15;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+}
 .page-home-inner {
+  position: relative;
+  z-index: 1;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 24px 32px;
+}
+.hero-phones {
+  display: none;
 }
 .page-home .intro h1 {
   font-size: clamp(2.3rem, 5.2vw, 3.75rem);
@@ -270,13 +292,36 @@ a {
   .page-home-inner {
     padding-top: 8px;
   }
+  .hero-watermark {
+    top: -120px;
+    left: -60px;
+    width: 560px;
+  }
+  .hero-columns {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
   .page-home .hero-orange-zone {
     /* Narrower than the full container, deliberately — wraps the copy
-       across more lines and leaves clear space to the right for a future
-       hero image/graphic. */
+       across more lines, and (combined with .hero-phones taking the rest
+       of the row) leaves the space to its right for the phone graphic. */
     max-width: 620px;
     margin: 0 0 12px;
     padding: 10px 0;
+    flex-shrink: 0;
+  }
+  .hero-phones {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    min-width: 0;
+  }
+  .hero-phones img {
+    width: 100%;
+    max-width: 480px;
+    height: auto;
+    display: block;
   }
   .hero-below-orange {
     padding: 0 0 16px;

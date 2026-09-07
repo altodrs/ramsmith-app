@@ -10,20 +10,29 @@ export const metadata = {
 export default function HomePage() {
   return (
     <main className="page-home">
+      <img src="/hero-watermark.svg" alt="" aria-hidden="true" className="hero-watermark" />
       <div className="page-home-inner">
-        <div className="intro hero-orange-zone">
-          <div className="hero-orange-top">
-            <h1>Generate a site-specific UK RAMS in minutes</h1>
-            <p>
-              Pick the job, add the site address, and pay once to unlock a
-              site-specific Risk Assessment &amp; Method Statement — hazards,
-              controls, PPE and regulations included.
-            </p>
+        <div className="hero-columns">
+          <div className="intro hero-orange-zone">
+            <div className="hero-orange-top">
+              <h1>Generate a site-specific UK RAMS in minutes</h1>
+              <p>
+                Pick the job, add the site address, and pay once to unlock a
+                site-specific Risk Assessment &amp; Method Statement — hazards,
+                controls, PPE and regulations included.
+              </p>
+            </div>
+            <div className="chip-row trust-row">
+              <span className="badge-green">&#10003; No account needed</span>
+              <span className="badge-green">&#10003; No subscription</span>
+              <span className="badge-green">&#10003; Preview before you pay</span>
+            </div>
           </div>
-          <div className="chip-row trust-row">
-            <span className="badge-green">&#10003; No account needed</span>
-            <span className="badge-green">&#10003; No subscription</span>
-            <span className="badge-green">&#10003; Preview before you pay</span>
+          <div className="hero-phones">
+            <img
+              src="/hero-phones.svg"
+              alt="A sample Ramsforge RAMS document shown on two phone screens"
+            />
           </div>
         </div>
       </div>
