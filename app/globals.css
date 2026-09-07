@@ -66,7 +66,7 @@ a {
 .masthead-inner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 8px 24px;
+  padding: 6px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -79,7 +79,7 @@ a {
   flex-shrink: 0;
 }
 .wordmark img {
-  height: 104px;
+  height: 48px;
   width: auto;
   display: block;
 }
@@ -198,7 +198,7 @@ a {
   padding: 0 24px 32px;
 }
 .page-home .intro h1 {
-  font-size: clamp(2.3rem, 5.2vw, 3.75rem);
+  font-size: clamp(2rem, 4.2vw, 3rem);
   color: var(--ink);
   text-transform: uppercase;
   letter-spacing: 0;
@@ -206,10 +206,10 @@ a {
 }
 .page-home .intro p {
   color: var(--muted);
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   border-left: 3px solid var(--brand);
   padding-left: 16px;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 .page-home .trust-row .badge-green {
   font-size: 0.95rem;
@@ -219,16 +219,16 @@ a {
 }
 @media (min-width: 761px) {
   .page-home .intro h1 {
-    font-size: clamp(1.7rem, 4.7vw, 5rem);
+    font-size: clamp(1.6rem, 3.4vw, 3.6rem);
   }
 }
 
 .page-home .hero-orange-zone {
-  margin: 0 0 20px;
-  padding: 20px 0;
+  margin: 0 0 12px;
+  padding: 12px 0;
 }
 .page-home .hero-orange-top {
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 }
 .page-home .hero-orange-zone .trust-row {
   margin: 0;
@@ -262,18 +262,18 @@ a {
 
 @media (min-width: 761px) {
   .page-home-inner {
-    padding-top: 24px;
+    padding-top: 8px;
   }
   .page-home .hero-orange-zone {
     /* Narrower than the full container, deliberately — wraps the copy
        across more lines and leaves clear space to the right for a future
        hero image/graphic. */
     max-width: 620px;
-    margin: 0 0 24px;
-    padding: 28px 0;
+    margin: 0 0 12px;
+    padding: 10px 0;
   }
   .hero-below-orange {
-    padding: 8px 0 40px;
+    padding: 0 0 16px;
   }
   .hero-below-orange-inner {
     /* Padding lives here (not on .hero-below-orange) so this container
@@ -291,6 +291,10 @@ a {
     width: 100%;
     max-width: 480px;
     flex-shrink: 0;
+    padding: 18px 22px;
+  }
+  .hero-below-orange-inner .field {
+    margin-bottom: 12px;
   }
   .hero-below-orange-inner .browse-link {
     margin: 0 0 0 auto;
