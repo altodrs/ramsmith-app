@@ -66,7 +66,7 @@ a {
 .masthead-inner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2px 24px;
+  padding: 10px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -154,7 +154,7 @@ a {
 
 @media (min-width: 900px) {
   .wordmark img {
-    height: 56px;
+    height: 40px;
   }
   .site-nav {
     display: flex;
@@ -210,7 +210,7 @@ a {
   left: -30px;
   width: 260px;
   height: auto;
-  opacity: 0.15;
+  opacity: 0.07;
   z-index: 0;
   pointer-events: none;
   user-select: none;
@@ -293,20 +293,20 @@ a {
     padding-top: 8px;
   }
   .hero-watermark {
-    top: -120px;
-    left: -60px;
-    width: 560px;
+    top: -240px;
+    left: -280px;
+    width: 1120px;
   }
   .hero-columns {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 32px;
   }
   .page-home .hero-orange-zone {
     /* Narrower than the full container, deliberately — wraps the copy
        across more lines, and (combined with .hero-phones taking the rest
        of the row) leaves the space to its right for the phone graphic. */
-    max-width: 620px;
+    max-width: 580px;
     margin: 0 0 12px;
     padding: 10px 0;
     flex-shrink: 0;
@@ -319,7 +319,7 @@ a {
   }
   .hero-phones img {
     width: 100%;
-    max-width: 480px;
+    max-width: 580px;
     height: auto;
     display: block;
   }
