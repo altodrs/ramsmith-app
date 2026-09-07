@@ -8,9 +8,9 @@ import { fileURLToPath } from "node:url";
 import { createElement as h } from "react";
 import { Document, Page, Text, View, Image, StyleSheet, renderToBuffer } from "@react-pdf/renderer";
 
-const SLATE = "#2f3e47";
-const ORANGE = "#f15a24";
-const MUTED = "#5c6b74";
+const SLATE = "#1a1a1a";
+const ORANGE = "#de5b27";
+const MUTED = "#6b6b6b";
 const BORDER = "#dfe3e6";
 const RED = "#e5342b";
 const RED_BG = "#fdecec";
@@ -47,18 +47,18 @@ const SECOND_FAQ = {
   a: "Yes. HSE guidance expects a copy of the RAMS — along with the completed sign-off section — to be available on site for the duration of the work, and reviewed if site conditions change.",
 };
 
-// Pre-rendered PNG (logo.svg is white-on-transparent, built for the dark
-// masthead — this bakes it onto a matching dark-slate plate so it's visible
-// on a white PDF page). Resolved relative to this file, not process.cwd(),
-// so it works regardless of where the child process is spawned from.
+// Pre-rendered PNG (logo.svg is dark-on-transparent, built for the light
+// masthead — renders directly on the white PDF page, no plate needed).
+// Resolved relative to this file, not process.cwd(), so it works
+// regardless of where the child process is spawned from.
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const LOGO_PATH = path.join(SCRIPT_DIR, "assets", "pdf-logo.png");
-const LOGO_ASPECT_RATIO = 780 / 196;
+const LOGO_ASPECT_RATIO = 2740 / 315;
 const LOGO_WIDTH = 170;
 const LOGO_HEIGHT = LOGO_WIDTH / LOGO_ASPECT_RATIO;
 
 const styles = StyleSheet.create({
-  page: { padding: 40, paddingBottom: 64, fontSize: 10, color: "#151515", fontFamily: "Helvetica" },
+  page: { padding: 40, paddingBottom: 64, fontSize: 10, color: "#262626", fontFamily: "Helvetica" },
   logo: { width: LOGO_WIDTH, height: LOGO_HEIGHT, marginBottom: 14 },
   title: { fontSize: 18, fontFamily: "Helvetica-Bold", color: SLATE, marginBottom: 4 },
   meta: { fontSize: 9, color: MUTED, marginBottom: 4 },
