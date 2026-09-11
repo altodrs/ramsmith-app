@@ -201,20 +201,6 @@ a {
 .page-home {
   position: relative;
 }
-/* Large decorative icon, bleeding up behind the masthead — the masthead's
-   own opaque background (z-index:10) naturally crops the portion that
-   overlaps it, so only the part below the nav is actually visible. */
-.hero-watermark {
-  position: absolute;
-  top: -30px;
-  left: -30px;
-  width: 260px;
-  height: auto;
-  opacity: 0.07;
-  z-index: 0;
-  pointer-events: none;
-  user-select: none;
-}
 .page-home-inner {
   position: relative;
   z-index: 1;
@@ -292,14 +278,9 @@ a {
   .page-home-inner {
     padding-top: 8px;
   }
-  .hero-watermark {
-    top: -240px;
-    left: -280px;
-    width: 1120px;
-  }
   .hero-columns {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 32px;
   }
   .page-home .hero-orange-zone {

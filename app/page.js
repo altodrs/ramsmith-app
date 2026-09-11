@@ -10,7 +10,6 @@ export const metadata = {
 export default function HomePage() {
   return (
     <main className="page-home">
-      <img src="/hero-watermark.svg" alt="" aria-hidden="true" className="hero-watermark" />
       <div className="page-home-inner">
         <div className="hero-columns">
           <div className="intro hero-orange-zone">
