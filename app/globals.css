@@ -300,7 +300,7 @@ a {
   }
   .hero-phones img {
     width: 100%;
-    max-width: 580px;
+    max-width: 420px;
     height: auto;
     display: block;
   }
@@ -315,7 +315,7 @@ a {
     padding: 0 24px;
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-end;
     row-gap: 16px;
     column-gap: 24px;
   }

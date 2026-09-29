@@ -29,8 +29,8 @@ export default function HomePage() {
           </div>
           <div className="hero-phones">
             <img
-              src="/hero-phones.svg"
-              alt="A sample Ramsforge RAMS document shown on two phone screens"
+              src="/hero-phone.webp"
+              alt="A sample Ramsforge RAMS document shown on a phone screen"
             />
           </div>
         </div>
