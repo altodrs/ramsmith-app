@@ -280,7 +280,7 @@ a {
   }
   .hero-columns {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 32px;
   }
   .page-home .hero-orange-zone {
@@ -293,15 +293,30 @@ a {
     flex-shrink: 0;
   }
   .hero-phones {
+    /* Height is set inline by HeroColumns.js (ResizeObserver on the text
+       column) — a pure-CSS sibling-height match (align-items:stretch +
+       height:100%) hits a real circular-sizing bug with a portrait image:
+       the row inflates to the image's own intrinsic aspect ratio instead
+       of the text column's actual content height. */
     display: flex;
     flex: 1;
     justify-content: center;
+    align-items: center;
     min-width: 0;
+    overflow: hidden;
+    /* Safety cap for the brief moment before the JS measurement runs
+       (initial server-rendered paint, pre-hydration) — without this, the
+       same circular-sizing issue described below could flash briefly. */
+    max-height: 500px;
   }
   .hero-phones img {
-    width: 100%;
-    max-width: 580px;
-    height: auto;
+    /* height:100% now resolves against the explicit pixel height set
+       above, so no circular dependency — width follows automatically,
+       so the image can never be squashed or stretched out of proportion. */
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
     display: block;
   }
   .hero-below-orange {
@@ -315,7 +330,7 @@ a {
     padding: 0 24px;
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-end;
     row-gap: 16px;
     column-gap: 24px;
   }
