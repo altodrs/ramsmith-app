@@ -208,7 +208,7 @@ a {
   margin: 0 auto;
   padding: 0 24px 32px;
 }
-.hero-phones {
+.hero-phone-overlay {
   display: none;
 }
 .page-home .intro h1 {
@@ -278,44 +278,29 @@ a {
   .page-home-inner {
     padding-top: 8px;
   }
-  .hero-columns {
-    display: flex;
-    align-items: flex-start;
-    gap: 32px;
-  }
   .page-home .hero-orange-zone {
-    /* Narrower than the full container, deliberately — wraps the copy
-       across more lines, and (combined with .hero-phones taking the rest
-       of the row) leaves the space to its right for the phone graphic. */
+    /* Narrower than the full container, deliberately — leaves the space
+       to its right for the phone graphic (positioned separately, see
+       .hero-phone-overlay — it's an absolute overlay now, not a flex
+       sibling, since it spans from the H1's top down into the search
+       card's price row further down the page). */
     max-width: 580px;
     margin: 0 0 12px;
     padding: 10px 0;
-    flex-shrink: 0;
   }
-  .hero-phones {
-    /* Height is set inline by HeroColumns.js (ResizeObserver on the text
-       column) — a pure-CSS sibling-height match (align-items:stretch +
-       height:100%) hits a real circular-sizing bug with a portrait image:
-       the row inflates to the image's own intrinsic aspect ratio instead
-       of the text column's actual content height. */
+  .hero-phone-overlay {
+    /* Position (top/left/width/height) is set inline by
+       HeroPhoneOverlay.js — measured live against the H1's top and the
+       price row's bottom, two landmarks in two different layout
+       sections, which isn't expressible as a normal sibling in either
+       section's flow. */
     display: flex;
-    /* Shrink-to-fit the image's actual (narrow, portrait) width instead
-       of flex:1 stretching this column to fill the rest of the row —
-       that left the phone centred in a much wider box than it needed,
-       reading as a lot of dead space around a small image. */
-    flex: 0 0 auto;
+    position: absolute;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     overflow: hidden;
-    /* Safety cap for the brief moment before the JS measurement runs
-       (initial server-rendered paint, pre-hydration) — without this, the
-       same circular-sizing issue described below could flash briefly. */
-    max-height: 500px;
   }
-  .hero-phones img {
-    /* height:100% now resolves against the explicit pixel height set
-       above, so no circular dependency — width follows automatically,
-       so the image can never be squashed or stretched out of proportion. */
+  .hero-phone-overlay img {
     height: 100%;
     width: auto;
     max-width: 100%;
