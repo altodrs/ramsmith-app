@@ -1,21 +1,45 @@
+import { signIn } from "@/auth";
+
 export const metadata = {
   title: "Sign in — Ramsforge",
-  description: "Account sign-in for Ramsforge — coming soon.",
+  description: "Sign in to your Ramsforge account.",
 };
 
-// Placeholder until the account system (email magic-link sign-in) ships —
-// linked from the nav now so "Sign in" isn't a dead link, swapped for the
-// real login flow once it exists.
 export default function LoginPage() {
   return (
     <main className="page">
-      <div className="card status-card">
-        <h1>Accounts are coming soon</h1>
+      <div className="intro">
+        <h1>Sign in</h1>
         <p>
-          Today, every RAMS is pay-once with no account needed. An optional
-          account — to save your details and keep a full history of every
-          document you&apos;ve generated — is on the way.
+          Enter your email and we&apos;ll send you a link to sign in — no
+          password needed.
         </p>
+      </div>
+
+      <div className="card" style={{ maxWidth: 420 }}>
+        <form
+          action={async (formData) => {
+            "use server";
+            await signIn("resend", {
+              email: formData.get("email"),
+              redirectTo: "/account",
+            });
+          }}
+        >
+          <div className="field">
+            <label htmlFor="email">Email address</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              placeholder="you@example.com"
+            />
+          </div>
+          <button type="submit" className="button">
+            Send sign-in link
+          </button>
+        </form>
       </div>
     </main>
   );
