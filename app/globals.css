@@ -525,7 +525,14 @@ a {
   margin-top: 16px;
 }
 
+.pricing-cards-row {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
 .pricing-single-card {
+  flex: 1 1 340px;
   max-width: 420px;
   text-align: left;
 }
