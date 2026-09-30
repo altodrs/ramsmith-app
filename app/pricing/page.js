@@ -7,10 +7,10 @@ export const metadata = {
   alternates: { canonical: "https://ramsforge.co.uk/pricing" },
 };
 
-// A deliberately simple placeholder for today's single, real offering.
-// More tiers (a multi-site pack, and a subscription account) are planned —
-// this page gets replaced with the full comparison layout once those exist,
-// rather than describing pricing that isn't live yet.
+// A deliberately simple placeholder for today's two real offerings. A
+// subscription account tier is planned — this page gets replaced with the
+// full 3-tier comparison layout once that exists too, rather than
+// describing pricing that isn't live yet.
 export default function PricingPage() {
   return (
     <main className="page">
@@ -22,26 +22,44 @@ export default function PricingPage() {
         </p>
       </div>
 
-      <div className="card pricing-single-card">
-        <span className="pricing-single-label">Single Site</span>
-        <div className="pricing-single-amount">
-          <span className="pricing-single-currency">£</span>15
-          <span className="pricing-single-unit">per document</span>
+      <div className="pricing-cards-row">
+        <div className="card pricing-single-card">
+          <span className="pricing-single-label">Single Site</span>
+          <div className="pricing-single-amount">
+            <span className="pricing-single-currency">£</span>15
+            <span className="pricing-single-unit">per document</span>
+          </div>
+          <ul className="pricing-single-features">
+            <li>Full method statement, 5 hazards with risk ratings, PPE and emergency procedures</li>
+            <li>Preview before you pay</li>
+            <li>Watermark-free PDF, emailed and downloadable instantly</li>
+            <li>No account or sign-up required</li>
+          </ul>
+          <Link href="/" className="button" style={{ display: "inline-block", textDecoration: "none" }}>
+            Find your job
+          </Link>
         </div>
-        <ul className="pricing-single-features">
-          <li>Full method statement, 5 hazards with risk ratings, PPE and emergency procedures</li>
-          <li>Preview before you pay</li>
-          <li>Watermark-free PDF, emailed and downloadable instantly</li>
-          <li>No account or sign-up required</li>
-        </ul>
-        <Link href="/" className="button" style={{ display: "inline-block", textDecoration: "none" }}>
-          Find your job
-        </Link>
+
+        <div className="card pricing-single-card">
+          <span className="pricing-single-label">Multi-Site Pack</span>
+          <div className="pricing-single-amount">
+            <span className="pricing-single-currency">£</span>50
+            <span className="pricing-single-unit">5 documents, any trade or site</span>
+          </div>
+          <ul className="pricing-single-features">
+            <li>£10 per document instead of £15</li>
+            <li>Use across any trade or industry, any site</li>
+            <li>One email link — come back and generate whenever you need one</li>
+            <li>No account or sign-up required</li>
+          </ul>
+          <Link href="/pack" className="button" style={{ display: "inline-block", textDecoration: "none" }}>
+            Buy a pack
+          </Link>
+        </div>
       </div>
 
       <p className="pricing-more-note">
-        More ways to pay — a multi-site pack and an unlimited account plan —
-        are coming soon.
+        An unlimited monthly/annual account plan is coming soon.
       </p>
     </main>
   );
