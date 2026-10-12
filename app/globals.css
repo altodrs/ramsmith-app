@@ -1014,3 +1014,17 @@ a {
 .declaration-box strong {
   color: var(--ink);
 }
+
+/* Decorative only: a CSS background (no text node), so screen readers skip
+   it, and pointer-events:none so selecting/tapping the content still works. */
+.preview-watermark {
+  position: relative;
+}
+.preview-watermark::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='240'%3E%3Ctext x='180' y='120' transform='rotate(-30 180 120)' text-anchor='middle' dominant-baseline='middle' font-family='Arial,sans-serif' font-size='30' font-weight='700' letter-spacing='3' fill='%23262626' fill-opacity='0.09'%3EPREVIEW ONLY%3C/text%3E%3C/svg%3E");
+  background-repeat: repeat;
+}

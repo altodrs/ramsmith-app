@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getIndustryBySlug, industries } from "@/lib/industries";
-import RamsDocument from "@/components/RamsDocument";
+import RamsPublicTeaser from "@/components/RamsPublicTeaser";
 
 const SITE_URL = "https://ramsforge.co.uk";
 
@@ -77,7 +77,7 @@ export default async function IndustryPage({ params }) {
         </span>
       </div>
 
-      <RamsDocument trade={industry} showHeader={false} />
+      <RamsPublicTeaser trade={industry} />
 
       <div className="card seo-cta">
         <p>Get this as a personalised, watermark-free PDF for your job.</p>

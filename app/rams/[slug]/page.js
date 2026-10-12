@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getTradeBySlug, trades } from "@/lib/trades";
-import RamsDocument from "@/components/RamsDocument";
+import RamsPublicTeaser from "@/components/RamsPublicTeaser";
 
 const SITE_URL = "https://ramsforge.co.uk";
 
@@ -78,7 +78,7 @@ export default async function TradePage({ params }) {
         </span>
       </div>
 
-      <RamsDocument trade={trade} showHeader={false} />
+      <RamsPublicTeaser trade={trade} />
 
       <div className="card seo-cta">
         <p>Get this as a personalised, watermark-free PDF for your job.</p>

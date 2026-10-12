@@ -12,7 +12,7 @@ export default function RamsPreviewTeaser({
   hazardNames,
 }) {
   return (
-    <div className="content">
+    <div className="content preview-watermark">
       <section>
         <h2>{h1Title}</h2>
         {siteAddress ? (
