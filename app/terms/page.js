@@ -36,7 +36,11 @@ export default function TermsPage() {
           <p>
             You must be, or have your work reviewed and signed off by, a
             competent person before the document generated here is used on
-            any live job. Every document is a draft template until you have
+            any live job. Under the Management of Health and Safety at Work
+            Regulations 1999, the employer or self-employed person carrying
+            out the work remains responsible for the adequacy of the risk
+            assessment. Ramsforge is an automated drafting aid and does not
+            take on that responsibility. Every document is a draft template until you have
             reviewed it against the actual site and task and signed it off.
             You are solely responsible for:
           </p>
@@ -69,6 +73,12 @@ export default function TermsPage() {
             you paid for that document.
           </p>
           <p>
+            Subject to the next paragraph, Ramsforge is not liable for any
+            indirect or consequential loss, loss of profit or business, or
+            any fine or penalty imposed on you, arising from your use of a
+            generated document, including any inaccuracy or omission in it.
+          </p>
+          <p>
             <strong>This limit does not apply to, and nothing in these terms
             excludes or restricts, liability for death or personal injury
             caused by negligence, fraud, or any other liability which cannot
@@ -77,7 +87,22 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2>5. Payment &amp; refunds</h2>
+          <h2>5. Indemnity</h2>
+          <p>
+            You agree to compensate Ramsforge for any third-party claim
+            (for example from a principal contractor, site owner or
+            operative) and the reasonable costs of defending it, to the
+            extent it is caused by your use of a generated document, your
+            changes to it, your failure to inspect the site or check the
+            document before work started, or your breach of these terms.
+            This does not apply to the extent a claim is caused by
+            Ramsforge's own negligence or any liability that cannot be
+            excluded by law.
+          </p>
+        </section>
+
+        <section>
+          <h2>6. Payment &amp; refunds</h2>
           <p>
             Payment is a one-time fee per document, taken securely via
             Stripe. As this is digital content, once a document has been
@@ -89,7 +114,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2>6. Intellectual property</h2>
+          <h2>7. Intellectual property</h2>
           <p>
             The Ramsforge name, branding, and template designs remain the
             property of Ramsforge. Once purchased, you're free to use, edit,
@@ -99,7 +124,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2>7. Governing law</h2>
+          <h2>8. Governing law</h2>
           <p>
             These terms are governed by the law of England and Wales, and any
             disputes are subject to the exclusive jurisdiction of the courts
@@ -108,7 +133,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2>8. Contact</h2>
+          <h2>9. Contact</h2>
           <p>
             Questions about these terms: <a href="mailto:ramsforgeuk@gmail.com">ramsforgeuk@gmail.com</a>
           </p>

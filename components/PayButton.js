@@ -63,10 +63,14 @@ export default function PayButton({ slug, siteAddress }) {
           onChange={(e) => setAgreed(e.target.checked)}
         />
         <span>
-          I understand this is a draft template. Before any work starts I
-          will check the full document against the actual site and task,
-          change anything that doesn&apos;t fit, and sign it off as the
-          competent person. I accept the{" "}
+          I am the employer or self-employed person doing this work (or act
+          for them). I understand this is a draft: I remain responsible for
+          the adequacy of the risk assessment, and I will inspect the site
+          and check the full document before work starts. I accept that
+          Ramsforge has no liability for loss arising from my use of it
+          (except where the law does not allow that, including death or
+          personal injury caused by negligence), and I agree to the
+          indemnity in the{" "}
           <a href="/terms" target="_blank" rel="noopener noreferrer">
             Terms &amp; Declarations
           </a>
@@ -75,12 +79,12 @@ export default function PayButton({ slug, siteAddress }) {
       </label>
 
       <div className="declaration-box">
-        <strong>A first draft in minutes. You check it, you sign it.</strong>{" "}
-        Ramsforge builds your RAMS from standard templates and the details
-        you enter. It&apos;s a starting point, not a replacement for your own
-        judgement. You know the site, we don&apos;t. Before work starts, check
-        every hazard and control against the real job, add anything missing,
-        and sign it off.
+        <strong>Ramsforge is an automated drafting aid.</strong> It does not
+        inspect your site or assess your risks. Under the Management of
+        Health and Safety at Work Regulations 1999, you (the employer or
+        self-employed person) remain responsible for the adequacy of your
+        risk assessment. Inspect the site and check every hazard and control
+        before work starts.
       </div>
 
       <button className="button" onClick={handleClick} disabled={!canSubmit}>
