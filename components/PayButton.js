@@ -63,23 +63,25 @@ export default function PayButton({ slug, siteAddress }) {
           onChange={(e) => setAgreed(e.target.checked)}
         />
         <span>
-          I confirm I am a competent person reviewing these details, and I
-          accept the{" "}
+          I explicitly declare that I am the Competent Person for this
+          project under HSE definitions. I certify that I have reviewed the
+          generated text against live site conditions, actively adopt it as
+          my own professional judgment, and agree to the full Limitation of
+          Liability and User Indemnification terms at{" "}
           <a href="/terms" target="_blank" rel="noopener noreferrer">
-            Terms &amp; Declarations
+            ramsforge.co.uk/terms
           </a>
           .
         </span>
       </label>
 
       <div className="declaration-box">
-        <strong>Declarations &amp; User Acknowledgment:</strong> By generating
-        this document, you acknowledge that Ramsforge (ramsforge.co.uk)
-        provides automated documentation templates based strictly on user
-        input. This tool does not conduct on-site inspections or act as a
-        Health &amp; Safety consultancy. The competent contractor/user
-        retains full responsibility to review, verify site-specific
-        conditions, and sign off on this RAMS prior to starting work.
+        <strong>Ramsforge is an automated drafting aid.</strong> It does not
+        inspect your site or assess your risks. Under the Management of
+        Health and Safety at Work Regulations 1999, you (the employer or
+        self-employed person) remain responsible for the adequacy of your
+        risk assessment. Inspect the site and check every hazard and control
+        before work starts.
       </div>
 
       <button className="button" onClick={handleClick} disabled={!canSubmit}>

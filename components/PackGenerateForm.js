@@ -199,8 +199,14 @@ export default function PackGenerateForm({ token, trades, initialCreditsRemainin
           onChange={(e) => setAgreed(e.target.checked)}
         />
         <span>
-          I confirm I am a competent person reviewing these details, and I
-          accept the{" "}
+          I am the employer or self-employed person doing this work (or act
+          for them). I understand this is a draft: I remain responsible for
+          the adequacy of the risk assessment, and I will inspect the site
+          and check the full document before work starts. I accept that
+          Ramsforge has no liability for loss arising from my use of it
+          (except where the law does not allow that, including death or
+          personal injury caused by negligence), and I agree to the
+          indemnity in the{" "}
           <a href="/terms" target="_blank" rel="noopener noreferrer">
             Terms &amp; Declarations
           </a>
