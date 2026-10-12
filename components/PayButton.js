@@ -63,8 +63,10 @@ export default function PayButton({ slug, siteAddress }) {
           onChange={(e) => setAgreed(e.target.checked)}
         />
         <span>
-          I confirm I am a competent person reviewing these details, and I
-          accept the{" "}
+          I understand this is a draft template. Before any work starts I
+          will check the full document against the actual site and task,
+          change anything that doesn&apos;t fit, and sign it off as the
+          competent person. I accept the{" "}
           <a href="/terms" target="_blank" rel="noopener noreferrer">
             Terms &amp; Declarations
           </a>
@@ -73,13 +75,12 @@ export default function PayButton({ slug, siteAddress }) {
       </label>
 
       <div className="declaration-box">
-        <strong>Declarations &amp; User Acknowledgment:</strong> By generating
-        this document, you acknowledge that Ramsforge (ramsforge.co.uk)
-        provides automated documentation templates based strictly on user
-        input. This tool does not conduct on-site inspections or act as a
-        Health &amp; Safety consultancy. The competent contractor/user
-        retains full responsibility to review, verify site-specific
-        conditions, and sign off on this RAMS prior to starting work.
+        <strong>A first draft in minutes. You check it, you sign it.</strong>{" "}
+        Ramsforge builds your RAMS from standard templates and the details
+        you enter. It&apos;s a starting point, not a replacement for your own
+        judgement. You know the site, we don&apos;t. Before work starts, check
+        every hazard and control against the real job, add anything missing,
+        and sign it off.
       </div>
 
       <button className="button" onClick={handleClick} disabled={!canSubmit}>

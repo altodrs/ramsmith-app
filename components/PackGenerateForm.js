@@ -199,8 +199,10 @@ export default function PackGenerateForm({ token, trades, initialCreditsRemainin
           onChange={(e) => setAgreed(e.target.checked)}
         />
         <span>
-          I confirm I am a competent person reviewing these details, and I
-          accept the{" "}
+          I understand this is a draft template. Before any work starts I
+          will check the full document against the actual site and task,
+          change anything that doesn&apos;t fit, and sign it off as the
+          competent person. I accept the{" "}
           <a href="/terms" target="_blank" rel="noopener noreferrer">
             Terms &amp; Declarations
           </a>

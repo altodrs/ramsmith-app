@@ -36,7 +36,9 @@ export default function TermsPage() {
           <p>
             You must be, or have your work reviewed and signed off by, a
             competent person before the document generated here is used on
-            any live job. You are solely responsible for:
+            any live job. Every document is a draft template until you have
+            reviewed it against the actual site and task and signed it off.
+            You are solely responsible for:
           </p>
           <div className="chip-row">
             <span className="pill">Verifying site-specific conditions</span>
