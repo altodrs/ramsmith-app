@@ -63,16 +63,13 @@ export default function PayButton({ slug, siteAddress }) {
           onChange={(e) => setAgreed(e.target.checked)}
         />
         <span>
-          I am the employer or self-employed person doing this work (or act
-          for them). I understand this is a draft: I remain responsible for
-          the adequacy of the risk assessment, and I will inspect the site
-          and check the full document before work starts. I accept that
-          Ramsforge has no liability for loss arising from my use of it
-          (except where the law does not allow that, including death or
-          personal injury caused by negligence), and I agree to the
-          indemnity in the{" "}
+          I explicitly declare that I am the Competent Person for this
+          project under HSE definitions. I certify that I have reviewed the
+          generated text against live site conditions, actively adopt it as
+          my own professional judgment, and agree to the full Limitation of
+          Liability and User Indemnification terms at{" "}
           <a href="/terms" target="_blank" rel="noopener noreferrer">
-            Terms &amp; Declarations
+            ramsforge.co.uk/terms
           </a>
           .
         </span>

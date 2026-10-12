@@ -42,11 +42,6 @@ const EMERGENCY_PROCEDURES = [
   },
 ];
 
-const SECOND_FAQ = {
-  q: "Do I need to keep a copy of this RAMS on site?",
-  a: "Yes. HSE guidance expects a copy of the RAMS — along with the completed sign-off section — to be available on site for the duration of the work, and reviewed if site conditions change.",
-};
-
 // Pre-rendered PNG (logo.svg is dark-on-transparent, built for the light
 // masthead — renders directly on the white PDF page, no plate needed).
 // Resolved relative to this file, not process.cwd(), so it works
@@ -101,7 +96,6 @@ const styles = StyleSheet.create({
   emergencyContactLabel: { fontSize: 9.5, color: "#333", width: 150 },
   emergencyContactValue: { fontSize: 9.5, fontFamily: "Helvetica-Bold", color: "#333" },
   emergencyContactLine: { flexGrow: 1, borderBottom: "1pt solid #333", minHeight: 12 },
-  faqBlock: { marginBottom: 10 },
   ppeBadge: {
     fontSize: 9,
     color: SLATE,
@@ -113,7 +107,6 @@ const styles = StyleSheet.create({
     marginBottom: 6,
   },
   faqQ: { fontSize: 10, fontFamily: "Helvetica-Bold", marginBottom: 3 },
-  faqA: { fontSize: 9.5, color: "#333" },
   signoffRow: { flexDirection: "row", alignItems: "flex-end", marginTop: 22 },
   signoffLabel: { fontSize: 9.5, color: "#333" },
   signoffLine: { flexGrow: 1, borderBottom: "1pt solid #333", marginHorizontal: 6, minHeight: 14 },
@@ -233,16 +226,6 @@ function buildRamsPdfElement(trade, siteAddress, assessorName) {
         h(View, { style: styles.emergencyContactLine, key: "line3" }),
       ]),
 
-      h(Text, { style: styles.sectionTitle }, "Frequently Asked Questions"),
-      h(View, { style: styles.faqBlock }, [
-        h(Text, { style: styles.faqQ, key: "q1" }, trade.faq_q1),
-        h(Text, { style: styles.faqA, key: "a1" }, trade.faq_a1),
-      ]),
-      h(View, { style: styles.faqBlock }, [
-        h(Text, { style: styles.faqQ, key: "q2" }, SECOND_FAQ.q),
-        h(Text, { style: styles.faqA, key: "a2" }, SECOND_FAQ.a),
-      ]),
-
       h(Text, { style: styles.sectionTitle }, "Review & Sign-Off"),
       h(
         Text,
@@ -252,7 +235,7 @@ function buildRamsPdfElement(trade, siteAddress, assessorName) {
       h(
         Text,
         { style: styles.sectionNote },
-        "I declare that I am a competent person for this work, with the skills, knowledge and experience to assess it. I have inspected the site (or it has been inspected on my behalf) and checked every section of this document, amended anything that does not apply, and adopt it as my own risk assessment. Under the Management of Health and Safety at Work Regulations 1999 I remain responsible for its adequacy. Ramsforge is an automated drafting aid and accepts no liability for loss arising from its use, except as set out in its Terms."
+        "I declare that I am a competent person for this work, with the skills, knowledge, and experience to assess it. I have inspected the site (or it has been inspected on my behalf), checked every section of this document, amended anything that does not apply, and adopt it as my own active risk assessment. Under the Management of Health and Safety at Work Regulations 1999, I retain exclusive statutory responsibility for its adequacy. Ramsforge is an automated clerical drafting tool. To the maximum extent permitted by UK law, Ramsforge and its operators exclude all liability for any direct, indirect, or consequential loss, injury, regulatory penalties, or fatalities resulting from errors, omissions, or text generation anomalies within this document."
       ),
       h(View, { style: styles.signoffRow }, [
         h(Text, { style: styles.signoffLabel, key: "l1" }, `Assessor${assessorName ? " (" + assessorName + ")" : ""} Signature:`),
