@@ -74,7 +74,7 @@ export default async function TradePage({ params }) {
         <h1>{trade.h1_title}</h1>
         <p>{trade.meta_description}</p>
         <span className="badge-green">
-          &#10003; {trade.cdm_applicable === false ? "Site-Specific RAMS" : "CDM 2015 Compliant"}
+          &#10003; {trade.cdm_applicable === false ? "Site-Specific RAMS" : "Built around CDM 2015"}
         </span>
       </div>
 
