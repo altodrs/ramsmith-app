@@ -1028,3 +1028,47 @@ a {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='240'%3E%3Ctext x='180' y='120' transform='rotate(-30 180 120)' text-anchor='middle' dominant-baseline='middle' font-family='Arial,sans-serif' font-size='30' font-weight='700' letter-spacing='3' fill='%23262626' fill-opacity='0.09'%3EPREVIEW ONLY%3C/text%3E%3C/svg%3E");
   background-repeat: repeat;
 }
+
+.pricing-toggle {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  margin-bottom: 24px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+}
+.pricing-toggle button {
+  border: 0;
+  background: transparent;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--muted);
+  cursor: pointer;
+}
+.pricing-toggle button.active {
+  background: var(--slate);
+  color: #fff;
+}
+.pricing-save {
+  font-size: 0.75rem;
+  opacity: 0.85;
+}
+.pricing-popular {
+  position: relative;
+  border-color: var(--brand);
+  border-width: 2px;
+}
+.pricing-badge {
+  position: absolute;
+  top: -12px;
+  right: 20px;
+  background: var(--brand);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+}

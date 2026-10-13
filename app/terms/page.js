@@ -102,7 +102,19 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2>6. Payment &amp; refunds</h2>
+          <h2>6. Subscriptions</h2>
+          <p>
+            Ramsforge Unlimited is billed monthly or annually and renews
+            automatically until cancelled. You can cancel at any time from
+            your account; your access continues until the end of the period
+            you have paid for, and part-periods are not refunded. Unlimited
+            means unlimited documents for your own business use — not for
+            resale, or for sharing your account with others.
+          </p>
+        </section>
+
+        <section>
+          <h2>7. Payment &amp; refunds</h2>
           <p>
             Payment is a one-time fee per document, taken securely via
             Stripe. As this is digital content, once a document has been
@@ -114,7 +126,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2>7. Intellectual property</h2>
+          <h2>8. Intellectual property</h2>
           <p>
             The Ramsforge name, branding, and template designs remain the
             property of Ramsforge. Once purchased, you're free to use, edit,
@@ -124,7 +136,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2>8. Governing law</h2>
+          <h2>9. Governing law</h2>
           <p>
             These terms are governed by the law of England and Wales, and any
             disputes are subject to the exclusive jurisdiction of the courts
@@ -133,7 +145,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2>9. Contact</h2>
+          <h2>10. Contact</h2>
           <p>
             Questions about these terms: <a href="mailto:ramsforgeuk@gmail.com">ramsforgeuk@gmail.com</a>
           </p>

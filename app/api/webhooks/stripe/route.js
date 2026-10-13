@@ -53,6 +53,12 @@ export async function POST(request) {
       if (session.metadata?.kind === "multi_site_pack") {
         await fulfilMultiSitePack(session);
       }
+    } else if (
+      event.type === "customer.subscription.created" ||
+      event.type === "customer.subscription.updated" ||
+      event.type === "customer.subscription.deleted"
+    ) {
+      await syncSubscription(event.data.object.id);
     }
   } catch (err) {
     // Un-record the event and return 500 so Stripe's retry is processed
@@ -105,4 +111,50 @@ async function fulfilMultiSitePack(session) {
       `Keep this link safe — it's how you'll come back to generate each document.`,
   });
   if (error) throw new Error(`Resend failed: ${error.message}`);
+}
+
+// Re-reads the subscription from Stripe rather than trusting the event
+// payload: events can arrive out of order, and the live object is always the
+// current truth. This is the only place subscription status is written.
+async function syncSubscription(subscriptionId) {
+  const sub = await stripe.subscriptions.retrieve(subscriptionId);
+
+  let userId = sub.metadata?.userId || null;
+  if (!userId) {
+    const known = await sql`
+      SELECT user_id FROM subscriptions WHERE stripe_customer_id = ${sub.customer}
+    `;
+    userId = known[0]?.user_id || null;
+  }
+  if (!userId) {
+    console.error("Subscription has no linked user, ignoring:", sub.id);
+    return;
+  }
+
+  const priceId = sub.items?.data?.[0]?.price?.id || "";
+  const periodEndSeconds =
+    sub.current_period_end ?? sub.items?.data?.[0]?.current_period_end ?? null;
+  const periodEnd = periodEndSeconds ? new Date(periodEndSeconds * 1000).toISOString() : null;
+
+  // The WHERE guard stops a late "canceled" event for an OLD subscription
+  // from overwriting a newer active one after the user resubscribes.
+  await sql`
+    INSERT INTO subscriptions
+      (user_id, stripe_customer_id, stripe_subscription_id, price_id, status,
+       current_period_end, cancel_at_period_end)
+    VALUES
+      (${userId}, ${sub.customer}, ${sub.id}, ${priceId}, ${sub.status},
+       ${periodEnd}, ${!!sub.cancel_at_period_end})
+    ON CONFLICT (user_id) DO UPDATE SET
+      stripe_customer_id = EXCLUDED.stripe_customer_id,
+      stripe_subscription_id = EXCLUDED.stripe_subscription_id,
+      price_id = EXCLUDED.price_id,
+      status = EXCLUDED.status,
+      current_period_end = EXCLUDED.current_period_end,
+      cancel_at_period_end = EXCLUDED.cancel_at_period_end,
+      updated_at = now()
+    WHERE subscriptions.stripe_subscription_id = EXCLUDED.stripe_subscription_id
+       OR EXCLUDED.status IN ('active', 'trialing')
+       OR subscriptions.status NOT IN ('active', 'trialing')
+  `;
 }
