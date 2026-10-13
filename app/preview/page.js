@@ -43,6 +43,11 @@ export default async function PreviewPage({ searchParams }) {
       />
 
       <PayButton slug={trade.slug} siteAddress={siteAddress} />
+
+      <p className="pricing-more-note">
+        Need more than one? A 5-document pack is £50 and an unlimited plan is
+        £15 a month — <a href="/pricing">see all plans</a>.
+      </p>
     </main>
   );
 }

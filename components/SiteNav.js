@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -10,6 +10,17 @@ import { usePathname } from "next/navigation";
 export default function SiteNav() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const [signedIn, setSignedIn] = useState(false);
+
+  // Asked from the browser (not the server) so the 150+ statically built
+  // pages stay static — reading the session on the server would make every
+  // page dynamic.
+  useEffect(() => {
+    fetch("/api/auth/session")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => setSignedIn(!!data?.user))
+      .catch(() => {});
+  }, []);
   const isActive = (href) => pathname === href || pathname.startsWith(`${href}/`);
 
   return (
@@ -35,8 +46,8 @@ export default function SiteNav() {
         </nav>
 
         <div className="masthead-actions">
-          <Link href="/login" className="masthead-signin">
-            Sign in
+          <Link href={signedIn ? "/account" : "/login"} className="masthead-signin">
+            {signedIn ? "Account" : "Sign in"}
           </Link>
           <Link href="/" className="button masthead-cta">
             Generate my RAMS
@@ -71,8 +82,8 @@ export default function SiteNav() {
           <Link href="/pricing" onClick={() => setOpen(false)}>
             Pricing
           </Link>
-          <Link href="/login" onClick={() => setOpen(false)}>
-            Sign in
+          <Link href={signedIn ? "/account" : "/login"} onClick={() => setOpen(false)}>
+            {signedIn ? "Account" : "Sign in"}
           </Link>
           <Link href="/" className="button" onClick={() => setOpen(false)}>
             Generate my RAMS

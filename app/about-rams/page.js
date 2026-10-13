@@ -110,6 +110,8 @@ export default function AboutRamsPage() {
         <p>
           Search from {trades.length + industries.length} trades and
           industries, preview for free, and pay once when you&apos;re ready.
+          Need several? A 5-document pack and an unlimited plan are on the{" "}
+          <Link href="/pricing">pricing page</Link>.
         </p>
         <div className="chip-row">
           <Link href="/" className="button" style={{ display: "inline-block", width: "auto", textDecoration: "none" }}>
