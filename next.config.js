@@ -71,6 +71,7 @@ const nextConfig = {
     "/api/download": PDF_DEPENDENCIES,
     "/success": PDF_DEPENDENCIES,
     "/api/pack/generate": PDF_DEPENDENCIES,
+    "/api/account/generate": PDF_DEPENDENCIES,
   },
 };
 

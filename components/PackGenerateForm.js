@@ -11,12 +11,18 @@ const sortedAlphabetically = (list) =>
 // Same search UX as components/TradeForm.js, but submits straight to
 // generation instead of routing to /preview — a pack credit replaces the
 // pay step, there's nothing left to pay for.
-export default function PackGenerateForm({ token, trades, initialCreditsRemaining }) {
+export default function PackGenerateForm({
+  token,
+  trades,
+  initialCreditsRemaining = null,
+  endpoint = "/api/pack/generate",
+  defaultAssessorName = "",
+}) {
   const [slug, setSlug] = useState("");
   const [query, setQuery] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [siteAddress, setSiteAddress] = useState("");
-  const [assessorName, setAssessorName] = useState("");
+  const [assessorName, setAssessorName] = useState(defaultAssessorName);
   const [agreed, setAgreed] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -74,7 +80,7 @@ export default function PackGenerateForm({ token, trades, initialCreditsRemainin
     setError("");
 
     try {
-      const res = await fetch("/api/pack/generate", {
+      const res = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token, slug, siteAddress, assessorName }),
@@ -96,11 +102,11 @@ export default function PackGenerateForm({ token, trades, initialCreditsRemainin
       a.remove();
       URL.revokeObjectURL(url);
 
-      if (remainingHeader !== null) setCreditsRemaining(Number(remainingHeader));
+      if (remainingHeader !== null && creditsRemaining !== null) setCreditsRemaining(Number(remainingHeader));
       setSlug("");
       setQuery("");
       setSiteAddress("");
-      setAssessorName("");
+      setAssessorName(defaultAssessorName);
       setAgreed(false);
     } catch (err) {
       setError(err.message);
@@ -109,7 +115,7 @@ export default function PackGenerateForm({ token, trades, initialCreditsRemainin
     }
   }
 
-  if (creditsRemaining <= 0) {
+  if (creditsRemaining !== null && creditsRemaining <= 0) {
     return (
       <div className="card status-card">
         <h2>All 5 documents used</h2>
@@ -214,10 +220,12 @@ export default function PackGenerateForm({ token, trades, initialCreditsRemainin
         </span>
       </label>
 
-      <div className="price-row">
-        <span className="price-label">Credits remaining</span>
-        <span className="price-amount">{creditsRemaining} of 5</span>
-      </div>
+      {creditsRemaining !== null ? (
+        <div className="price-row">
+          <span className="price-label">Credits remaining</span>
+          <span className="price-amount">{creditsRemaining} of 5</span>
+        </div>
+      ) : null}
 
       <button className="button" type="submit" disabled={!canSubmit}>
         {loading ? "Generating…" : "Generate my RAMS"}

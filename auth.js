@@ -19,6 +19,14 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   pages: {
     verifyRequest: "/login/check-email",
   },
+  callbacks: {
+    // Auth.js strips the user id from the session by default; every
+    // subscription lookup needs it.
+    session({ session, user }) {
+      session.user.id = user.id;
+      return session;
+    },
+  },
   // Required on Vercel (and most hosts other than localhost) — without it
   // Auth.js rejects the request's own Host header as untrusted.
   trustHost: true,
