@@ -21,7 +21,7 @@ export default function RamsPreviewTeaser({
           </p>
         ) : null}
         <span className="badge-green">
-          &#10003; {cdmApplicable === false ? "Site-Specific RAMS" : "CDM 2015 Compliant"}
+          &#10003; {cdmApplicable === false ? "Site-Specific RAMS" : "Built around CDM 2015"}
         </span>
       </section>
 
