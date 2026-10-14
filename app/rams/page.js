@@ -4,7 +4,7 @@ import { trades } from "@/lib/trades";
 export const metadata = {
   title: "Browse All Jobs — Ramsforge",
   description:
-    "Browse every trade and job we generate a CDM 2015 compliant RAMS for — electricians, plumbers, roofers, scaffolders and more.",
+    "Browse every trade and job we generate a RAMS built around CDM 2015 for — electricians, plumbers, roofers, scaffolders and more.",
   alternates: { canonical: "https://ramsforge.co.uk/rams" },
 };
 
@@ -26,8 +26,8 @@ export default function RamsIndexPage() {
       <div className="intro">
         <h1>Browse all jobs</h1>
         <p>
-          Every trade we currently generate a site-specific, CDM 2015
-          compliant RAMS for. Pick yours below, or search from the homepage.
+          Every trade we currently generate a site-specific RAMS
+          built around CDM 2015. Pick yours below, or search from the homepage.
         </p>
       </div>
 
