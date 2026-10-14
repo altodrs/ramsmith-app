@@ -39,6 +39,7 @@ export default function RootLayout({ children }) {
           <div className="site-footer-inner">
             <span>&copy; {new Date().getFullYear()} Ramsforge</span>
             <a href="/terms">Terms &amp; Declarations</a>
+            <a href="/privacy">Privacy</a>
           </div>
         </footer>
       </body>

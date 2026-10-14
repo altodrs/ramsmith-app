@@ -40,6 +40,9 @@ export default function LoginPage() {
             Send sign-in link
           </button>
         </form>
+        <p className="field-hint" style={{ marginTop: 12 }}>
+          See our <a href="/privacy">Privacy Policy</a>.
+        </p>
       </div>
     </main>
   );
