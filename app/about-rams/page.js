@@ -3,9 +3,9 @@ import { trades } from "@/lib/trades";
 import { industries } from "@/lib/industries";
 
 export const metadata = {
-  title: "What is a RAMS? — Ramsforge",
+  title: "What does RAMS stand for? Risk Assessment & Method Statement explained",
   description:
-    "What a RAMS document is, why CDM 2015 requires one, and exactly what's included in every Ramsforge document — with the real UK regulations we reference.",
+    "RAMS stands for Risk Assessment and Method Statement. What a RAMS is, why CDM 2015 expects one, and what's included in every Ramsforge document.",
   alternates: { canonical: "https://ramsforge.co.uk/about-rams" },
 };
 
@@ -27,8 +27,8 @@ export default function AboutRamsPage() {
       <div className="intro">
         <h1>What is a RAMS?</h1>
         <p>
-          A RAMS — Risk Assessment &amp; Method Statement — is the document
-          that shows a job has been properly planned: what the hazards are,
+          RAMS stands for Risk Assessment and Method Statement. It&apos;s the
+          document that shows a job has been properly planned: what the hazards are,
           how they&apos;re controlled, what PPE is required, and the safe
           sequence of work. It&apos;s what a principal contractor, client or
           HSE inspector expects to see before work starts on site.

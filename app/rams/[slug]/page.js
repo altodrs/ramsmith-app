@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getTradeBySlug, trades } from "@/lib/trades";
 import RamsPublicTeaser from "@/components/RamsPublicTeaser";
+import { seoTitle } from "@/lib/seoTitles";
 
 const SITE_URL = "https://ramsforge.co.uk";
 
@@ -19,11 +20,11 @@ export async function generateMetadata({ params }) {
 
   const url = `${SITE_URL}/rams/${trade.slug}`;
   return {
-    title: trade.h1_title,
+    title: seoTitle(trade),
     description: trade.meta_description,
     alternates: { canonical: url },
     openGraph: {
-      title: trade.h1_title,
+      title: seoTitle(trade),
       description: trade.meta_description,
       url,
     },
