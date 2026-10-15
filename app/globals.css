@@ -1072,3 +1072,53 @@ a {
   padding: 4px 10px;
   border-radius: 999px;
 }
+
+.site-questions {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px 16px;
+  margin: 0 0 18px;
+}
+.site-questions legend {
+  font-weight: 700;
+  padding: 0 6px;
+}
+.site-question {
+  margin-top: 12px;
+}
+.site-question-label {
+  margin: 0 0 6px;
+  font-size: 0.95rem;
+}
+.site-question-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.site-question-options label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 1px solid var(--border-strong, var(--border));
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+.site-question-options label.selected {
+  background: var(--slate);
+  color: #fff;
+  border-color: var(--slate);
+}
+.site-question-options input {
+  accent-color: var(--brand);
+}
+.site-questions textarea {
+  width: 100%;
+  font: inherit;
+  padding: 10px 12px;
+  border: 1px solid var(--border-strong, var(--border));
+  border-radius: 8px;
+  background: var(--surface);
+  resize: vertical;
+}

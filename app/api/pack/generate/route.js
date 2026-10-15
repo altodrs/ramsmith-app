@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { sql } from "@/lib/db";
 import { getListingBySlug } from "@/lib/listings";
 import { generateRamsPdf } from "@/lib/pdf";
+import { buildSiteInfo, sanitiseSiteAnswers } from "@/lib/siteQuestions";
 import { sendRamsEmail } from "@/lib/email";
 
 // Generates one document against a Multi-Site Pack token. The token and
@@ -27,6 +28,9 @@ export async function POST(request) {
   }
   if (!trade) {
     return NextResponse.json({ error: "Unknown trade selected" }, { status: 400 });
+  }
+  if (!sanitiseSiteAnswers(body?.siteAnswers)) {
+    return NextResponse.json({ error: "Please answer the three site questions." }, { status: 400 });
   }
   if (!safeAssessorName) {
     return NextResponse.json(
@@ -59,7 +63,12 @@ export async function POST(request) {
     VALUES (${pack.id}, ${trade.slug}, ${safeSiteAddress}, ${safeAssessorName})
   `;
 
-  const pdfBuffer = await generateRamsPdf(trade, safeSiteAddress, safeAssessorName);
+  const pdfBuffer = await generateRamsPdf(
+    trade,
+    safeSiteAddress,
+    safeAssessorName,
+    buildSiteInfo(body.siteAnswers, body.siteNotes)
+  );
 
   // Best-effort, same rule as app/success/page.js — a failed email should
   // never stop the customer getting the document that matters right now.

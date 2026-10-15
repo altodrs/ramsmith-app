@@ -4,6 +4,7 @@ import { sql } from "@/lib/db";
 import { getSubscription, isActive } from "@/lib/subscription";
 import { getListingBySlug } from "@/lib/listings";
 import { generateRamsPdf } from "@/lib/pdf";
+import { buildSiteInfo, sanitiseSiteAnswers } from "@/lib/siteQuestions";
 import { sendRamsEmail } from "@/lib/email";
 
 // Unlimited generation for an active subscriber. Access comes from our own
@@ -36,6 +37,9 @@ export async function POST(request) {
   if (!trade) {
     return NextResponse.json({ error: "Unknown trade selected" }, { status: 400 });
   }
+  if (!sanitiseSiteAnswers(body?.siteAnswers)) {
+    return NextResponse.json({ error: "Please answer the three site questions." }, { status: 400 });
+  }
   if (!safeAssessorName) {
     return NextResponse.json(
       { error: "Assessor / competent person name is required." },
@@ -48,7 +52,12 @@ export async function POST(request) {
     VALUES (${session.user.id}, ${trade.slug}, ${safeSiteAddress}, ${safeAssessorName})
   `;
 
-  const pdfBuffer = await generateRamsPdf(trade, safeSiteAddress, safeAssessorName);
+  const pdfBuffer = await generateRamsPdf(
+    trade,
+    safeSiteAddress,
+    safeAssessorName,
+    buildSiteInfo(body.siteAnswers, body.siteNotes)
+  );
 
   try {
     await sendRamsEmail({ to: session.user.email, trade, pdfBuffer });

@@ -2,6 +2,7 @@ import { stripe } from "@/lib/stripe";
 import { getListingBySlug } from "@/lib/listings";
 import { generateRamsPdf } from "@/lib/pdf";
 import { sendRamsEmail } from "@/lib/email";
+import { siteInfoFromMetadata } from "@/lib/siteQuestions";
 import ResendEmailForm from "@/components/ResendEmailForm";
 
 // Server Component — runs only on the server, so it's safe to call Stripe
@@ -74,7 +75,7 @@ export default async function SuccessPage({ searchParams }) {
   let emailResult = { skipped: true };
   if (customerEmail) {
     try {
-      const pdfBuffer = await generateRamsPdf(trade, siteAddress, assessorName);
+      const pdfBuffer = await generateRamsPdf(trade, siteAddress, assessorName, siteInfoFromMetadata(session.metadata));
       emailResult = await sendRamsEmail({ to: customerEmail, trade, pdfBuffer });
     } catch (err) {
       console.error("Failed to send RAMS email:", err);

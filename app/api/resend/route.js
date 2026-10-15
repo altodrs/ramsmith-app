@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { stripe } from "@/lib/stripe";
 import { getListingBySlug } from "@/lib/listings";
 import { generateRamsPdf } from "@/lib/pdf";
+import { siteInfoFromMetadata } from "@/lib/siteQuestions";
 import { sendRamsEmail } from "@/lib/email";
 
 // Re-verifies payment independently before sending — same rule as
@@ -45,7 +46,8 @@ export async function POST(request) {
     const pdfBuffer = await generateRamsPdf(
       trade,
       session.metadata?.siteAddress,
-      session.metadata?.assessorName
+      session.metadata?.assessorName,
+      siteInfoFromMetadata(session.metadata)
     );
     const result = await sendRamsEmail({ to: safeEmail, trade, pdfBuffer });
     if (result?.skipped) {

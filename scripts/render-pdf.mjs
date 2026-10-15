@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
   },
 });
 
-function buildRamsPdfElement(trade, siteAddress, assessorName) {
+function buildRamsPdfElement(trade, siteAddress, assessorName, siteInfo) {
   const generatedOn = new Date().toLocaleDateString("en-GB", {
     day: "numeric",
     month: "long",
@@ -200,7 +200,33 @@ function buildRamsPdfElement(trade, siteAddress, assessorName) {
       h(Text, { style: styles.sectionTitle }, "Method Statement — Sequence of Work"),
       ...methodStepRows,
 
-      h(Text, { style: styles.sectionTitle }, "Hazard & Risk Assessment"),
+      ...(siteInfo
+        ? [
+            h(Text, { style: styles.sectionTitle, key: "sc-title" }, "Site-Specific Conditions"),
+            h(
+              Text,
+              { style: styles.sectionNote, key: "sc-note" },
+              "Answers given by the assessor when this document was generated. The controls below apply because of those answers; the Hazard & Risk Assessment follows."
+            ),
+            ...siteInfo.items.map((item, i) =>
+              h(Text, { style: styles.methodStepText, key: `sc-i${i}` }, `${item.question}: ${item.answer}`)
+            ),
+            ...siteInfo.controls.map((c, i) =>
+              h(View, { style: [styles.hazardBlock, { marginTop: 8 }], key: `sc-c${i}`, wrap: false }, [
+                h(Text, { style: styles.hazardName, key: "t" }, c.title),
+                h(Text, { style: styles.hazardControl, key: "b" }, c.body),
+              ])
+            ),
+            ...(siteInfo.notes
+              ? [
+                  h(Text, { style: [styles.faqQ, { marginTop: 8 }], key: "sc-nt" }, "Assessor's site-specific notes"),
+                  h(Text, { style: styles.hazardControl, key: "sc-nb" }, siteInfo.notes),
+                ]
+              : []),
+          ]
+        : []),
+
+      h(Text, { style: styles.sectionTitle, minPresenceAhead: 120 }, "Hazard & Risk Assessment"),
       h(
         Text,
         { style: styles.sectionNote },
@@ -226,7 +252,7 @@ function buildRamsPdfElement(trade, siteAddress, assessorName) {
         h(View, { style: styles.emergencyContactLine, key: "line3" }),
       ]),
 
-      h(Text, { style: styles.sectionTitle }, "Review & Sign-Off"),
+      h(Text, { style: styles.sectionTitle, minPresenceAhead: 230 }, "Review & Sign-Off"),
       h(
         Text,
         { style: [styles.faqQ, { marginBottom: 4 }] },
@@ -276,6 +302,6 @@ async function readStdin() {
 
 const input = JSON.parse(await readStdin());
 const buf = await renderToBuffer(
-  buildRamsPdfElement(input.trade, input.siteAddress, input.assessorName)
+  buildRamsPdfElement(input.trade, input.siteAddress, input.assessorName, input.siteInfo)
 );
 process.stdout.write(buf);
