@@ -1122,3 +1122,35 @@ a {
   background: var(--surface);
   resize: vertical;
 }
+
+.trust-block {
+  margin-top: 40px;
+  max-width: 760px;
+}
+.trust-block ul {
+  list-style: none;
+  margin: 12px 0 18px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.trust-block li {
+  padding-left: 22px;
+  position: relative;
+}
+.trust-block li::before {
+  content: "\2713";
+  position: absolute;
+  left: 0;
+  color: var(--green);
+  font-weight: 700;
+}
+.free-corrections {
+  padding: 12px 16px;
+  border: 1px dashed var(--border-strong, var(--border));
+  border-radius: 10px;
+  background: var(--surface);
+  font-size: 0.95rem;
+  margin: 0;
+}

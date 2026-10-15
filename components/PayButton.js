@@ -98,6 +98,10 @@ export default function PayButton({ slug, siteAddress }) {
       <button className="button" onClick={handleClick} disabled={!canSubmit}>
         {loading ? "Redirecting to checkout…" : "Unlock full RAMS — £15.00"}
       </button>
+      <p className="field-hint" style={{ marginTop: 10 }}>
+        Free corrections: spot a mistake? Email us within 14 days and we&apos;ll
+        fix and reissue it free.
+      </p>
       {error ? <p className="error-text">{error}</p> : null}
     </div>
   );
