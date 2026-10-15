@@ -2,6 +2,8 @@
 
 import { useMemo, useRef, useState } from "react";
 import Fuse from "fuse.js";
+import SiteQuestions from "@/components/SiteQuestions";
+import { sanitiseSiteAnswers } from "@/lib/siteQuestions";
 
 const sortedAlphabetically = (list) =>
   [...list].sort(
@@ -24,6 +26,8 @@ export default function PackGenerateForm({
   const [siteAddress, setSiteAddress] = useState("");
   const [assessorName, setAssessorName] = useState(defaultAssessorName);
   const [agreed, setAgreed] = useState(false);
+  const [siteAnswers, setSiteAnswers] = useState({});
+  const [siteNotes, setSiteNotes] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [creditsRemaining, setCreditsRemaining] = useState(initialCreditsRemaining);
@@ -65,7 +69,8 @@ export default function PackGenerateForm({
     blurTimeout.current = setTimeout(() => setIsOpen(false), 150);
   }
 
-  const canSubmit = slug && assessorName.trim().length > 0 && agreed && !loading;
+  const canSubmit =
+    slug && assessorName.trim().length > 0 && agreed && !!sanitiseSiteAnswers(siteAnswers) && !loading;
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -83,7 +88,7 @@ export default function PackGenerateForm({
       const res = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token, slug, siteAddress, assessorName }),
+        body: JSON.stringify({ token, slug, siteAddress, assessorName, siteAnswers, siteNotes }),
       });
 
       if (!res.ok) {
@@ -108,6 +113,8 @@ export default function PackGenerateForm({
       setSiteAddress("");
       setAssessorName(defaultAssessorName);
       setAgreed(false);
+      setSiteAnswers({});
+      setSiteNotes("");
     } catch (err) {
       setError(err.message);
     } finally {
@@ -186,6 +193,13 @@ export default function PackGenerateForm({
         />
         <span className="field-hint">Printed on the RAMS document.</span>
       </div>
+
+      <SiteQuestions
+        answers={siteAnswers}
+        onAnswers={setSiteAnswers}
+        notes={siteNotes}
+        onNotes={setSiteNotes}
+      />
 
       <div className="field">
         <label htmlFor="assessorName">Assessor / Competent Person Name</label>

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { stripe } from "@/lib/stripe";
 import { getListingBySlug } from "@/lib/listings";
 import { generateRamsPdf } from "@/lib/pdf";
+import { siteInfoFromMetadata } from "@/lib/siteQuestions";
 
 // Re-verifies payment independently before generating the PDF — same rule
 // as the success page. A guessed or reused session_id that isn't actually
@@ -31,7 +32,8 @@ export async function GET(request) {
   const pdfBuffer = await generateRamsPdf(
     trade,
     session.metadata?.siteAddress,
-    session.metadata?.assessorName
+    session.metadata?.assessorName,
+    siteInfoFromMetadata(session.metadata)
   );
 
   return new NextResponse(pdfBuffer, {

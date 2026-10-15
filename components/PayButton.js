@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import SiteQuestions from "@/components/SiteQuestions";
+import { sanitiseSiteAnswers } from "@/lib/siteQuestions";
 
 // This is the one point every path through the site passes through before
 // payment — home form and SEO-page traffic alike (SEO pages link straight
@@ -10,10 +12,12 @@ import { useState } from "react";
 export default function PayButton({ slug, siteAddress }) {
   const [assessorName, setAssessorName] = useState("");
   const [agreed, setAgreed] = useState(false);
+  const [siteAnswers, setSiteAnswers] = useState({});
+  const [siteNotes, setSiteNotes] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const canSubmit = assessorName.trim().length > 0 && agreed && !loading;
+  const canSubmit = assessorName.trim().length > 0 && agreed && !!sanitiseSiteAnswers(siteAnswers) && !loading;
 
   async function handleClick() {
     if (!canSubmit) return;
@@ -24,7 +28,7 @@ export default function PayButton({ slug, siteAddress }) {
       const res = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ slug, siteAddress, assessorName }),
+        body: JSON.stringify({ slug, siteAddress, assessorName, siteAnswers, siteNotes }),
       });
 
       const data = await res.json();
@@ -42,6 +46,13 @@ export default function PayButton({ slug, siteAddress }) {
 
   return (
     <div className="card">
+      <SiteQuestions
+        answers={siteAnswers}
+        onAnswers={setSiteAnswers}
+        notes={siteNotes}
+        onNotes={setSiteNotes}
+      />
+
       <div className="field">
         <label htmlFor="assessorName">Assessor / Competent Person Name</label>
         <input

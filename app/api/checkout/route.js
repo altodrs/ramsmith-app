@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { stripe, RAMS_PRICE_GBP_PENCE } from "@/lib/stripe";
 import { getListingBySlug } from "@/lib/listings";
+import { sanitiseSiteAnswers, sanitiseNotes, encodeSiteAnswers } from "@/lib/siteQuestions";
 
 // Creates a Stripe Checkout Session for a single RAMS document purchase.
 //
@@ -42,6 +43,14 @@ export async function POST(request) {
     );
   }
 
+  // Required so a document never prints a site condition the assessor
+  // didn't actually answer.
+  const siteAnswers = sanitiseSiteAnswers(body?.siteAnswers);
+  if (!siteAnswers) {
+    return NextResponse.json({ error: "Please answer the three site questions." }, { status: 400 });
+  }
+  const siteNotes = sanitiseNotes(body?.siteNotes);
+
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || new URL(request.url).origin;
 
   try {
@@ -69,6 +78,8 @@ export async function POST(request) {
         slug: trade.slug,
         siteAddress: safeSiteAddress,
         assessorName: safeAssessorName,
+        siteAnswers: encodeSiteAnswers(siteAnswers),
+        siteNotes,
       },
       success_url: `${siteUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${siteUrl}/cancel`,
