@@ -16,9 +16,9 @@ export default function HomePage() {
           <div className="hero-orange-top">
             <h1>Generate a site-specific UK RAMS in minutes</h1>
             <p>
-              Pick the job, add the site address, and pay once to unlock a
-              site-specific Risk Assessment &amp; Method Statement — hazards,
-              controls, PPE and regulations included.
+              Built around CDM 2015 and HSE guidance: pick your job, add the
+              site, and get a RAMS ready to review and sign in minutes, with
+              the hazards, controls and PPE for your trade.
             </p>
           </div>
           <div className="chip-row trust-row">

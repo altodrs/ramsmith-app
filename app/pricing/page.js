@@ -1,4 +1,5 @@
 import PricingCards from "@/components/PricingCards";
+import TrustBlock from "@/components/TrustBlock";
 
 export const metadata = {
   title: "Pricing — Ramsforge",
@@ -19,6 +20,8 @@ export default function PricingPage() {
       </div>
 
       <PricingCards />
+
+      <TrustBlock />
     </main>
   );
 }

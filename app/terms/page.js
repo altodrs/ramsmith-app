@@ -123,6 +123,13 @@ export default function TermsPage() {
             lost, in line with the standard exception for digital content
             supplied with your consent once download has begun.
           </p>
+          <p>
+            Free corrections: if you spot a mistake in the details you
+            entered or in what we have written, email us within 14 days of
+            purchase and we will correct and reissue the document free of
+            charge. This does not guarantee that any third party, such as a
+            principal contractor or site manager, will accept a document.
+          </p>
         </section>
 
         <section>
