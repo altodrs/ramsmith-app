@@ -923,6 +923,22 @@ a {
   color: var(--muted);
 }
 
+.hub-points {
+  color: var(--muted);
+  font-size: 1.05rem;
+  margin: 0 0 32px;
+  padding-left: 1.2em;
+  max-width: 60ch;
+}
+.hub-points li + li {
+  margin-top: 4px;
+}
+.hub-widget-label {
+  color: var(--muted);
+  margin: 16px 0 40px;
+  max-width: 60ch;
+}
+
 .browse-link {
   text-align: left;
   margin-top: 20px;
