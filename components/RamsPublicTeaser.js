@@ -2,7 +2,7 @@
 // the full document. It's a Server Component and only reads what it renders,
 // so the locked content (other controls, PPE, method statement) is never in
 // the HTML at all — nothing to scrape.
-export default function RamsPublicTeaser({ trade }) {
+export default function RamsPublicTeaser({ trade, faqs }) {
   const [sample, ...locked] = trade.hazards;
 
   return (
@@ -59,10 +59,12 @@ export default function RamsPublicTeaser({ trade }) {
 
       <section>
         <h2>Frequently Asked Questions</h2>
-        <div className="card faq-card">
-          <h3>{trade.faq_q1}</h3>
-          <p>{trade.faq_a1}</p>
-        </div>
+        {(faqs || [{ q: trade.faq_q1, a: trade.faq_a1 }]).map((f) => (
+          <div className="card faq-card" key={f.q}>
+            <h3>{f.q}</h3>
+            <p>{f.a}</p>
+          </div>
+        ))}
       </section>
 
       <div className="locked-panel">
