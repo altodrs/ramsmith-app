@@ -8,6 +8,26 @@ export const metadata = {
   alternates: { canonical: "https://ramsforge.co.uk" },
 };
 
+const SITE_URL = "https://ramsforge.co.uk";
+
+// Organization + WebSite markup lets Google show "Ramsforge" as the site
+// name in results instead of the bare domain.
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Ramsforge",
+  url: `${SITE_URL}/`,
+  logo: `${SITE_URL}/logo.svg`,
+  sameAs: ["https://www.instagram.com/ramsforgeuk/"],
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Ramsforge",
+  url: `${SITE_URL}/`,
+};
+
 export default function HomePage() {
   return (
     <main className="page-home">
@@ -41,6 +61,15 @@ export default function HomePage() {
           </p>
         </div>
       </div>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
     </main>
   );
 }
