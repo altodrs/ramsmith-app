@@ -1,25 +1,18 @@
 import Link from "next/link";
 import TradeForm from "@/components/TradeForm";
 import { getTradeBySlug } from "@/lib/trades";
+import { getHubByPath } from "@/lib/tradeHubs";
 
 const SITE_URL = "https://ramsforge.co.uk";
 const PAGE_URL = `${SITE_URL}/rams/plumber`;
 
-const TITLE = "Plumbing & Heating RAMS: Site-Specific Method Statements (UK)";
+const TITLE = "Plumber RAMS UK: £15 Per Document, No Account Needed";
 const DESCRIPTION =
   "Site-specific RAMS for UK plumbers, gas engineers and heating contractors, built around CDM 2015 and HSE guidance. No account needed: preview free, then £15 per document.";
 
 // Trade hub page. As a static folder it takes precedence over the dynamic
 // /rams/[slug] route; the job pages below are still served by [slug].
-const JOB_SLUGS = [
-  "plumber-combi-boiler-replacement",
-  "plumber-underfloor-heating-installation",
-  "plumber-emergency-leak-detection-repair",
-  "plumber-water-softener-filtration-system-installation",
-  "gas-engineer-boiler-servicing-safety-inspection",
-  "gas-engineer-lpg-oil-boiler-installation",
-  "bathroom-fitter-bathroom-fitting-installation",
-];
+const JOB_SLUGS = getHubByPath("/rams/plumber").slugs;
 
 const FAQS = [
   {
@@ -53,8 +46,8 @@ export default function PlumberHubPage() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
-      { "@type": "ListItem", position: 2, name: "RAMS", item: `${SITE_URL}/rams/` },
-      { "@type": "ListItem", position: 3, name: "Plumbing & Heating" },
+      { "@type": "ListItem", position: 2, name: "RAMS", item: `${SITE_URL}/rams` },
+      { "@type": "ListItem", position: 3, name: "Plumbing & Heating", item: PAGE_URL },
     ],
   };
 

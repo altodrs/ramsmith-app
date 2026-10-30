@@ -4,6 +4,7 @@ import { getTradeBySlug, trades } from "@/lib/trades";
 import RamsPublicTeaser from "@/components/RamsPublicTeaser";
 import { seoTitle } from "@/lib/seoTitles";
 import { getJobPageCopy } from "@/lib/jobPageCopy";
+import { getHubForJob } from "@/lib/tradeHubs";
 
 const SITE_URL = "https://ramsforge.co.uk";
 
@@ -53,15 +54,44 @@ export default async function TradePage({ params }) {
     })),
   };
 
+  // The trade crumb only gets a URL where a hub page exists; Google flags a
+  // crumb with no URL unless it is the last one, so otherwise it is left out.
+  const hub = getHubForJob(slug);
+  const pageUrl = `${SITE_URL}/rams/${trade.slug}`;
+  const crumbs = [
+    { name: "Home", item: `${SITE_URL}/` },
+    { name: "RAMS", item: `${SITE_URL}/rams` },
+    ...(hub ? [{ name: hub.name, item: `${SITE_URL}${hub.path}` }] : []),
+    { name: trade.task_name, item: pageUrl },
+  ];
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
-      { "@type": "ListItem", position: 2, name: "RAMS", item: `${SITE_URL}/rams/` },
-      { "@type": "ListItem", position: 3, name: trade.trade },
-      { "@type": "ListItem", position: 4, name: trade.task_name },
-    ],
+    itemListElement: crumbs.map((c, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: c.name,
+      item: c.item,
+    })),
+  };
+
+  // Lets Google show the £15 price in the search snippet. No ratings or
+  // reviews: only add those once there are real, on-page customer reviews.
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: `${trade.task_name} RAMS`,
+    description: copy?.metaDescription || trade.meta_description,
+    url: pageUrl,
+    brand: { "@type": "Brand", name: "Ramsforge" },
+    offers: {
+      "@type": "Offer",
+      price: "15.00",
+      priceCurrency: "GBP",
+      availability: "https://schema.org/InStock",
+      url: pageUrl,
+      seller: { "@type": "Organization", name: "Ramsforge", url: `${SITE_URL}/` },
+    },
   };
 
   return (
@@ -71,7 +101,7 @@ export default async function TradePage({ params }) {
         <span aria-hidden="true"> &rsaquo; </span>
         <Link href="/rams">RAMS</Link>
         <span aria-hidden="true"> &rsaquo; </span>
-        <span>{trade.trade}</span>
+        {hub ? <Link href={hub.path}>{hub.name}</Link> : <span>{trade.trade}</span>}
         <span aria-hidden="true"> &rsaquo; </span>
         <span>{trade.task_name}</span>
       </nav>
@@ -163,6 +193,10 @@ export default async function TradePage({ params }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
       />
     </main>
   );
