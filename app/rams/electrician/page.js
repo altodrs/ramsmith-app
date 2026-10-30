@@ -1,26 +1,18 @@
 import Link from "next/link";
 import TradeForm from "@/components/TradeForm";
 import { getTradeBySlug } from "@/lib/trades";
+import { getHubByPath } from "@/lib/tradeHubs";
 
 const SITE_URL = "https://ramsforge.co.uk";
 const PAGE_URL = `${SITE_URL}/rams/electrician`;
 
-const TITLE = "Electrical RAMS: Site-Specific Method Statements for Electricians (UK)";
+const TITLE = "Electrician RAMS UK: £15 Per Document, No Account Needed";
 const DESCRIPTION =
   "Site-specific RAMS for UK electricians, EV charger installers and solar contractors, built around CDM 2015 and HSE guidance. No account needed: preview free, then £15 per document.";
 
 // Trade hub page. As a static folder it takes precedence over the dynamic
 // /rams/[slug] route; the job pages below are still served by [slug].
-const JOB_SLUGS = [
-  "electrician-full-house-rewire-consumer-unit-upgrade",
-  "electrician-eicr-electrical-installation-condition-report-testing",
-  "electrician-ev-charger-installation",
-  "electrician-commercial-public-ev-charging-infrastructure-installation",
-  "solar-installer-solar-pv-panel-installation",
-  "solar-installer-solar-battery-storage-installation",
-  "fire-security-engineer-fire-alarm-installation-testing",
-  "data-cabling-engineer-structured-data-cabling-installation",
-];
+const JOB_SLUGS = getHubByPath("/rams/electrician").slugs;
 
 const FAQS = [
   {
@@ -54,8 +46,8 @@ export default function ElectricianHubPage() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
-      { "@type": "ListItem", position: 2, name: "RAMS", item: `${SITE_URL}/rams/` },
-      { "@type": "ListItem", position: 3, name: "Electrical" },
+      { "@type": "ListItem", position: 2, name: "RAMS", item: `${SITE_URL}/rams` },
+      { "@type": "ListItem", position: 3, name: "Electrical", item: PAGE_URL },
     ],
   };
 
