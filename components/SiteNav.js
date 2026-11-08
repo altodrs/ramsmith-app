@@ -43,6 +43,12 @@ export default function SiteNav() {
           <Link href="/pricing" className={isActive("/pricing") ? "active" : undefined}>
             Pricing
           </Link>
+          <Link
+            href="/resources"
+            className={`nav-wide-only${isActive("/resources") ? " active" : ""}`}
+          >
+            Free Toolbox Talks
+          </Link>
         </nav>
 
         <div className="masthead-actions">
@@ -81,6 +87,9 @@ export default function SiteNav() {
           </Link>
           <Link href="/pricing" onClick={() => setOpen(false)}>
             Pricing
+          </Link>
+          <Link href="/resources" onClick={() => setOpen(false)}>
+            Free Toolbox Talks
           </Link>
           <Link href={signedIn ? "/account" : "/login"} onClick={() => setOpen(false)}>
             {signedIn ? "Account" : "Sign in"}
