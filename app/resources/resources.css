@@ -1,0 +1,561 @@
+/* Toolbox Talk hub (/resources). Plain CSS on the site's own variables,
+   all classes prefixed tbt- so nothing leaks into the rest of the site.
+   Same cream background as the rest of the site, orange accents. */
+
+.tbt-page {
+  --tbt-bg: var(--bg);
+  --tbt-panel: var(--surface);
+  --tbt-panel-2: var(--surface-2);
+  --tbt-line: var(--border-strong);
+  --tbt-text: var(--ink);
+  --tbt-dim: var(--muted);
+  --tbt-accent: var(--brand);
+  background: var(--tbt-bg);
+  color: var(--tbt-text);
+}
+
+/* ---------- Hero ---------- */
+.tbt-hero {
+  background: var(--tbt-bg);
+}
+.tbt-hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 16px 8px;
+}
+.tbt-crumbs,
+.tbt-crumbs a {
+  color: var(--tbt-dim);
+}
+.tbt-hero-kicker {
+  display: inline-block;
+  margin: 0 0 12px;
+  padding: 4px 10px;
+  background: var(--tbt-accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 4px;
+}
+.tbt-hero h1 {
+  font-family: var(--font-headline), sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: clamp(2.2rem, 6vw, 3.6rem);
+  line-height: 1.02;
+  margin: 0 0 14px;
+  max-width: 16ch;
+  text-wrap: balance;
+}
+.tbt-hero-lead {
+  color: var(--tbt-dim);
+  font-size: 1.08rem;
+  max-width: 56ch;
+  margin: 0 0 20px;
+}
+.tbt-hero-points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+.tbt-hero-points li::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 8px;
+  background: var(--tbt-accent);
+  transform: rotate(45deg);
+}
+
+/* ---------- Body / filter bar ---------- */
+.tbt-body {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 16px 72px;
+}
+.tbt-filter-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.tbt-search input {
+  width: 100%;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--tbt-text);
+  background: var(--tbt-panel);
+  border: 1px solid var(--tbt-line);
+  border-radius: 10px;
+  padding: 13px 14px;
+}
+.tbt-search input::placeholder {
+  color: var(--tbt-dim);
+}
+.tbt-search input:focus,
+.tbt-field input:focus {
+  outline: 2px solid var(--tbt-accent);
+  outline-offset: 1px;
+  border-color: transparent;
+}
+.tbt-chips {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+.tbt-chip {
+  flex: 0 0 auto;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--tbt-text);
+  background: var(--tbt-panel);
+  border: 1px solid var(--tbt-line);
+  border-radius: 999px;
+  padding: 8px 14px;
+  min-height: 40px;
+  cursor: pointer;
+}
+.tbt-chip[aria-pressed="true"] {
+  background: var(--tbt-accent);
+  color: #fff;
+  border-color: var(--tbt-accent);
+}
+.tbt-chip-count {
+  opacity: 0.6;
+  margin-left: 4px;
+}
+
+/* ---------- Workspace ---------- */
+.tbt-workspace {
+  display: grid;
+  gap: 20px;
+}
+@media (min-width: 980px) {
+  .tbt-filter-bar {
+    flex-direction: row;
+    align-items: center;
+  }
+  .tbt-search {
+    flex: 0 0 340px;
+  }
+  .tbt-workspace {
+    grid-template-columns: 340px minmax(0, 1fr);
+    align-items: start;
+  }
+  .tbt-sidebar {
+    position: sticky;
+    top: 16px;
+  }
+}
+.tbt-sidebar {
+  display: grid;
+  gap: 16px;
+}
+.tbt-panel {
+  background: var(--tbt-panel);
+  border: 1px solid var(--tbt-line);
+  border-radius: 14px;
+  padding: 18px;
+}
+.tbt-panel-title {
+  margin: 0 0 12px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tbt-accent);
+}
+.tbt-talk-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.tbt-talk {
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  color: var(--tbt-text);
+  background: var(--tbt-panel-2);
+  border: 1px solid transparent;
+  border-left: 4px solid transparent;
+  border-radius: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+  display: grid;
+  gap: 2px;
+}
+.tbt-talk:hover {
+  border-color: var(--tbt-line);
+}
+.tbt-talk[aria-pressed="true"] {
+  border-color: var(--tbt-accent);
+  border-left-color: var(--tbt-accent);
+}
+.tbt-talk-cat,
+.tbt-talk-meta {
+  font-size: 0.75rem;
+  color: var(--tbt-dim);
+}
+.tbt-talk-title {
+  font-weight: 700;
+}
+.tbt-empty,
+.tbt-hint {
+  color: var(--tbt-dim);
+  font-size: 0.88rem;
+  margin: 0;
+}
+.tbt-hint {
+  margin-top: 12px;
+}
+.tbt-fields {
+  display: grid;
+  gap: 12px;
+}
+.tbt-field {
+  display: grid;
+  gap: 5px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.tbt-field input {
+  font: inherit;
+  font-size: 1rem; /* 16px stops iOS zooming on focus */
+  color: var(--tbt-text);
+  background: var(--tbt-bg);
+  border: 1px solid var(--tbt-line);
+  border-radius: 8px;
+  padding: 11px 12px;
+}
+
+/* ---------- Preview column ---------- */
+.tbt-preview-col {
+  min-width: 0;
+}
+.tbt-preview-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-size: 0.85rem;
+  color: var(--tbt-dim);
+}
+.tbt-print-btn {
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.95rem;
+  background: var(--tbt-accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 11px 16px;
+  cursor: pointer;
+}
+.tbt-print-btn:hover {
+  filter: brightness(1.06);
+}
+
+/* ---------- The A4 sheet ---------- */
+.tbt-sheet {
+  background: #fff;
+  color: #1a1a1a;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  padding: 22px 18px;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+@media (min-width: 700px) {
+  .tbt-sheet {
+    max-width: 794px; /* A4 at 96dpi */
+    margin: 0 auto;
+    padding: 40px 44px;
+  }
+}
+.tbt-sheet-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  border-bottom: 3px solid #1a1a1a;
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+}
+.tbt-sheet-kicker {
+  margin: 0 0 2px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6b6b6b;
+}
+.tbt-sheet-title {
+  margin: 0;
+  font-family: var(--font-headline), sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: clamp(1.4rem, 4vw, 1.9rem);
+  line-height: 1.05;
+}
+.tbt-sheet-duration {
+  flex: 0 0 auto;
+  background: var(--tbt-accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.78rem;
+  padding: 4px 8px;
+  border-radius: 3px;
+}
+.tbt-sheet-meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border: 1px solid #1a1a1a;
+  margin-bottom: 16px;
+}
+.tbt-sheet-meta-cell {
+  padding: 6px 8px;
+  border-right: 1px solid #1a1a1a;
+  border-bottom: 1px solid #1a1a1a;
+  display: grid;
+  min-width: 0;
+}
+.tbt-sheet-meta-cell:nth-child(2n) {
+  border-right: none;
+}
+.tbt-sheet-meta-cell:nth-last-child(-n + 2) {
+  border-bottom: none;
+}
+.tbt-sheet-meta-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #6b6b6b;
+}
+.tbt-sheet-meta-value {
+  font-weight: 500;
+  overflow-wrap: anywhere;
+  min-height: 1.4em;
+}
+.tbt-sheet-section {
+  margin-bottom: 14px;
+}
+.tbt-sheet-section h3 {
+  margin: 0 0 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-left: 4px solid var(--tbt-accent);
+  padding-left: 8px;
+}
+.tbt-sheet-section p {
+  margin: 0;
+}
+.tbt-sheet-section ul,
+.tbt-sheet-section ol {
+  margin: 0;
+  padding-left: 18px;
+}
+.tbt-sheet-section li + li {
+  margin-top: 3px;
+}
+.tbt-sheet-ticks {
+  list-style: none;
+  padding-left: 0 !important;
+}
+.tbt-sheet-ticks li {
+  position: relative;
+  padding-left: 20px;
+}
+.tbt-sheet-ticks li::before {
+  content: "\2713";
+  position: absolute;
+  left: 2px;
+  font-weight: 700;
+  color: #1a7f37;
+}
+.tbt-sheet-cols {
+  display: grid;
+  gap: 0 20px;
+}
+@media (min-width: 700px) {
+  .tbt-sheet-cols {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.tbt-sheet-key {
+  margin: 0 0 16px;
+  padding: 10px 12px;
+  background: #fdf0e9;
+  border: 1px solid #f0c2a8;
+  font-weight: 700;
+}
+.tbt-sheet-small {
+  font-size: 0.78rem;
+  color: #555;
+  margin-bottom: 6px !important;
+}
+.tbt-sheet-signoff table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 0.8rem;
+}
+.tbt-sheet-signoff th,
+.tbt-sheet-signoff td {
+  border: 1px solid #1a1a1a;
+  padding: 0 6px;
+  height: 28px;
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.tbt-sheet-signoff th {
+  background: #1a1a1a;
+  color: #fff;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.tbt-col-num {
+  width: 28px;
+  text-align: center !important;
+}
+.tbt-col-date {
+  width: 22%;
+}
+.tbt-sheet-foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 16px;
+  margin-top: 12px;
+  font-size: 0.68rem;
+  color: #6b6b6b;
+}
+
+/* ---------- Upsell ---------- */
+.tbt-upsell {
+  margin-top: 32px;
+  display: grid;
+  gap: 18px;
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  border-radius: 14px;
+  padding: 22px 20px;
+}
+@media (min-width: 860px) {
+  .tbt-upsell {
+    grid-template-columns: 1fr auto;
+    padding: 28px 32px;
+  }
+}
+.tbt-upsell-kicker {
+  margin: 0 0 6px;
+  color: var(--tbt-accent);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.tbt-upsell h2 {
+  margin: 0 0 8px;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  line-height: 1.25;
+}
+.tbt-upsell p {
+  margin: 0;
+  color: var(--tbt-dim);
+}
+.tbt-upsell-links {
+  list-style: none;
+  padding: 0;
+  margin: 14px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  font-size: 0.9rem;
+}
+.tbt-upsell-links a {
+  color: var(--tbt-text);
+  text-decoration: underline;
+  text-decoration-color: var(--brand);
+  text-underline-offset: 3px;
+}
+.tbt-upsell-cta {
+  display: inline-block;
+  text-align: center;
+  background: var(--brand);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 14px 22px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+.tbt-upsell-cta::after {
+  content: " \2192";
+}
+
+/* ---------- Print: only the sheet, on A4 ----------
+   Scoped with :has() so these rules only bite on a page holding the sheet. */
+@media print {
+  @page {
+    size: A4;
+    margin: 12mm;
+  }
+  body:has(#tbt-sheet) {
+    background: #fff !important;
+  }
+  body:has(#tbt-sheet) > :not(main),
+  .tbt-hero,
+  .tbt-filter-bar,
+  .tbt-sidebar,
+  .tbt-preview-toolbar,
+  .tbt-upsell {
+    display: none !important;
+  }
+  .tbt-page,
+  .tbt-body,
+  .tbt-workspace {
+    display: block;
+    background: #fff;
+    padding: 0;
+    margin: 0;
+    max-width: none;
+  }
+  .tbt-sheet {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+    border-radius: 0;
+    font-size: 10pt;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .tbt-sheet-cols {
+    grid-template-columns: 1fr 1fr;
+  }
+  .tbt-sheet-signoff {
+    break-inside: avoid;
+  }
+}

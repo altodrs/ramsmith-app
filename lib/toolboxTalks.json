@@ -1,0 +1,173 @@
+{
+  "categories": [
+    { "id": "general", "label": "General Site Safety" },
+    { "id": "height", "label": "Working at Height" },
+    { "id": "health", "label": "Dust, COSHH & Vibration" },
+    { "id": "electrical", "label": "Electrical" },
+    { "id": "groundworks", "label": "Groundworks" }
+  ],
+  "talks": [
+    {
+      "slug": "silica-dust-control",
+      "title": "Silica Dust Control",
+      "category": "health",
+      "duration": "10 mins",
+      "summary": "Cutting, drilling, chasing or grinding concrete, brick, block, stone and tiles throws out respirable crystalline silica (RCS). It is fine enough to get deep into the lungs and cause silicosis, COPD and lung cancer. The damage builds up over years and cannot be undone.",
+      "tags": ["dust", "RCS", "COSHH", "cutting", "chasing", "RPE", "masks", "disc cutter", "concrete", "brick"],
+      "regulations": [
+        "Control of Substances Hazardous to Health Regulations 2002 (COSHH)",
+        "HSE Workplace Exposure Limit for RCS: 0.1 mg/m³ (8-hour average)"
+      ],
+      "hazards": [
+        "Fine dust you often cannot see, which hangs in the air long after the cut",
+        "Dry cutting with disc cutters, chasers, grinders and breakers",
+        "Dry sweeping and blowing down with compressed air",
+        "Working in enclosed rooms with no airflow",
+        "Masks that do not fit, are the wrong type, or are worn with stubble"
+      ],
+      "controls": [
+        "Plan the job to cut less: order materials to size, use pre-formed chases where you can",
+        "Use water suppression on cut-off saws and keep the water flowing for the whole cut",
+        "Use on-tool extraction connected to an M-class or H-class dust extractor",
+        "Wear RPE rated FFP3 (or equivalent), face-fit tested to you, and be clean-shaven where the mask seals",
+        "Clean up with a vacuum or wet methods, never dry sweep or blow down",
+        "Keep other trades out of the dust area and ventilate enclosed spaces"
+      ],
+      "discussionPoints": [
+        "Which tasks on this job today will create silica dust?",
+        "Is the water bottle or extractor working, and who checks it before use?",
+        "When was your mask face-fit tested, and is it the right size and type?",
+        "What do you do if the extraction or water supply fails mid-task?",
+        "Where does the slurry and dust waste go at the end of the day?"
+      ],
+      "keyMessage": "If you can see the dust, you are breathing far too much of it. Stop, sort the control, then carry on.",
+      "relatedRams": [
+        { "label": "Internal strip-out and demolition", "slug": "demolition-operative-internal-strip-out-demolition" },
+        { "label": "Wall and floor tiling", "slug": "tiler-wall-floor-tiling" },
+        { "label": "Full house rewire", "slug": "electrician-full-house-rewire-consumer-unit-upgrade" }
+      ]
+    },
+    {
+      "slug": "ladder-safety",
+      "title": "Working at Height: Ladder Safety",
+      "category": "height",
+      "duration": "10 mins",
+      "summary": "Falls from ladders are one of the biggest causes of serious injury on UK sites, and most happen from low heights. Ladders and stepladders are fine for short, light work, but only when they are the right kit, in good nick and set up properly.",
+      "tags": ["ladder", "stepladder", "work at height", "falls", "WAHR", "access", "leaning ladder"],
+      "regulations": [
+        "Work at Height Regulations 2005",
+        "HSE guidance INDG455: Safe use of ladders and stepladders"
+      ],
+      "hazards": [
+        "Ladder slipping at the base or sliding at the top",
+        "Overreaching and losing balance",
+        "Damaged stiles, feet or rungs giving way",
+        "Carrying heavy or awkward loads up the ladder",
+        "Uneven, soft or wet ground at the base",
+        "Overhead power lines and nearby vehicles or doors"
+      ],
+      "controls": [
+        "Only use a ladder for short-duration, light work; if not, use a tower, podium or MEWP",
+        "Do a pre-use check every time: stiles, feet, rungs, locking bars, and nothing contaminated",
+        "Use trade-rated ladders (BS EN 131 Professional)",
+        "Set leaning ladders at about 75 degrees (1 out for every 4 up) on firm, level ground",
+        "Secure the ladder by tying, using a stability device, or footing it as a last resort",
+        "Keep three points of contact and keep your belt buckle inside the stiles",
+        "Extend at least 1 metre above the landing point if used for access"
+      ],
+      "discussionPoints": [
+        "Is a ladder actually the right kit for the work today, or should we use a tower or podium?",
+        "Who has checked the ladders this morning, and where do damaged ones go?",
+        "What will you do with tools and materials so your hands are free to climb?",
+        "Where is the ground soft, sloping or wet on this site?",
+        "Are there any overhead cables, doors or traffic routes near where you will set up?"
+      ],
+      "keyMessage": "Right ladder, checked, tied or footed, three points of contact. If you have to stretch, move the ladder.",
+      "relatedRams": [
+        { "label": "Exterior painting with ladder access", "slug": "painter-exterior-painting-ladder-access" },
+        { "label": "Fascia, soffit and guttering", "slug": "roofline-specialist-fascia-soffit-guttering-installation" },
+        { "label": "TV aerial and satellite dish install", "slug": "aerial-satellite-installer-tv-aerial-satellite-dish-installation" }
+      ]
+    },
+    {
+      "slug": "manual-handling",
+      "title": "Manual Handling",
+      "category": "general",
+      "duration": "10 mins",
+      "summary": "Lifting, carrying, pushing and pulling is behind a large share of injuries on site. Bad backs, hernias and knackered shoulders put trades out of work for weeks. Most of it can be avoided with a bit of planning before you pick anything up.",
+      "tags": ["lifting", "carrying", "back injury", "TILE", "MSD", "heavy loads", "plasterboard", "blocks"],
+      "regulations": [
+        "Manual Handling Operations Regulations 1992",
+        "HSE guidance L23 and INDG143: Manual handling at work"
+      ],
+      "hazards": [
+        "Heavy, bulky or awkward loads like plasterboard, blocks, bags of cement and kerbs",
+        "Twisting, stooping and reaching while lifting",
+        "Carrying up and down stairs, scaffold ladders or across rough ground",
+        "Repeating the same lift all day without a break",
+        "Lifting with poor grip, in the wet, or in tight spaces"
+      ],
+      "controls": [
+        "Avoid the lift where you can: get deliveries put down where they are needed",
+        "Use the kit: sack trucks, board trolleys, block lifters, hoists and vacuum lifters",
+        "Think TILE before lifting: Task, Individual, Load, Environment",
+        "Split loads, buy smaller bags where possible, and team lift anything heavy or awkward",
+        "Clear the route first and plan where the load is going down",
+        "Lift with a stable stance, keep the load close to your waist, and do not twist"
+      ],
+      "discussionPoints": [
+        "What are the heaviest or most awkward things being moved today?",
+        "What lifting aids do we have on site, and where are they?",
+        "Where can deliveries be dropped to save carrying them twice?",
+        "Is anyone carrying an injury or back problem we should know about?",
+        "Which lifts need two people, and who will pair up?"
+      ],
+      "keyMessage": "Before you lift, ask if you need to. Then use the kit, get help, and keep it close.",
+      "relatedRams": [
+        { "label": "Dry lining and plasterboard", "slug": "plasterer-dry-lining-plasterboard-installation" },
+        { "label": "Blockwork walls", "slug": "bricklayer-new-build-wall-construction-blockwork" },
+        { "label": "Kitchen fitting", "slug": "carpenter-kitchen-fitting-installation" }
+      ]
+    },
+    {
+      "slug": "havs-vibration",
+      "title": "HAVS & Vibration Limits",
+      "category": "health",
+      "duration": "10 mins",
+      "summary": "Regular use of vibrating tools like breakers, SDS drills, grinders and compactors can cause hand-arm vibration syndrome (HAVS) and carpal tunnel syndrome. It starts with tingling and numb fingers and can end with permanent loss of grip and feeling.",
+      "tags": ["HAVS", "vibration", "breaker", "SDS", "grinder", "white finger", "points", "tool time"],
+      "regulations": [
+        "Control of Vibration at Work Regulations 2005",
+        "Exposure action value 2.5 m/s² A(8) and exposure limit value 5 m/s² A(8)"
+      ],
+      "hazards": [
+        "Long trigger time on breakers, SDS drills, needle guns, grinders and compactors",
+        "Blunt bits and worn or badly maintained tools that vibrate more",
+        "Gripping the tool too hard or forcing it",
+        "Working in the cold and wet, which makes symptoms worse",
+        "Ignoring early signs like tingling, numbness or white fingertips"
+      ],
+      "controls": [
+        "Use a different method or lower-vibration tool where you can",
+        "Know the tool's vibration level and track trigger time using the HSE points system",
+        "Stop before the exposure limit (400 points a day) and act on anything over 100 points",
+        "Keep bits sharp and tools maintained; let the tool do the work",
+        "Rotate tasks and take regular breaks from vibrating tools",
+        "Keep hands warm and dry, and report symptoms early to your supervisor"
+      ],
+      "discussionPoints": [
+        "Which vibrating tools will we use today, and for roughly how long?",
+        "How are we recording trigger time on this job?",
+        "Is there a way to do any of this work without the breaker or SDS?",
+        "Who has had tingling or numb fingers after using tools?",
+        "Who checks tools and bits are in good condition before use?"
+      ],
+      "keyMessage": "Trigger time adds up. Know your points, swap tasks, and speak up about tingling fingers early.",
+      "relatedRams": [
+        { "label": "Internal strip-out and demolition", "slug": "demolition-operative-internal-strip-out-demolition" },
+        { "label": "Foundations and footings", "slug": "groundworker-foundations-footings-excavation" },
+        { "label": "Block paving driveway", "slug": "groundworker-resin-bound-block-paving-driveway-installation" }
+      ]
+    }
+  ]
+}
