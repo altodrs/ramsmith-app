@@ -192,6 +192,15 @@ a {
   }
 }
 
+/* The desktop nav runs out of room below ~1240px, so links marked
+   nav-wide-only (Free Toolbox Talks) only show when there's space.
+   They're always in the mobile menu. */
+@media (min-width: 900px) and (max-width: 1239px) {
+  .site-nav .nav-wide-only {
+    display: none;
+  }
+}
+
 .page {
   max-width: 1200px;
   margin: 0 auto;
