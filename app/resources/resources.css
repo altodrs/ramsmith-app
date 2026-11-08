@@ -1,31 +1,27 @@
 /* Toolbox Talk hub (/resources). Plain CSS on the site's own variables,
    all classes prefixed tbt- so nothing leaks into the rest of the site.
-   Dark charcoal workspace, safety-amber accents, white A4 sheet. */
+   Same cream background as the rest of the site, orange accents. */
 
 .tbt-page {
-  --tbt-bg: #1f2124;
-  --tbt-panel: #2a2d31;
-  --tbt-panel-2: #33373c;
-  --tbt-line: rgba(255, 255, 255, 0.1);
-  --tbt-text: #f2f2f2;
-  --tbt-dim: #a9adb3;
-  --tbt-amber: #f5b800;
-  --tbt-amber-ink: #1a1a1a;
+  --tbt-bg: var(--bg);
+  --tbt-panel: var(--surface);
+  --tbt-panel-2: var(--surface-2);
+  --tbt-line: var(--border-strong);
+  --tbt-text: var(--ink);
+  --tbt-dim: var(--muted);
+  --tbt-accent: var(--brand);
   background: var(--tbt-bg);
   color: var(--tbt-text);
 }
 
 /* ---------- Hero ---------- */
 .tbt-hero {
-  border-bottom: 4px solid var(--tbt-amber);
-  background:
-    repeating-linear-gradient(-45deg, rgba(245, 184, 0, 0.06) 0 14px, transparent 14px 28px),
-    var(--slate);
+  background: var(--tbt-bg);
 }
 .tbt-hero-inner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 16px 44px;
+  padding: 40px 16px 8px;
 }
 .tbt-crumbs,
 .tbt-crumbs a {
@@ -35,8 +31,8 @@
   display: inline-block;
   margin: 0 0 12px;
   padding: 4px 10px;
-  background: var(--tbt-amber);
-  color: var(--tbt-amber-ink);
+  background: var(--tbt-accent);
+  color: #fff;
   font-weight: 700;
   font-size: 0.78rem;
   letter-spacing: 0.08em;
@@ -75,7 +71,7 @@
   width: 8px;
   height: 8px;
   margin-right: 8px;
-  background: var(--tbt-amber);
+  background: var(--tbt-accent);
   transform: rotate(45deg);
 }
 
@@ -106,7 +102,7 @@
 }
 .tbt-search input:focus,
 .tbt-field input:focus {
-  outline: 2px solid var(--tbt-amber);
+  outline: 2px solid var(--tbt-accent);
   outline-offset: 1px;
   border-color: transparent;
 }
@@ -131,9 +127,9 @@
   cursor: pointer;
 }
 .tbt-chip[aria-pressed="true"] {
-  background: var(--tbt-amber);
-  color: var(--tbt-amber-ink);
-  border-color: var(--tbt-amber);
+  background: var(--tbt-accent);
+  color: #fff;
+  border-color: var(--tbt-accent);
 }
 .tbt-chip-count {
   opacity: 0.6;
@@ -178,7 +174,7 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--tbt-amber);
+  color: var(--tbt-accent);
 }
 .tbt-talk-list {
   list-style: none;
@@ -205,8 +201,8 @@
   border-color: var(--tbt-line);
 }
 .tbt-talk[aria-pressed="true"] {
-  border-color: var(--tbt-amber);
-  border-left-color: var(--tbt-amber);
+  border-color: var(--tbt-accent);
+  border-left-color: var(--tbt-accent);
 }
 .tbt-talk-cat,
 .tbt-talk-meta {
@@ -243,7 +239,6 @@
   border: 1px solid var(--tbt-line);
   border-radius: 8px;
   padding: 11px 12px;
-  color-scheme: dark;
 }
 
 /* ---------- Preview column ---------- */
@@ -263,8 +258,8 @@
   font: inherit;
   font-weight: 700;
   font-size: 0.95rem;
-  background: var(--tbt-amber);
-  color: var(--tbt-amber-ink);
+  background: var(--tbt-accent);
+  color: #fff;
   border: none;
   border-radius: 8px;
   padding: 11px 16px;
@@ -279,7 +274,8 @@
   background: #fff;
   color: #1a1a1a;
   border-radius: 4px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
   padding: 22px 18px;
   font-size: 0.9rem;
   line-height: 1.45;
@@ -318,7 +314,8 @@
 }
 .tbt-sheet-duration {
   flex: 0 0 auto;
-  background: var(--tbt-amber);
+  background: var(--tbt-accent);
+  color: #fff;
   font-weight: 700;
   font-size: 0.78rem;
   padding: 4px 8px;
@@ -364,7 +361,7 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  border-left: 4px solid var(--tbt-amber);
+  border-left: 4px solid var(--tbt-accent);
   padding-left: 8px;
 }
 .tbt-sheet-section p {
@@ -405,8 +402,8 @@
 .tbt-sheet-key {
   margin: 0 0 16px;
   padding: 10px 12px;
-  background: #fff6d6;
-  border: 1px solid #e6c200;
+  background: #fdf0e9;
+  border: 1px solid #f0c2a8;
   font-weight: 700;
 }
 .tbt-sheet-small {
@@ -459,9 +456,9 @@
   display: grid;
   gap: 18px;
   align-items: center;
-  background: var(--slate);
-  border: 1px solid var(--tbt-line);
-  border-left: 6px solid var(--brand);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
   border-radius: 14px;
   padding: 22px 20px;
 }
@@ -473,7 +470,7 @@
 }
 .tbt-upsell-kicker {
   margin: 0 0 6px;
-  color: var(--tbt-amber);
+  color: var(--tbt-accent);
   font-weight: 700;
   font-size: 0.82rem;
   letter-spacing: 0.06em;
