@@ -1,0 +1,479 @@
+/* Free resource cards (/resources, under the toolbox talk generator).
+   Plain CSS on the site's variables, classes prefixed rfr-. */
+
+.rfr-library {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 16px 64px;
+}
+.rfr-intro h2 {
+  font-family: var(--font-headline), sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+  line-height: 1.05;
+  margin: 0 0 8px;
+}
+.rfr-intro p {
+  color: var(--muted);
+  max-width: 60ch;
+  margin: 0 0 18px;
+}
+
+/* ---------- Category chips ---------- */
+.rfr-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.rfr-chips button {
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+}
+.rfr-chips button.is-active {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: #fff;
+}
+
+/* ---------- Groups and grid ---------- */
+.rfr-group {
+  margin-top: 28px;
+}
+.rfr-group-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 12px;
+}
+.rfr-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 14px;
+  align-items: start;
+}
+@media (max-width: 640px) {
+  .rfr-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Card ---------- */
+.rfr-card {
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-left: 4px solid transparent;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  scroll-margin-top: 90px;
+  transition: border-color 0.2s ease;
+}
+.rfr-card:hover,
+.rfr-card.is-open {
+  border-left-color: var(--brand);
+}
+.rfr-card.is-open {
+  grid-column: 1 / -1;
+}
+.rfr-card-head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  width: 100%;
+  padding: 16px 18px;
+  font: inherit;
+  text-align: left;
+  color: var(--ink);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.rfr-card-head:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: -2px;
+}
+.rfr-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.rfr-kind {
+  color: var(--brand);
+}
+.rfr-time {
+  color: var(--muted);
+}
+.rfr-tag {
+  background: var(--amber-bg);
+  color: var(--amber);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+.rfr-card-title {
+  font-weight: 700;
+  font-size: 1.08rem;
+  line-height: 1.3;
+}
+.rfr-card-desc {
+  color: var(--muted);
+  font-size: 0.93rem;
+}
+.rfr-open {
+  margin-top: 4px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--brand);
+}
+.rfr-open::after {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-left: 8px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-3px) rotate(45deg);
+  transition: transform 0.25s ease;
+}
+.rfr-card.is-open .rfr-open::after {
+  transform: translateY(1px) rotate(-135deg);
+}
+
+/* Smooth open and close: animate grid rows from 0fr to 1fr. */
+.rfr-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition: grid-template-rows 0.25s ease, visibility 0s linear 0.25s;
+}
+.rfr-card.is-open .rfr-panel {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  transition: grid-template-rows 0.25s ease, visibility 0s;
+}
+.rfr-panel-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+@media (prefers-reduced-motion: reduce) {
+  .rfr-panel,
+  .rfr-card.is-open .rfr-panel {
+    transition: none;
+  }
+}
+.rfr-content {
+  padding: 0 18px 20px;
+  border-top: 1px solid var(--border);
+  max-width: 900px;
+}
+.rfr-content p {
+  margin: 12px 0;
+}
+
+/* ---------- Actions ---------- */
+.rfr-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 14px 0 4px;
+}
+.rfr-actions button,
+.rfr-link-btn {
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border-strong);
+  background: var(--surface-2);
+  color: var(--ink);
+  cursor: pointer;
+}
+.rfr-actions button:first-child {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: #fff;
+}
+.rfr-print-title {
+  display: none;
+}
+
+/* ---------- Content blocks ---------- */
+.rfr-subhead {
+  margin: 18px 0 6px;
+  font-size: 1rem;
+}
+.rfr-list {
+  margin: 8px 0;
+  padding-left: 20px;
+}
+.rfr-list li {
+  margin: 4px 0;
+}
+.rfr-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0;
+}
+.rfr-checklist li {
+  border-bottom: 1px solid var(--border);
+}
+.rfr-checklist label {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 10px 0;
+  cursor: pointer;
+}
+.rfr-checklist input {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin: 1px 0 0;
+  accent-color: var(--brand);
+}
+.rfr-checklist input:checked + span {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+.rfr-steps {
+  counter-reset: rfr-step;
+  list-style: none;
+  padding: 0;
+  margin: 12px 0;
+}
+.rfr-steps li {
+  counter-increment: rfr-step;
+  position: relative;
+  padding: 0 0 14px 44px;
+  min-height: 32px;
+}
+.rfr-steps li::before {
+  content: counter(rfr-step);
+  position: absolute;
+  left: 0;
+  top: -2px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--brand);
+  color: #fff;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+.rfr-note {
+  background: var(--surface-2);
+  border-left: 3px solid var(--amber);
+  padding: 10px 14px;
+  border-radius: 4px;
+}
+.rfr-based {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.rfr-table-wrap {
+  overflow-x: auto;
+  margin: 10px 0;
+}
+.rfr-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.93rem;
+}
+.rfr-table th,
+.rfr-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+}
+.rfr-table th {
+  background: var(--surface-2);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.rfr-table td:first-child {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* PPE picker */
+.rfr-ppe-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 10px;
+  margin: 12px 0;
+}
+.rfr-ppe-controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.rfr-ppe-controls select {
+  font: inherit;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  min-width: 240px;
+  max-width: 100%;
+}
+.rfr-ppe-card {
+  background: var(--surface-2);
+  border-radius: 8px;
+  padding: 4px 14px;
+}
+.rfr-ppe-title {
+  font-weight: 700;
+}
+
+/* COSHH symbols */
+.rfr-symbols {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 10px;
+}
+.rfr-symbols li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: var(--surface-2);
+  border-radius: 8px;
+  padding: 12px;
+}
+.rfr-diamond {
+  flex: none;
+  width: 26px;
+  height: 26px;
+  margin: 8px 6px 0;
+  border: 4px solid var(--red);
+  background: #fff;
+  transform: rotate(45deg);
+}
+.rfr-symbols p {
+  margin: 0;
+}
+.rfr-symbol-name {
+  font-weight: 700;
+}
+.rfr-symbol-meaning {
+  font-size: 0.93rem;
+}
+.rfr-symbol-site {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 4px !important;
+}
+
+/* RAMS prompt and footer */
+.rfr-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-radius: 8px;
+  background: var(--slate);
+  color: var(--slate-ink);
+}
+.rfr-cta p {
+  margin: 0 !important;
+  max-width: 60ch;
+}
+.rfr-cta-btn {
+  flex: none;
+  background: var(--brand);
+  color: #fff;
+  font-weight: 700;
+  padding: 10px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+.rfr-disclaimer {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* ---------- Print one resource ----------
+   ResourceLibrary sets data-print-resource on <html> before printing,
+   which swaps the page's print styles from the toolbox talk sheet to the
+   chosen card. */
+@media print {
+  html[data-print-resource] body > :not(main),
+  html[data-print-resource] .tbt-hero,
+  html[data-print-resource] .tbt-body,
+  html[data-print-resource] .rfr-intro,
+  html[data-print-resource] .rfr-chips,
+  html[data-print-resource] .rfr-group-title,
+  html[data-print-resource] .rfr-card-head,
+  html[data-print-resource] .rfr-actions,
+  html[data-print-resource] .rfr-cta-btn,
+  html[data-print-resource] .rfr-card:not(.is-open),
+  html[data-print-resource] .rfr-group:not(:has(.is-open)) {
+    display: none !important;
+  }
+  html[data-print-resource] body,
+  html[data-print-resource] .tbt-page {
+    background: #fff !important;
+  }
+  html[data-print-resource] .rfr-library,
+  html[data-print-resource] .rfr-group {
+    padding: 0;
+    margin: 0;
+  }
+  html[data-print-resource] .rfr-card {
+    border: 0;
+    box-shadow: none;
+  }
+  html[data-print-resource] .rfr-content {
+    border: 0;
+    padding: 0;
+    max-width: none;
+    font-size: 10.5pt;
+  }
+  html[data-print-resource] .rfr-print-title {
+    display: block;
+    font-size: 16pt;
+    margin: 0 0 8px;
+  }
+  html[data-print-resource] .rfr-cta {
+    background: none;
+    color: inherit;
+    border: 1px solid #999;
+  }
+  html[data-print-resource] .rfr-steps li::before,
+  html[data-print-resource] .rfr-diamond {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  /* Printing the toolbox talk: leave the resource cards off the sheet. */
+  html:not([data-print-resource]) .rfr-library {
+    display: none !important;
+  }
+}
