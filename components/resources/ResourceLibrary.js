@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const TICKS_KEY = "rf-res-ticks";
 
@@ -167,9 +167,52 @@ function Block({ block, slug, index, ticks, onToggle }) {
   }
 }
 
-function ResourceCard({ resource, kind, open, onToggle, onPrint, ticks, onTick }) {
+// The toolbox talk generator sits further down the page; it gets a card
+// in the grid like everything else, which scrolls down to it.
+const TOOLBOX_CARD = {
+  slug: "toolbox-talks",
+  category: "toolbox",
+  title: "Toolbox Talk Generator",
+  description:
+    "Pick a talk, add your company and site, and print it with a sign-off sheet. Silica dust, ladders, manual handling and HAVS.",
+  time: "Interactive",
+  tag: "Most popular",
+};
+
+function Card({ resource, kind, onOpen }) {
+  const isLink = resource.category === "toolbox";
+  const inner = (
+    <>
+      <span className="rfr-card-meta">
+        <span className="rfr-kind">{kind}</span>
+        <span className="rfr-time">{resource.time}</span>
+        {resource.tag && <span className="rfr-tag">{resource.tag}</span>}
+      </span>
+      <span className="rfr-card-title">{resource.title}</span>
+      <span className="rfr-card-desc">{resource.description}</span>
+      <span className="rfr-open">{isLink ? "Make a talk" : "Open"}</span>
+    </>
+  );
+  return isLink ? (
+    <a className="rfr-card" href={`#${resource.slug}`}>
+      {inner}
+    </a>
+  ) : (
+    <button type="button" className="rfr-card" onClick={onOpen} aria-haspopup="dialog">
+      {inner}
+    </button>
+  );
+}
+
+// Every resource's content is in the page HTML (so Google can read it);
+// only the open one is shown, in a panel over the grid.
+function ResourcePanel({ resource, kind, open, onClose, onPrint, ticks, onTick }) {
   const [copied, setCopied] = useState(false);
-  const panelId = `rfr-panel-${resource.slug}`;
+  const closeRef = useRef(null);
+
+  useEffect(() => {
+    if (open) closeRef.current?.focus({ preventScroll: true });
+  }, [open]);
 
   const copyLink = async () => {
     const url = `${window.location.origin}/resources#${resource.slug}`;
@@ -181,78 +224,64 @@ function ResourceCard({ resource, kind, open, onToggle, onPrint, ticks, onTick }
   };
 
   return (
-    <article
+    <div
+      className={`rfr-modal${open ? " is-open" : ""}`}
       id={resource.slug}
-      className={`rfr-card${open ? " is-open" : ""}`}
-      data-print-target={resource.slug}
+      aria-hidden={!open}
+      onClick={(e) => e.target === e.currentTarget && onClose()}
     >
-      <button
-        type="button"
-        className="rfr-card-head"
-        aria-expanded={open}
-        aria-controls={panelId}
-        onClick={onToggle}
+      <article
+        className="rfr-sheet"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={`${resource.slug}-title`}
       >
-        <span className="rfr-card-meta">
-          <span className="rfr-kind">{kind}</span>
-          <span className="rfr-time">{resource.time}</span>
-          {resource.tag && <span className="rfr-tag">{resource.tag}</span>}
-        </span>
-        <span className="rfr-card-title">{resource.title}</span>
-        <span className="rfr-card-desc">{resource.description}</span>
-        <span className="rfr-open">{open ? "Close" : "Open"}</span>
-      </button>
-
-      {/* Content is always rendered (so search engines see it) and the
-          panel animates its height open and shut with a grid-rows trick. */}
-      <div
-        className="rfr-panel"
-        id={panelId}
-        role="region"
-        aria-label={resource.title}
-        aria-hidden={!open}
-      >
-        <div className="rfr-panel-inner">
-          <div className="rfr-content">
-            <div className="rfr-actions">
-              <button type="button" onClick={onPrint}>
-                Print
-              </button>
-              <button type="button" onClick={copyLink}>
-                {copied ? "Link copied" : "Copy link"}
-              </button>
-              <button type="button" onClick={onToggle}>
-                Close
-              </button>
-            </div>
-            <h3 className="rfr-print-title">{resource.title}</h3>
-            {resource.blocks.map((block, i) => (
-              <Block
-                key={i}
-                block={block}
-                slug={resource.slug}
-                index={i}
-                ticks={ticks}
-                onToggle={onTick}
-              />
-            ))}
-            {resource.basedOn && <p className="rfr-based">Based on: {resource.basedOn}</p>}
-            {resource.cta && (
-              <div className="rfr-cta">
-                <p>{resource.cta.text}</p>
-                <Link href="/" className="rfr-cta-btn">
-                  Generate my RAMS
-                </Link>
-              </div>
-            )}
-            <p className="rfr-disclaimer">
-              General guidance only. Always follow the site rules and the principal
-              contractor&apos;s instructions.
-            </p>
+        <header className="rfr-sheet-head">
+          <span className="rfr-card-meta">
+            <span className="rfr-kind">{kind}</span>
+            <span className="rfr-time">{resource.time}</span>
+          </span>
+          <h3 id={`${resource.slug}-title`}>{resource.title}</h3>
+          <p className="rfr-sheet-desc">{resource.description}</p>
+          <div className="rfr-actions">
+            <button type="button" onClick={onPrint}>
+              Print
+            </button>
+            <button type="button" onClick={copyLink}>
+              {copied ? "Link copied" : "Copy link"}
+            </button>
+            <button type="button" ref={closeRef} onClick={onClose}>
+              Close
+            </button>
           </div>
+        </header>
+        <div className="rfr-content">
+          {resource.blocks.map((block, i) => (
+            <Block
+              key={i}
+              block={block}
+              slug={resource.slug}
+              index={i}
+              ticks={ticks}
+              onToggle={onTick}
+            />
+          ))}
+          {resource.basedOn && <p className="rfr-based">Based on: {resource.basedOn}</p>}
+          {resource.cta && (
+            <div className="rfr-cta">
+              <p>{resource.cta.text}</p>
+              <Link href="/" className="rfr-cta-btn">
+                Generate my RAMS
+              </Link>
+            </div>
+          )}
+          <p className="rfr-disclaimer">
+            General guidance only. Always follow the site rules and the principal contractor&apos;s
+            instructions.
+          </p>
         </div>
-      </div>
-    </article>
+      </article>
+    </div>
   );
 }
 
@@ -260,32 +289,58 @@ export default function ResourceLibrary({ resources, categories }) {
   const [openSlug, setOpenSlug] = useState(null);
   const [category, setCategory] = useState("all");
   const [ticks, setTicks] = useState({});
+  const lastCard = useRef(null);
 
-  // Open the card named in the URL hash, so a shared link lands on it.
+  const allCategories = [
+    { id: "toolbox", label: "Toolbox Talks", kind: "Generator" },
+    ...categories,
+  ];
+  const kindOf = (id) => allCategories.find((c) => c.id === id)?.kind || "";
+  const order = (r) => allCategories.findIndex((c) => c.id === r.category);
+  const cards = [TOOLBOX_CARD, ...resources].sort((a, b) => order(a) - order(b));
+  const visible = cards.filter((r) => category === "all" || r.category === category);
+
+  // Open the resource named in the URL hash, so a shared link lands on it.
   useEffect(() => {
     setTicks(readTicks());
     const fromHash = () => {
       const slug = decodeURIComponent(window.location.hash.slice(1));
-      if (resources.some((r) => r.slug === slug)) {
-        setOpenSlug(slug);
-        setCategory("all");
-        requestAnimationFrame(() =>
-          document.getElementById(slug)?.scrollIntoView({ behavior: "smooth", block: "start" }),
-        );
-      }
+      setOpenSlug(resources.some((r) => r.slug === slug) ? slug : null);
     };
     fromHash();
     window.addEventListener("hashchange", fromHash);
     return () => window.removeEventListener("hashchange", fromHash);
   }, [resources]);
 
-  const toggle = (slug) => {
-    const next = openSlug === slug ? null : slug;
-    setOpenSlug(next);
+  // While a panel is open: lock the page scroll and close on Escape.
+  useEffect(() => {
+    if (!openSlug) return;
+    const onKey = (e) => e.key === "Escape" && close();
+    document.documentElement.classList.add("rfr-locked");
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.documentElement.classList.remove("rfr-locked");
+      window.removeEventListener("keydown", onKey);
+    };
+  });
+
+  const setHash = (slug) => {
     try {
-      const url = next ? `#${next}` : window.location.pathname + window.location.search;
+      const url = slug ? `#${slug}` : window.location.pathname + window.location.search;
       window.history.replaceState(null, "", url);
     } catch {}
+  };
+
+  const open = (slug, el) => {
+    lastCard.current = el;
+    setOpenSlug(slug);
+    setHash(slug);
+  };
+
+  const close = () => {
+    setOpenSlug(null);
+    setHash(null);
+    lastCard.current?.focus({ preventScroll: true });
   };
 
   const toggleTick = (id) => {
@@ -299,7 +354,7 @@ export default function ResourceLibrary({ resources, categories }) {
   };
 
   // Print only the open resource: a flag on <html> switches the print
-  // styles from the toolbox talk sheet to this card.
+  // styles from the toolbox talk sheet to this panel.
   const printResource = (slug) => {
     const root = document.documentElement;
     root.setAttribute("data-print-resource", slug);
@@ -311,64 +366,44 @@ export default function ResourceLibrary({ resources, categories }) {
     window.print();
   };
 
-  const visibleCategories = categories.filter(
-    (c) => (category === "all" || category === c.id) && resources.some((r) => r.category === c.id),
-  );
-
   return (
-    <section className="rfr-library" aria-labelledby="rfr-heading">
-      <div className="rfr-intro">
-        <h2 id="rfr-heading">More free resources</h2>
-        <p>
-          Checklists, guides and cheat sheets for UK sites. Built around CDM 2015 and HSE guidance.
-          Free, no account, open on your phone or print them off.
-        </p>
-      </div>
-
+    <section className="rfr-library" aria-label="Free resources">
       <div className="rfr-chips" role="group" aria-label="Filter resources">
-        <button
-          type="button"
-          className={category === "all" ? "is-active" : ""}
-          aria-pressed={category === "all"}
-          onClick={() => setCategory("all")}
-        >
-          All
-        </button>
-        {categories
-          .filter((c) => resources.some((r) => r.category === c.id))
-          .map((c) => (
-            <button
-              key={c.id}
-              type="button"
-              className={category === c.id ? "is-active" : ""}
-              aria-pressed={category === c.id}
-              onClick={() => setCategory(c.id)}
-            >
-              {c.label}
-            </button>
-          ))}
+        {[{ id: "all", label: "All" }, ...allCategories].map((c) => (
+          <button
+            key={c.id}
+            type="button"
+            className={category === c.id ? "is-active" : ""}
+            aria-pressed={category === c.id}
+            onClick={() => setCategory(c.id)}
+          >
+            {c.label}
+          </button>
+        ))}
       </div>
 
-      {visibleCategories.map((c) => (
-        <div key={c.id} className="rfr-group">
-          <h3 className="rfr-group-title">{c.label}</h3>
-          <div className="rfr-grid">
-            {resources
-              .filter((r) => r.category === c.id)
-              .map((r) => (
-                <ResourceCard
-                  key={r.slug}
-                  resource={r}
-                  kind={c.kind}
-                  open={openSlug === r.slug}
-                  onToggle={() => toggle(r.slug)}
-                  onPrint={() => printResource(r.slug)}
-                  ticks={ticks}
-                  onTick={toggleTick}
-                />
-              ))}
-          </div>
-        </div>
+      <div className="rfr-grid">
+        {visible.map((r) => (
+          <Card
+            key={r.slug}
+            resource={r}
+            kind={kindOf(r.category)}
+            onOpen={(e) => open(r.slug, e.currentTarget)}
+          />
+        ))}
+      </div>
+
+      {resources.map((r) => (
+        <ResourcePanel
+          key={r.slug}
+          resource={r}
+          kind={kindOf(r.category)}
+          open={openSlug === r.slug}
+          onClose={close}
+          onPrint={() => printResource(r.slug)}
+          ticks={ticks}
+          onTick={toggleTick}
+        />
       ))}
     </section>
   );

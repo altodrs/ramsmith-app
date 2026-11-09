@@ -9,9 +9,9 @@ import "./library.css";
 const SITE_URL = "https://ramsforge.co.uk";
 const PAGE_URL = `${SITE_URL}/resources`;
 
-const TITLE = "Free Toolbox Talks UK: Print-Ready With Sign-Off Sheet";
+const TITLE = "Free Toolbox Talks and Site Safety Checklists for UK Trades";
 const DESCRIPTION =
-  "Free toolbox talks for UK trades: silica dust, ladder safety, manual handling and HAVS. Add your company and site, then print or save as PDF with an attendance sign-off sheet.";
+  "Free toolbox talks with a sign-off sheet, plus site checklists, step-by-step guides and cheat sheets for UK trades. Built around CDM 2015 and HSE guidance. No account needed.";
 
 export const metadata = {
   title: TITLE,
@@ -26,7 +26,7 @@ export default function ResourcesPage() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
-      { "@type": "ListItem", position: 2, name: "Free Toolbox Talks", item: PAGE_URL },
+      { "@type": "ListItem", position: 2, name: "Free Resources", item: PAGE_URL },
     ],
   };
 
@@ -37,27 +37,34 @@ export default function ResourcesPage() {
           <nav className="breadcrumbs tbt-crumbs" aria-label="Breadcrumb">
             <Link href="/">Home</Link>
             <span aria-hidden="true"> &rsaquo; </span>
-            <span>Free Toolbox Talks</span>
+            <span>Free Resources</span>
           </nav>
           <p className="tbt-hero-kicker">Free trade safety hub</p>
-          <h1>Site-Ready Safety Briefings in Seconds</h1>
+          <h1>Free Site Safety Resources for UK Trades</h1>
           <p className="tbt-hero-lead">
-            Pick a toolbox talk, stick your company and site on it, and print it
-            with a sign-off sheet. Free, no account, no faff.
+            Toolbox talks, checklists, step-by-step guides and cheat sheets for getting on site and
+            getting the job done safely. Built around CDM 2015 and HSE guidance. Open them on your
+            phone or print them off. Free, no account, no faff.
           </p>
           <ul className="tbt-hero-points">
             <li>Written for UK sites</li>
-            <li>Attendance sign-off included</li>
             <li>Print or save as PDF</li>
+            <li>No sign-up</li>
           </ul>
         </div>
       </section>
 
-      <div className="tbt-body">
-        <ToolboxTalkHub talks={data.talks} categories={data.categories} />
-      </div>
-
       <ResourceLibrary resources={resources} categories={resourceCategories} />
+
+      <section className="tbt-body" id="toolbox-talks" aria-labelledby="tbt-heading">
+        <div className="tbt-section-head">
+          <h2 id="tbt-heading">Toolbox Talk Generator</h2>
+          <p>
+            Pick a talk, stick your company and site on it, and print it with a sign-off sheet.
+          </p>
+        </div>
+        <ToolboxTalkHub talks={data.talks} categories={data.categories} />
+      </section>
 
       <script
         type="application/ld+json"
