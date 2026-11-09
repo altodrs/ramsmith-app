@@ -1,7 +1,10 @@
 import Link from "next/link";
 import ToolboxTalkHub from "@/components/toolbox/ToolboxTalkHub";
+import ResourceLibrary from "@/components/resources/ResourceLibrary";
 import data from "@/lib/toolboxTalks.json";
+import { resources, resourceCategories } from "@/lib/freeResources";
 import "./resources.css";
+import "./library.css";
 
 const SITE_URL = "https://ramsforge.co.uk";
 const PAGE_URL = `${SITE_URL}/resources`;
@@ -53,6 +56,8 @@ export default function ResourcesPage() {
       <div className="tbt-body">
         <ToolboxTalkHub talks={data.talks} categories={data.categories} />
       </div>
+
+      <ResourceLibrary resources={resources} categories={resourceCategories} />
 
       <script
         type="application/ld+json"
