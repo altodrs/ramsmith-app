@@ -47,7 +47,7 @@ export default function SiteNav() {
             href="/resources"
             className={`nav-wide-only${isActive("/resources") ? " active" : ""}`}
           >
-            Free Toolbox Talks
+            Free Resources
           </Link>
         </nav>
 
@@ -89,7 +89,7 @@ export default function SiteNav() {
             Pricing
           </Link>
           <Link href="/resources" onClick={() => setOpen(false)}>
-            Free Toolbox Talks
+            Free Resources
           </Link>
           <Link href={signedIn ? "/account" : "/login"} onClick={() => setOpen(false)}>
             {signedIn ? "Account" : "Sign in"}
