@@ -56,7 +56,7 @@ export default function SiteNav() {
             {signedIn ? "Account" : "Sign in"}
           </Link>
           <Link href="/" className="button masthead-cta">
-            Generate my RAMS
+            Create my RAMS
           </Link>
         </div>
 
@@ -95,7 +95,7 @@ export default function SiteNav() {
             {signedIn ? "Account" : "Sign in"}
           </Link>
           <Link href="/" className="button" onClick={() => setOpen(false)}>
-            Generate my RAMS
+            Create my RAMS
           </Link>
         </div>
       ) : null}
